@@ -1,0 +1,297 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage[margin=2.5cm]{geometry}
+
+\title{\textbf{Two Rational Models for a Transient Spherical Signal}}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This note merges two closely related descriptions of a transient spherical
+signal in three-dimensional space. The first case is a scalar shell model: the
+signal occupies a time-dependent spherical layer whose outer radius expands
+asymptotically and whose thickness eventually collapses. The second case is a
+radial vector field: the signal is represented by a smooth outward field whose
+magnitude is concentrated near an expanding radius. Both constructions use
+rational algebraic functions rather than exponentials or Gaussian profiles.
+\end{abstract}
+
+\section{Common Setting}
+
+Let
+\[
+    \bm{r}=(x,y,z)\in\mathbb{R}^3,
+    \qquad
+    r=\|\bm{r}\|=\sqrt{x^2+y^2+z^2},
+    \qquad
+    t\ge 0.
+\]
+When \(r>0\), the outward radial unit vector is
+\[
+    \hat{\bm{u}}_r=\frac{\bm{r}}{r}.
+\]
+At \(r=0\), this unit vector is not defined, so any vector-field model below
+must either be interpreted away from the origin or completed by a convention
+such as \(\bm{V}(\bm{0},t)=\bm{0}\).
+
+The common physical picture is a signal emitted from the origin, expanding
+radially, and then dissolving. The two cases differ in how the signal is
+represented:
+\begin{itemize}
+    \item Case I describes the occupied region of space as a scalar shell.
+    \item Case II describes the signal as a smooth radial vector field.
+\end{itemize}
+
+\section{Case I: Scalar Finite-Support Shell}
+
+In the scalar shell model the signal is present in a spherical layer
+\[
+    R_{\mathrm{int}}(t)\le r\le R_{\mathrm{ext}}(t),
+\]
+and absent outside it. The outer radius expands from zero toward a finite
+limit \(R_{\max}\):
+\begin{equation}
+    R_{\mathrm{ext}}(t)
+    =
+    R_{\max}\frac{t}{t+k_1},
+    \qquad
+    R_{\max}>0,\quad k_1>0.
+    \label{eq:outer-radius}
+\end{equation}
+This is a rational saturation law. It begins at \(0\), increases
+monotonically, and satisfies
+\[
+    \lim_{t\to\infty}R_{\mathrm{ext}}(t)=R_{\max}.
+\]
+
+\subsection{Thickness and Internal Radius}
+
+The shell thickness is required to vanish both at the initial instant and at
+late time. A convenient rational choice is
+\begin{equation}
+    h(t)
+    =
+    R_{\mathrm{ext}}(t)\frac{k_2}{t+k_2}
+    =
+    R_{\max}\frac{t}{t+k_1}\frac{k_2}{t+k_2},
+    \qquad k_2>0.
+    \label{eq:thickness}
+\end{equation}
+The internal radius is then
+\begin{equation}
+    R_{\mathrm{int}}(t)
+    =
+    R_{\mathrm{ext}}(t)-h(t)
+    =
+    R_{\mathrm{ext}}(t)
+    \left(1-\frac{k_2}{t+k_2}\right).
+    \label{eq:internal-radius}
+\end{equation}
+Thus \(R_{\mathrm{int}}(0)=0\), and for large \(t\) the internal radius
+approaches the outer radius.
+
+\subsection{Field Definition}
+
+The occupied signal region is
+\[
+    \Omega(t)
+    =
+    \left\{
+        \bm{r}\in\mathbb{R}^3:
+        R_{\mathrm{int}}(t)\le \|\bm{r}\|\le R_{\mathrm{ext}}(t)
+    \right\}.
+\]
+A binary scalar signal can be written with an indicator function:
+\begin{equation}
+    S(\bm{r},t)
+    =
+    \mathbf{1}_{\Omega(t)}(\bm{r}).
+    \label{eq:indicator-signal}
+\end{equation}
+Equivalently, the support is described by
+\begin{equation}
+    \left(R_{\mathrm{ext}}(t)-h(t)\right)^2
+    \le
+    x^2+y^2+z^2
+    \le
+    R_{\mathrm{ext}}(t)^2.
+    \label{eq:shell-support}
+\end{equation}
+Substituting \eqref{eq:outer-radius} and \eqref{eq:thickness}, this becomes
+\begin{equation}
+    \left[
+        R_{\max}\frac{t}{t+k_1}
+        \left(1-\frac{k_2}{t+k_2}\right)
+    \right]^2
+    \le
+    \|\bm{r}\|^2
+    \le
+    \left[
+        R_{\max}\frac{t}{t+k_1}
+    \right]^2.
+    \label{eq:explicit-shell-support}
+\end{equation}
+
+\subsection{Behavior}
+
+For early time, \(t\ll k_1,k_2\),
+\[
+    R_{\mathrm{ext}}(t)
+    \approx
+    \frac{R_{\max}}{k_1}t,
+    \qquad
+    h(t)\approx R_{\mathrm{ext}}(t).
+\]
+The internal radius is therefore close to zero, so the signal initially behaves
+like a solid sphere expanding from the origin.
+
+For late time,
+\[
+    R_{\mathrm{ext}}(t)\to R_{\max},
+    \qquad
+    h(t)\approx R_{\max}\frac{k_2}{t}\to 0.
+\]
+The occupied region becomes thinner and thinner near the limiting sphere
+\(r=R_{\max}\).
+
+\section{Case II: Smooth Rational Radial Vector Field}
+
+The second model represents the same qualitative phenomenon as a vector field
+rather than as a sharply supported scalar region. The field is purely radial:
+\begin{equation}
+    \bm{V}(\bm{r},t)
+    =
+    M(r,t)\hat{\bm{u}}_r,
+    \qquad r>0.
+    \label{eq:vector-field-general}
+\end{equation}
+Here \(M(r,t)\) is a scalar magnitude concentrated near a moving shell radius.
+
+\subsection{Rational Shell Magnitude}
+
+The shell profile is modeled with a Lorentzian--Cauchy rational bell:
+\begin{equation}
+    M(r,t)
+    =
+    \frac{A(t)}
+    {1+\left(\dfrac{r-\mu(t)}{w(t)}\right)^2}.
+    \label{eq:lorentzian-magnitude}
+\end{equation}
+The parameters have direct interpretations:
+\begin{itemize}
+    \item \(\mu(t)\) is the center radius of the shell.
+    \item \(w(t)\) is the shell width.
+    \item \(A(t)\) is the peak amplitude.
+\end{itemize}
+
+The center radius follows another rational saturation law:
+\begin{equation}
+    \mu(t)
+    =
+    R_{\max}\frac{t}{t+k_{\mathrm{exp}}},
+    \qquad k_{\mathrm{exp}}>0.
+    \label{eq:center-radius}
+\end{equation}
+The amplitude decays rationally:
+\begin{equation}
+    A(t)
+    =
+    \frac{I_0\tau}{t+\tau},
+    \qquad I_0>0,\quad \tau>0.
+    \label{eq:amplitude-decay}
+\end{equation}
+At \(t=0\), the amplitude is \(I_0\), while for large \(t\) it decays like
+\(1/t\). A simple diffusive width law is
+\begin{equation}
+    w(t)=w_0+\beta t,
+    \qquad w_0>0,\quad \beta\ge 0.
+    \label{eq:width-law}
+\end{equation}
+
+\subsection{Full Equation}
+
+Combining \eqref{eq:vector-field-general}--\eqref{eq:width-law}, the vector
+field is
+\begin{equation}
+    \bm{V}(\bm{r},t)
+    =
+    \left[
+        \frac{
+            \dfrac{I_0\tau}{t+\tau}
+        }
+        {
+            1+
+            \left(
+                \dfrac{
+                    r-R_{\max}\dfrac{t}{t+k_{\mathrm{exp}}}
+                }
+                {w_0+\beta t}
+            \right)^2
+        }
+    \right]
+    \frac{\bm{r}}{r},
+    \qquad r>0.
+    \label{eq:full-vector-field}
+\end{equation}
+This is not compactly supported: the Lorentzian profile has heavy tails.
+However, its largest values are concentrated near
+\[
+    r=\mu(t),
+\]
+and the peak magnitude is \(A(t)\).
+
+\subsection{Behavior}
+
+The direction is always radial and outward when \(M(r,t)>0\). The denominator
+in \eqref{eq:lorentzian-magnitude} is smallest when \(r=\mu(t)\), so the field
+has a smooth shell-like maximum at the moving radius. The rational decay in
+\(A(t)\) makes the field vanish in amplitude over long times.
+
+The model is algebraically cheap: apart from the norm \(r=\|\bm{r}\|\), it uses
+only arithmetic operations. In applications where avoiding a square root is
+important, one may formulate approximate or squared-radius variants, but the
+radial vector direction itself naturally requires normalization.
+
+\section{Comparison of the Two Cases}
+
+The scalar shell and vector-field models encode related but distinct ideas.
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Feature & Case I & Case II \\
+\hline
+Quantity & scalar \(S(\bm{r},t)\) & vector \(\bm{V}(\bm{r},t)\) \\
+Support & finite shell & infinite heavy-tailed profile \\
+Boundary & sharp inequalities & smooth Lorentzian decay \\
+Radius law & \(R_{\mathrm{ext}}(t)\) & \(\mu(t)\) \\
+Dissolution & thickness \(h(t)\to 0\) & amplitude \(A(t)\to 0\) \\
+Direction & none & outward radial direction \\
+\hline
+\end{tabular}
+\end{center}
+
+Case I is appropriate when the main object is the occupied spatial region of
+the signal. Case II is appropriate when the signal should act as a force,
+velocity, pressure, or displacement field.
+
+\section{Conclusion}
+
+Both models describe transient spherical signals using rational functions. The
+first gives a sharply bounded shell whose thickness grows and then collapses.
+The second gives a smooth outward radial field whose magnitude forms an
+expanding rational shell and fades over time. Together they provide two
+complementary descriptions of the same qualitative phenomenon: a signal born at
+the origin, expanding through space, and ultimately dissolving.
+
+\end{document}
