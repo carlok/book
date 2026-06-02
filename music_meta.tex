@@ -1,0 +1,409 @@
+\documentclass[11pt]{article}
+
+% --- Encoding & fonts ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% --- Math ---
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{mathrsfs}
+\usepackage{stmaryrd}
+
+% --- Layout ---
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+% --- Theorem-like environments ---
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{construction}[definition]{Construction}
+
+\theoremstyle{plain}
+\newtheorem{proposition}[definition]{Proposition}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{verdict}{Verdict}
+
+% --- Shortcuts ---
+\newcommand{\Cat}{\mathbf{Cat}}
+\newcommand{\Set}{\mathbf{Set}}
+\newcommand{\B}{\mathbf{B}}
+\newcommand{\V}{\mathcal{V}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\Rhy}{\mathbf{Rhy}}
+\newcommand{\Mel}{\mathbf{Mel}}
+\newcommand{\Harm}{\mathbf{Harm}}
+\newcommand{\Pitch}{\mathbf{Pitch}}
+\newcommand{\Disc}{\mathbf{Disc}}
+\newcommand{\Frame}{\mathfrak{A}}
+\newcommand{\op}{^{\mathrm{op}}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Xmus}{X_{\mathrm{mus}}}
+
+\title{The 2-Categorical Position of Music\\
+Among Time-Value Art Forms}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent We promote the parameter pair $(\B, \V)$ of the previous
+framework to a variable and organise the resulting time-value art
+forms into a 2-category $\Frame$. The chromatic lattice, viewed as a
+finite directed graph, distinguishes a reference object
+$\Xmus \in \Frame$. The question \emph{``is $X$ music?''} is
+recast as a structural question about the hom-category
+$\Frame(X, \Xmus)$: it admits faithful musicalisations, fully
+faithful ones, none. We classify several borderline cases — paired
+poetry, dialogue, Gregorian chant, classical Chinese verse,
+\emph{Sprechstimme}, birdsong, ritual percussion, a calling flock —
+and read off, in each case, what the verdict depends on.
+\end{abstract}
+
+% =====================================================================
+\section{From parameters to a 2-category of frames}
+% =====================================================================
+
+The previous framework parametrises rhythm, melody, and harmony by a
+pair $(\B, \V)$ of small categories. It treats the pair as fixed.
+Here we let it vary.
+
+\begin{definition}[The 2-category of time-value frames]\label{def:frames}
+The 2-category $\Frame$ has:
+\begin{enumerate}[label=\textup{(\roman*)}, leftmargin=2em]
+\item \emph{Objects} (called \emph{frames}): pairs
+$X = (\B_X, \V_X)$ of small categories.
+\item \emph{1-morphisms} $X \to Y$: pairs
+$(\beta, \nu)$ where $\beta : \B_X \to \B_Y$ and $\nu : \V_X \to \V_Y$
+are functors.
+\item \emph{2-morphisms} $(\beta, \nu) \Rightarrow (\beta', \nu')$:
+pairs $(\sigma, \tau)$ of natural transformations
+$\sigma : \beta \Rightarrow \beta'$ and $\tau : \nu \Rightarrow \nu'$.
+\end{enumerate}
+Composition and units are component-wise.
+\end{definition}
+
+\begin{construction}[Functoriality of rhythm, melody, harmony]
+The constructions of the previous framework extend to 2-functors
+$\Frame \to \Cat$:
+\begin{align*}
+\Rhy   &: X \mapsto \Rhy(\B_X), \\
+\Mel   &: X \mapsto \Mel(\B_X, \V_X), \\
+\Harm_\J &: X \mapsto \Harm_\J(\B_X, \V_X).
+\end{align*}
+A 1-morphism $(\beta, \nu) : X \to Y$ acts on rhythms by
+post-composition with $\beta$, on melodies by post-composition with
+$(\beta, \nu)$ in each leg of the span, and on harmonies
+component-wise on each voice.
+\end{construction}
+
+\begin{remark}
+This is the meta-theoretic move: every art form whose phenomenology
+is ``events in some base, labelled by some values'' is now an object
+of $\Frame$, and the rhythm/melody/harmony machinery applies to all
+of them uniformly. What distinguishes \emph{music} from its
+neighbours is not the machinery but the choice of frame.
+\end{remark}
+
+% =====================================================================
+\section{The chromatic graph}
+% =====================================================================
+
+The reference frame for music is built from a graph, not just a set.
+
+\begin{definition}[Chromatic graph]\label{def:chromatic}
+The \emph{chromatic graph} $\Gamma$ has vertex set $\Z$ and a single
+directed edge $n \to n{+}1$ for each $n \in \Z$. Its \emph{free
+category} is the chromatic lattice
+\[
+\Pitch \;:=\; \mathrm{Free}(\Gamma).
+\]
+Concretely, $\mathrm{Hom}_\Pitch(m, n) = \{*\}$ if $n \geq m$ and
+$\emptyset$ otherwise; composition is the unique map. Equivalently,
+$\Pitch \cong (\Z, \leq)$ as a thin category.
+\end{definition}
+
+\begin{remark}[Why graph and not just set]
+$\Pitch$ as a discrete set $\Disc(\Z)$ records pitch identity only.
+$\Pitch$ as the free category on $\Gamma$ additionally records
+\emph{intervallic order}: the unique morphism $m \to n$ exists iff $n$
+lies above $m$, and the length of the shortest factorisation is
+$n - m$ semitones. Functors $\V_X \to \Pitch$ must therefore preserve
+whatever ordered structure $\V_X$ carries, not merely the underlying
+set of values. This distinction is the \emph{entire content} of the
+question that follows.
+\end{remark}
+
+\begin{definition}[Finite ambitus, groupoidification]
+For $a \leq b$ in $\Z$, $\Pitch_{[a,b]}$ is the full subcategory on
+$\{a, a{+}1, \ldots, b\}$. The \emph{interval groupoid}
+$\Pitch^\sim$ is the localisation of $\Pitch$ at all morphisms; it
+has the same objects with $\mathrm{Hom}_{\Pitch^\sim}(m, n) = \{*\}$
+for all $m, n$. Inversion symmetry — descending intervals as
+inverses of ascending ones — lives in $\Pitch^\sim$.
+\end{definition}
+
+\begin{definition}[Musical reference frame]
+The \emph{musical reference frame} is
+\[
+\Xmus \;:=\; \bigl((\R_{\geq 0}, \leq),\ \Pitch\bigr) \;\in\; \Frame.
+\]
+\end{definition}
+
+% =====================================================================
+\section{Musicalisation and the musical predicate}
+% =====================================================================
+
+\begin{definition}[Musicalisation]
+A \emph{musicalisation} of a frame $X \in \Frame$ is a 1-morphism
+\[
+\Phi = (\beta, \nu) : X \longrightarrow \Xmus
+\]
+in $\Frame$. The \emph{musicalisation category} of $X$ is the
+hom-category $\Frame(X, \Xmus)$, whose objects are musicalisations
+and whose morphisms are 2-cells.
+\end{definition}
+
+\begin{definition}[The musical predicate]\label{def:predicate}
+A frame $X$ is:
+\begin{itemize}[leftmargin=2em]
+\item \emph{transcribable} if $\Frame(X, \Xmus)$ is non-empty;
+\item \emph{musical} if it contains a 1-morphism $(\beta, \nu)$ with
+both $\beta$ and $\nu$ faithful;
+\item \emph{strictly musical} if it contains one with both
+$\beta$ and $\nu$ fully faithful;
+\item \emph{canonically musical} if the connected component of any
+faithful $\Phi$ is unique up to a chosen 2-isomorphism class;
+\item \emph{amusical} if $\Frame(X, \Xmus) = \emptyset$.
+\end{itemize}
+\end{definition}
+
+\begin{remark}[The four-step ladder]
+The conditions above form a ladder:
+\[
+\text{amusical}
+\;<\; \text{transcribable}
+\;<\; \text{musical}
+\;<\; \text{strictly musical},
+\]
+with \emph{canonically musical} as a transverse property concerning
+the \emph{number} of faithful musicalisations rather than their
+existence. Most everyday verdicts about ``what is music'' confuse
+these levels; the framework lets us separate them.
+\end{remark}
+
+% =====================================================================
+\section{Worked examples}
+% =====================================================================
+
+In every example below, the time-leg $\beta$ is the identity
+inclusion $(\R_{\geq 0}, \leq) \hookrightarrow (\R_{\geq 0}, \leq)$.
+The verdict is therefore controlled by the value-leg
+$\nu : \V_X \to \Pitch$.
+
+% --------------------------------
+\subsection{Two poets in alternation}
+% --------------------------------
+Let $\V_{\mathrm{phon}}^\flat := \Disc(P)$, the discrete category on
+the finite set $P$ of phonemes of the poets' language. Any injection
+$\nu : P \hookrightarrow \Z$ — alphabetical, frequential, arbitrary
+— gives a fully faithful functor $\V_{\mathrm{phon}}^\flat \to \Pitch$,
+because both source and target are discrete on their objects.
+
+\begin{verdict}
+Two poets are \emph{strictly musical} but \emph{not canonically
+musical}: the musicalisation exists, even fully faithfully, but no
+choice of $\nu$ is privileged.
+\end{verdict}
+
+\noindent The framework here corrects a common intuition: the
+familiar judgement \emph{``poetry is not music''} does not rest on a
+structural failure but on the absence of a \emph{distinguished}
+musicalisation. Cultures that fix one (e.g.\ liturgical psalmody, Vedic
+recitation) immediately upgrade the same raw structure to canonically
+musical.
+
+% --------------------------------
+\subsection{Conversation}
+% --------------------------------
+Now enrich the value category to $\V_{\mathrm{conv}}$: same objects $P$,
+but with non-identity morphisms encoding minimal-pair relations
+($/p/ \to /b/$ for voicing, $/n/ \to /m/$ for place, etc.). A functor
+$\nu : \V_{\mathrm{conv}} \to \Pitch$ must send each minimal-pair
+morphism to a chromatic morphism, i.e., must respect a partial order
+on $P$ compatible with the chromatic order on $\Z$. The minimal-pair
+graph is in general not a sub-poset of $(\Z, \leq)$ — it has cycles,
+incomparable pairs, and no consistent direction.
+
+\begin{verdict}
+Conversation is \emph{transcribable} (drop the morphisms, fall back
+to the discrete case) but \emph{not musical}: no faithful $\nu$
+respects the linguistic structure.
+\end{verdict}
+
+\noindent The boundary between this and the poets case is exactly
+how richly one models $\V$: stripping the value category to its
+discrete shadow is the act of treating speech as music.
+
+% --------------------------------
+\subsection{Gregorian chant}
+% --------------------------------
+$\V_{\mathrm{chant}} := \Pitch_{[a,b]}$ for some Dorian or
+Mixolydian ambitus. The inclusion
+$\V_{\mathrm{chant}} \hookrightarrow \Pitch$ is fully faithful and
+even essentially surjective onto its image.
+
+\begin{verdict}
+Gregorian chant is \emph{strictly musical} and \emph{canonically
+musical}: the musicalisation is the inclusion, with no choice
+involved.
+\end{verdict}
+
+% --------------------------------
+\subsection{Classical Chinese verse}
+% --------------------------------
+$\V_{\mathrm{verse}} := \V_{\mathrm{phon}}^\flat \times \Disc(\Z/4)$,
+where the second factor records lexical tone (level, rising,
+departing, entering). Two natural musicalisations present themselves:
+\begin{align*}
+\nu_{\mathrm{tone}} &: \V_{\mathrm{verse}}
+   \xrightarrow{\mathrm{pr}_2} \Disc(\Z/4)
+   \hookrightarrow \Pitch / 12\Z, \\
+\nu_{\mathrm{full}} &: \V_{\mathrm{verse}}
+   \xrightarrow{\mathrm{any\ injection}} \Pitch.
+\end{align*}
+The first is canonical but not faithful (it forgets phonemes). The
+second is faithful but not canonical (any injection works).
+
+\begin{verdict}
+Classical Chinese verse is \emph{musical} and admits a
+\emph{canonical quotient-musicalisation} via tone, but not a
+canonical full musicalisation. The genre's lived ambiguity between
+``poetry'' and ``song'' is exactly this split.
+\end{verdict}
+
+% --------------------------------
+\subsection{Sprechstimme}
+% --------------------------------
+$\V_{\mathrm{spr}} := \Pitch \times \Disc(\{\mathrm{spoken}\})$. The
+first projection $\mathrm{pr}_1 : \V_{\mathrm{spr}} \to \Pitch$ is
+fully faithful (the second factor is terminal).
+
+\begin{verdict}
+\emph{Sprechstimme} is \emph{strictly musical} and \emph{canonically
+musical}. The \texttt{spoken} marker is a stylistic decoration that
+the framework correctly recognises as inessential to the
+classification.
+\end{verdict}
+
+% --------------------------------
+\subsection{Birdsong}
+% --------------------------------
+$\V_{\mathrm{bird}} := (\R, \leq)$, continuous pitch contour with its
+order. A faithful functor $(\R, \leq) \to (\Z, \leq) \cong \Pitch$
+would require an order-injection of an uncountable set into a
+countable one — impossible.
+
+\begin{verdict}
+Birdsong is \emph{transcribable} (the rounding map
+$\R \to \Z$ is a non-faithful musicalisation) but
+\emph{not musical}. Western notation of birdsong is precisely this
+quantisation, and the loss of information is structural, not
+artisanal.
+\end{verdict}
+
+% --------------------------------
+\subsection{Ritual percussion of arbitrary timbres}
+% --------------------------------
+$\V_{\mathrm{drum}} := \Disc(T)$ for a finite set $T$ of timbres.
+This is the two-poets situation again: any injection $T \to \Z$ is a
+fully faithful musicalisation; none is canonical.
+
+\begin{verdict}
+Strictly musical, not canonically musical. The standard practice of
+assigning timbres to lines of a percussion staff is the social act of
+fixing $\nu$ by convention.
+\end{verdict}
+
+% --------------------------------
+\subsection{A flock of birds calling simultaneously}
+% --------------------------------
+This is a harmony in $\Harm_\J(\B, \V_{\mathrm{bird}})$ for
+$|\J|$ = the number of birds. Musicalisability is inherited from the
+voice components: a harmony is (strictly) musical iff each voice is.
+
+\begin{verdict}
+Amusical, on the same grounds as a single bird. The framework
+\emph{cannot} confer musicality on an ensemble whose components lack
+it.
+\end{verdict}
+
+% =====================================================================
+\section{Summary table}
+% =====================================================================
+
+\begin{center}\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{lll}
+\hline
+\textbf{Frame} & \textbf{Verdict} & \textbf{Decided by} \\
+\hline
+Two poets               & strictly, not canonically  & freedom of $\nu$ \\
+Conversation            & transcribable, not musical & morphisms in $\V_{\mathrm{conv}}$ \\
+Gregorian chant         & strictly + canonically     & inclusion of ambitus \\
+Classical Chinese verse & quotient-canonical         & tone projection \\
+Sprechstimme            & strictly + canonically     & terminal second factor \\
+Birdsong                & transcribable, not musical & cardinality \\
+Ritual percussion       & strictly, not canonically  & freedom of $\nu$ \\
+Calling flock           & amusical                   & inherited \\
+\hline
+\end{tabular}
+\end{center}
+
+% =====================================================================
+\section{Closing: what the framework refuses to decide}
+% =====================================================================
+
+The framework converts \emph{``is $X$ music?''} into a precise
+question about which 1-morphisms exist in $\Frame(X, \Xmus)$, and it
+exposes the variables on which a verdict depends:
+\begin{enumerate}[label=\textup{(\roman*)}, leftmargin=2em]
+\item how richly one models $\V_X$ (discrete shadow vs.\ full
+morphism structure);
+\item whether one demands the musicalisation to be canonical or
+merely possible;
+\item whether one accepts $\Xmus$ as fixed or allows alternative
+reference frames (microtonal $\Pitch_{\mathrm{micro}}$, just-intonation
+$\Pitch_{\mathrm{ji}}$, electroacoustic spectrum
+$\Pitch_{\mathrm{spec}}$, etc.).
+\end{enumerate}
+
+\noindent What the framework \emph{does not} decide is which of these
+choices is the right one: the choice is a substantive musicological
+or philosophical commitment, and different communities make it
+differently. The framework's contribution is to make the disagreement
+\emph{locatable}: two interlocutors who reach opposite verdicts on
+``poetry as music'' will, on inspection, disagree about whether to
+take $\V_{\mathrm{phon}}^\flat$ or $\V_{\mathrm{conv}}$, and that
+disagreement has a name.
+
+\begin{remark}[Why this is a useful refactor]
+A philosophical question of the form \emph{``is $X$ really $Y$?''} is
+typically irresolvable as posed because $Y$ is given by ostension
+rather than by definition. The categorical reframing replaces $Y$ by
+a structured object ($\Xmus$) and the predicate ``really $Y$'' by a
+class of structure-preserving maps into it. Whether or not one
+accepts the chromatic frame as the right reference for ``music'',
+one at least now knows what one is rejecting.
+\end{remark}
+
+\end{document}
