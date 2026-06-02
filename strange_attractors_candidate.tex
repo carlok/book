@@ -1,0 +1,504 @@
+\documentclass[12pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+\title{Branch-Resolved Logarithmic Skew Products as Candidate Strange Attractors}
+\author{Draft research note}
+\date{\today}
+
+\newtheorem{definition}{Definition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{problem}{Problem}
+\newtheorem{remark}{Remark}
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\SigmaK}{\Sigma_K}
+\newcommand{\shift}{\sigma}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\diam}{\operatorname{diam}}
+\newcommand{\HTop}{h_{\mathrm{top}}}
+\newcommand{\dimH}{\dim_{\mathrm H}}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{abstract}
+		This note proposes a candidate family of strange attractors arising from branch-resolved logarithmic inverse dynamics. The guiding idea is to separate the classical phenomenon of inverse iteration accumulating on Julia sets from a potentially less classical phenomenon: skew-product dynamics in which the logarithmic branch itinerary is itself part of the phase space. The resulting object is not merely a projected cloud in the complex plane, but an invariant set in a lifted complex-symbolic space. The purpose of the note is not to claim a new theorem, but to formulate a precise research candidate for later numerical, symbolic, and formal investigation.
+	\end{abstract}
+	
+	\section{Motivation}
+	
+	Classical complex dynamics already explains a basic circular condensation phenomenon. For the monomial map
+	\[
+	f(z)=z^d,
+	\qquad d\geq 2,
+	\]
+	the Julia set is the unit circle. Iterating inverse branches of \(z\mapsto z^d\) generates dense subsets of this circle, up to the usual exceptional cases. Thus a visible ``\(C\)-circle'' under full-branch inverse iteration is not, by itself, a new strange attractor.
+	
+	The more promising object appears when one passes from rational inverse iteration to logarithmic branch dynamics. For a complex power expression, logarithmic coordinates reveal infinitely many possible branches:
+	\[
+	w=\log z,
+	\qquad
+	w \mapsto \frac{w+2\pi i k}{c},
+	\qquad k\in \Z.
+	\]
+	The branch index \(k\) is not an incidental numerical artifact. It can be promoted to a genuine symbolic variable. This suggests a phase space of the form
+	\[
+	X = \C \times \Sigma,
+	\]
+	where \(\Sigma\) records admissible branch itineraries.
+	
+	The central idea of this note is therefore the following:
+	
+	\begin{quote}
+		The candidate strange attractor should not be sought only in the projected \(z\)-plane. It should be sought in a lifted space consisting of a complex logarithmic coordinate together with a branch itinerary.
+	\end{quote}
+	
+	\section{Classical Part and Nonclassical Part}
+	
+	The classical part is inverse iteration toward Julia sets. For rational maps of degree at least two, backward iteration is a standard mechanism for generating the Julia set. Therefore, if the only phenomenon under investigation is that a cloud of inverse images condenses toward a circle or a Julia boundary, then the object is probably classical.
+	
+	The potentially nonclassical part is different. It consists of introducing a branch-resolved skew product
+	\[
+	T(w,\omega)
+	=
+	\left(
+	F_{\omega_0}(w),
+	\shift \omega
+	\right),
+	\]
+	where
+	\[
+	\omega=(\omega_0,\omega_1,\omega_2,\dots)
+	\]
+	is a symbolic sequence of logarithmic branch choices.
+	
+	The simplest model has
+	\[
+	F_k(w)=a w + b_k,
+	\qquad
+	b_k = 2\pi i a k + \beta_k,
+	\qquad |a|<1,
+	\]
+	with \(k\) ranging over an alphabet \(K\subseteq \Z\). More generally, one may perturb this by a small analytic or smooth term:
+	\[
+	F_k(w)=a w + 2\pi i a k + \beta_k + \varepsilon \Phi_k(w),
+	\qquad |\varepsilon|\ll 1.
+	\]
+	
+	The contraction in the \(w\)-coordinate is balanced by symbolic expansion in the branch itinerary. This gives a natural route toward strange-attractor behavior:
+	\[
+	\text{contracting complex fibers}
+	\quad + \quad
+	\text{expanding symbolic base}
+	\quad = \quad
+	\text{laminated chaotic invariant set}.
+	\]
+	
+	\section{Basic Candidate}
+	
+	Let \(K\subset \Z\) be a finite alphabet with at least two elements, and let
+	\[
+	\Sigma_K=K^{\N}
+	\]
+	be the one-sided full shift. Let
+	\[
+	\shift:\Sigma_K\to\Sigma_K
+	\]
+	be the left shift.
+	
+	Fix \(a\in\C\) with
+	\[
+	0<|a|<1.
+	\]
+	For each \(k\in K\), define
+	\[
+	F_k(w)=a w + 2\pi i a k + \beta_k,
+	\]
+	where \(\beta_k\in\C\) are fixed translation parameters.
+	
+	Define
+	\[
+	T:\C\times \Sigma_K \to \C\times \Sigma_K
+	\]
+	by
+	\[
+	T(w,\omega)
+	=
+	\left(
+	F_{\omega_0}(w),
+	\shift\omega
+	\right).
+	\]
+	
+	\begin{definition}[Branch-resolved logarithmic skew product]
+		A map of the above form, or a sufficiently small analytic perturbation of it, will be called a branch-resolved logarithmic skew product.
+	\end{definition}
+	
+	For a fixed itinerary \(\omega\), repeated backward reconstruction gives the formal limit
+	\[
+	w(\omega)
+	=
+	\sum_{n=0}^{\infty}
+	a^n
+	\left(
+	2\pi i a \omega_n+\beta_{\omega_n}
+	\right),
+	\]
+	or an equivalent expression depending on the chosen time convention.
+	
+	Since \(|a|<1\), the series is convergent. Thus one obtains a compact invariant set
+	\[
+	A
+	=
+	\{
+	(w(\omega),\omega)
+	:
+	\omega\in\Sigma_K
+	\}
+	\subset \C\times \Sigma_K.
+	\]
+	
+	The projected attractor in the logarithmic plane is
+	\[
+	A_{\C}
+	=
+	\{
+	w(\omega)
+	:
+	\omega\in\Sigma_K
+	\}
+	\subset \C.
+	\]
+	
+	The projected attractor in the original complex plane is
+	\[
+	A_z
+	=
+	\exp(A_{\C})
+	\subset \C^\ast.
+	\]
+	
+	\section{Why This Candidate Is Promising}
+	
+	The candidate is promising for three reasons.
+	
+	\subsection{Existence of an Attractor Is Plausible}
+	
+	The fiber maps \(F_k\) are contractions when \(|a|<1\). Therefore, in the finite-alphabet case, the symbolic space \(\Sigma_K\) is compact and the complex coordinate is uniformly controlled. This gives a comparatively clean path toward proving the existence of a compact invariant attracting set.
+	
+	A first rigorous target is:
+	
+	\begin{conjecture}[Compact branch attractor]
+		For finite \(K\subset\Z\), \(|K|\geq 2\), and \(0<|a|<1\), the map
+		\[
+		T(w,\omega)
+		=
+		(F_{\omega_0}(w),\shift\omega)
+		\]
+		admits a compact invariant set \(A\subset \C\times\Sigma_K\) attracting all points whose branch itinerary lies in \(\Sigma_K\) and whose complex coordinate lies in a sufficiently large bounded set.
+	\end{conjecture}
+	
+	This conjecture is deliberately conservative. It is designed to be provable before one tries to claim novelty.
+	
+	\subsection{Strangeness Is Plausible}
+	
+	The symbolic component has positive topological entropy whenever \(|K|\geq 2\):
+	\[
+	\HTop(\shift|\Sigma_K)=\log |K|.
+	\]
+	Since the branch itinerary is part of the phase space, the invariant set should inherit symbolic complexity. Therefore, the lifted attractor \(A\) is not strange merely because its projection looks visually fractal; it is strange because its internal dynamics contains symbolic expansion.
+	
+	A natural target is:
+	
+	\begin{conjecture}[Symbolic strangeness]
+		For \(|K|\geq 2\), the restriction \(T|_A\) has positive topological entropy. In the unperturbed case, \(T|_A\) is semiconjugate, and possibly conjugate under appropriate separation assumptions, to the full shift on \(K\) symbols.
+	\end{conjecture}
+	
+	A second target is geometric:
+	
+	\begin{conjecture}[Projected fractal geometry]
+		For an open set of parameters \((a,\{\beta_k\}_{k\in K})\), the projected set \(A_{\C}\) has non-integer Hausdorff dimension. Under suitable separation assumptions, its dimension should be governed by a pressure equation analogous to the Moran formula for self-similar sets.
+	\end{conjecture}
+	
+	The projected object \(A_z=\exp(A_{\C})\) may display spiralling, annular, or circle-like condensation patterns, but the meaningful invariant object remains the lifted set \(A\subset \C\times\Sigma_K\).
+	
+	\subsection{Novelty Is Plausible but Not Guaranteed}
+	
+	The main novelty risk is that the finite-alphabet model may reduce to a standard self-similar IFS or a standard contracting skew product. Therefore, the finite model should be treated as the base case, not as the final object.
+	
+	The genuinely interesting extensions are:
+	
+	\begin{enumerate}
+		\item infinite branch alphabets \(K=\Z\);
+		\item admissible subshifts defined by arithmetic or geometric branch constraints;
+		\item adaptive branch rules where \(\omega_{n+1}\) depends on \(w_n\);
+		\item perturbations that preserve logarithmic branch structure but destroy exact self-similarity;
+		\item compactifications or normalizations that allow infinitely many branches without losing the attractor.
+	\end{enumerate}
+	
+	The most promising research direction is therefore not merely a logarithmic IFS, but a branch-resolved logarithmic system in which the admissible branch sequence is dynamically or arithmetically constrained.
+	
+	\section{From Finite to Infinite Branches}
+	
+	The finite-alphabet model is likely the correct first theorem. However, genuine logarithmic multivaluedness naturally has infinitely many branches:
+	\[
+	k\in\Z.
+	\]
+	The corresponding affine branch maps are
+	\[
+	F_k(w)=a w + 2\pi i a k + \beta_k.
+	\]
+	
+	If all \(k\in\Z\) are allowed without restriction, compactness may fail because the translations are unbounded. Therefore, an infinite-branch version requires an additional mechanism.
+	
+	Possible mechanisms include:
+	
+	\begin{enumerate}
+		\item \textbf{Tempered branch sequences:}
+		restrict to itineraries satisfying a growth condition such as
+		\[
+		|\omega_n|\leq C e^{\alpha n},
+		\qquad
+		\alpha < -\log |a|.
+		\]
+		This ensures convergence of the branch series.
+		
+		\item \textbf{Weighted symbolic compactification:}
+		replace \(\Z^{\N}\) by a compact symbolic space in which large branches are penalized by a metric or potential.
+		
+		\item \textbf{Modulo-cylinder projection:}
+		study \(w\) modulo a vertical period, converting logarithmic displacement into dynamics on a cylinder.
+		
+		\item \textbf{Adaptive branch damping:}
+		allow all \(k\in\Z\), but add a normalizing term preventing unbounded escape:
+		\[
+		F_k(w)=a w + 2\pi i a k - R(k,w),
+		\]
+		where \(R\) is chosen to keep the orbit in a compact region.
+		
+		\item \textbf{Energy-constrained branch selection:}
+		let branches be selected by a deterministic rule minimizing or approximately minimizing an energy functional.
+	\end{enumerate}
+	
+	The infinite-branch case is where novelty is more likely, but also where proof becomes harder.
+	
+	\section{Candidate Main Problem}
+	
+	\begin{problem}[Main research problem]
+		Construct a branch-resolved logarithmic skew product with the following properties:
+		\begin{enumerate}
+			\item it has a compact invariant attracting set \(A\);
+			\item the restriction of the dynamics to \(A\) has positive entropy;
+			\item the projected set in the complex plane has nontrivial fractal or laminated geometry;
+			\item the construction is not reducible to a standard finite conformal IFS or to classical rational inverse iteration;
+			\item the system retains a meaningful connection to logarithmic branch dynamics.
+		\end{enumerate}
+	\end{problem}
+	
+	A minimal successful result would prove these properties for a finite branch alphabet while clearly identifying the classical components. A stronger successful result would treat an infinite or adaptively constrained branch alphabet.
+	
+	\section{Proposed Proof Strategy}
+	
+	The proof program should proceed in layers.
+	
+	\subsection{Layer 1: Contracting Fiber Construction}
+	
+	Prove that the fiber coordinate admits a unique limit \(w(\omega)\) for each admissible itinerary \(\omega\). In the finite-alphabet affine case, this follows directly from contraction:
+	\[
+	|F_k(w)-F_k(w')|=|a||w-w'|.
+	\]
+	
+	This gives a coding map
+	\[
+	\pi:\Sigma_K\to\C,
+	\qquad
+	\pi(\omega)=w(\omega).
+	\]
+	
+	Then the candidate attractor is the graph
+	\[
+	A=\{(\pi(\omega),\omega):\omega\in\Sigma_K\}.
+	\]
+	
+	\subsection{Layer 2: Invariance}
+	
+	Show that
+	\[
+	T(A)=A.
+	\]
+	This should follow from the compatibility between the coding map and the shift:
+	\[
+	\pi(\shift\omega)=F_{\omega_0}(\pi(\omega)),
+	\]
+	up to the chosen convention for forward or backward indexing.
+	
+	This step requires care because there are two natural conventions:
+	\begin{enumerate}
+		\item the branch at time \(0\) maps the present fiber to the next fiber;
+		\item the branch at time \(0\) reconstructs the present fiber from the future itinerary.
+	\end{enumerate}
+	A future revision should fix one convention and make all formulas consistent.
+	
+	\subsection{Layer 3: Attraction}
+	
+	Define a metric on \(\C\times\Sigma_K\), for example
+	\[
+	d((w,\omega),(w',\omega'))
+	=
+	|w-w'|+\rho(\omega,\omega'),
+	\]
+	where \(\rho\) is a standard symbolic metric:
+	\[
+	\rho(\omega,\omega')
+	=
+	\sum_{n=0}^{\infty} 2^{-n}
+	\mathbf{1}_{\omega_n\neq\omega'_n}.
+	\]
+	
+	Prove that for fixed symbolic itinerary, the fiber coordinate is attracted to the coded graph. This gives fiberwise attraction. A stronger statement would characterize the basin of attraction in the full skew-product space.
+	
+	\subsection{Layer 4: Entropy}
+	
+	Since the base dynamics is the full shift on \(|K|\) symbols, prove
+	\[
+	\HTop(T|_A)\geq \log |K|.
+	\]
+	If the coding is injective and the lifted dynamics is conjugate to the shift, then
+	\[
+	\HTop(T|_A)=\log |K|.
+	\]
+	
+	The lifted space is essential here. In the projected complex plane, different branch itineraries may collide, causing entropy to be lost under projection.
+	
+	\subsection{Layer 5: Fractal Dimension}
+	
+	Under separation assumptions, estimate or compute
+	\[
+	\dimH(A_{\C}).
+	\]
+	For exact similarities with common contraction ratio \(|a|\), the expected similarity dimension is
+	\[
+	s=\frac{\log |K|}{-\log |a|}.
+	\]
+	Since \(A_{\C}\subset\C\), the Hausdorff dimension should satisfy
+	\[
+	\dimH(A_{\C})\leq 2.
+	\]
+	In the separated regime, one expects
+	\[
+	\dimH(A_{\C})=\min\left(2,\frac{\log |K|}{-\log |a|}\right),
+	\]
+	though overlaps and the exponential projection may complicate this.
+	
+	\section{Numerical Program}
+	
+	The numerical investigation should not begin with arbitrary nonlinear differential equations. It should begin with this controlled skew-product family.
+	
+	Suggested numerical experiments:
+	
+	\begin{enumerate}
+		\item Fix \(K=\{-1,0,1\}\), choose \(a\in\C\) with \(|a|<1\), and plot \(A_{\C}\).
+		\item Vary \(\arg(a)\) to observe rotation-induced spiralling.
+		\item Plot \(A_z=\exp(A_{\C})\) to compare logarithmic-plane and original-plane geometry.
+		\item Estimate box-counting dimensions of \(A_{\C}\) and \(A_z\).
+		\item Add small perturbations
+		\[
+		F_k(w)=a w+2\pi i a k+\beta_k+\varepsilon\Phi_k(w)
+		\]
+		and measure persistence of the attractor.
+		\item Replace the full shift by constrained subshifts, for example no repeated branch, bounded drift, or arithmetic branch constraints.
+		\item Explore infinite but tempered branch sequences.
+	\end{enumerate}
+	
+	The most important numerical discipline is to keep the lifted branch itinerary. A projected picture alone may make a classical object look new.
+	
+	\section{Formal Verification Goal}
+	
+	The long-term goal is to connect numerical discovery with formal verification.
+	
+	A possible pipeline is:
+	
+	\begin{enumerate}
+		\item use numerical exploration to identify parameter regimes with visually and metrically interesting projected attractors;
+		\item use symbolic regression or LLM-guided search to propose exact parameter values and branch rules;
+		\item prove contraction, invariance, and entropy statements in a theorem prover;
+		\item use interval arithmetic only for those parts that genuinely require certified numerical bounds;
+		\item separate visual evidence from formal claims.
+	\end{enumerate}
+	
+	For the finite affine model, the first formal target should not be Lyapunov exponents. It should be the exact graph-attractor theorem:
+	\[
+	A=\{(\pi(\omega),\omega):\omega\in\Sigma_K\},
+	\qquad
+	T(A)=A.
+	\]
+	Then one should formalize the semiconjugacy or conjugacy with the shift. Positive entropy can then be inherited from symbolic dynamics.
+	
+	Only after this base case is formalized should one attempt more ambitious claims about Hausdorff dimension, infinite alphabets, perturbations, or interval-certified nonlinear systems.
+	
+	\section{What a Future Stronger Reviewer Should Check}
+	
+	A future revision should focus on the following questions.
+	
+	\begin{enumerate}
+		\item \textbf{Convention correctness.}
+		Are the formulas for \(T\), \(\pi\), and shift-invariance mutually consistent?
+		
+		\item \textbf{Novelty boundary.}
+		Which part is merely a standard contracting IFS or graph transform, and which part is genuinely logarithmic or branch-resolved?
+		
+		\item \textbf{Correct definition of strange.}
+		Should strangeness mean positive topological entropy, positive Lyapunov exponent, non-integer Hausdorff dimension, lack of smooth manifold structure, or some combination?
+		
+		\item \textbf{Projection loss.}
+		Does the projected complex attractor \(A_{\C}\) retain chaos, or does all symbolic complexity live only in the lifted space?
+		
+		\item \textbf{Infinite-branch compactness.}
+		Can one allow all \(k\in\Z\) while keeping a compact attractor? If so, what is the natural phase space?
+		
+		\item \textbf{Relation to known theory.}
+		Is the construction already covered by conformal IFS, graph-directed systems, random dynamical systems, non-autonomous iteration, or transcendental dynamics?
+		
+		\item \textbf{Best first theorem.}
+		What is the smallest theorem that is true, nontrivial, and worth proving?
+	\end{enumerate}
+	
+	\section{Provisional Conclusion}
+	
+	The best current candidate is the branch-resolved logarithmic skew-product attractor. It is promising because it lies at the intersection of three structures:
+	
+	\[
+	\text{complex logarithmic multivaluedness},
+	\qquad
+	\text{symbolic branch dynamics},
+	\qquad
+	\text{contracting complex fibers}.
+	\]
+	
+	The conservative finite-alphabet version is likely provable but may be too close to standard IFS theory. The infinite or adaptively constrained branch version is more likely to contain genuine novelty, but it requires a careful compactness mechanism.
+	
+	Thus the immediate goal is not to announce a new strange attractor. The goal is to isolate a family of systems for which the following progression is possible:
+	\[
+	\text{numerical evidence}
+	\quad\longrightarrow\quad
+	\text{clean conjecture}
+	\quad\longrightarrow\quad
+	\text{finite-model theorem}
+	\quad\longrightarrow\quad
+	\text{infinite-branch generalization}.
+	\]
+	
+	If successful, this would provide a disciplined bridge between visually observed logarithmic inverse dynamics and a formally defined family of strange attractors in lifted complex-symbolic phase space.
+	
+\end{document}
