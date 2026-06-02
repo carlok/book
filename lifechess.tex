@@ -1,0 +1,91 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{array}
+\geometry{a4paper, margin=25mm}
+
+\title{Emergent Strategy via Meta-Evolutionary Cellular Automata:\\A Two-Tier Framework for Algorithmic Game Design}
+\author{Carlo Perassi}
+\date{\today}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{abstract}
+		This paper introduces a novel, two-tier computational framework that shifts the paradigm of game design from static, human-engineered mechanics to evolved, emergent physics. % [cite: 1]
+		In Level 1 (The Toroidal Crucible), an automated evolutionary tournament is executed via massively parallel computing, pitting generalized multi-color Turing automata against one another. 
+		Winning rules are selected strictly via a biomass-driven fitness function over a finite set of computational bursts. 
+		In Level 2 (Evolved Chess), these highly resilient, evolved automata are repurposed as deterministic, state-driven pieces in a turn-based strategic game played on a $512 \times 512$ torus. % [cite: 4]
+		We formalize the transition mechanics, faction-agnostic trail stigmergy, core cell overwrite vulnerabilities, and the definitive biomass scoring systems. % [cite: 5]
+	\end{abstract}
+	
+	\section{Introduction}
+	Traditional board games typically rely on engineered complexity or simple emergent complexity. % [cite: 6]
+	Chess represents the former: a game characterized by asymmetric, highly specific rules governing distinct pieces, operating within a static, immutable environment. % [cite: 7]
+	Conversely, Go represents the epitome of pure emergent complexity: featuring minimal, homogeneous rules on an empty grid that yield an unfathomably vast game tree. % [cite: 8]
+	We propose a radical synthesis that transcends both paradigms by introducing a \textbf{meta-evolutionary architecture}. % [cite: 9]
+	Instead of designing the physics of the game, human intervention is restricted to designing the ecosystem within which the physics itself evolves. % [cite: 10]
+	
+	\section{Level 1: The Toroidal Crucible}
+	The foundational tier operates as a zero-player genetic algorithm laboratory and a massive computational tournament. % [cite: 12]
+	
+	\subsection{Mathematical Formalism of the Agent}
+	The agent operates as a generalized Multi-Color Langton's Ant. % [cite: 14]
+	An individual agent ruleset is defined by a finite set of grid colors $C$ and a deterministic transition function $\delta$:
+	\begin{equation}
+		2 \le |C| \le 8 % 
+	\end{equation}
+	\begin{equation}
+		\delta: C \rightarrow C \times D
+	\end{equation}
+	The action space $D$ represents a strict binary directional rotation:
+	\begin{equation}
+		D \in \{ \text{Left}, \text{Right} \}
+	\end{equation}
+	
+	When an agent occupies a cell, it reads the color, rotates left or right, overwrites the cell with a new color, and steps forward. % [cite: 18]
+	The transition allows for unconstrained mapping: rules can cause accretions onto a dominant color or distribute uniformly across the spectrum.
+	
+	\subsection{The Massive Tournament and Fitness Function}
+	To determine the viable rulesets, Level 1 simulates interactions on a toroidal manifold % [cite: 19]
+	using parallel computing infrastructure (e.g., RunPod clusters) to rapidly evaluate all permutations of the 2-to-8 color automata.
+	
+	Rather than generic versatility, the tournament evaluates direct head-to-head combat between automata over a low number of \textit{macro-turns} (e.g., 8 to 16 computational pulses). The winner is determined purely by \textbf{Biomass Superiority}: the automaton that successfully overwrites the opponent's core or claims the highest cell count within the turn limit.
+	
+	\section{Level 2: Evolved Chess}
+	Level 2 transitions into a turn-based, two-player symmetric strategy game played on a massive $512 \times 512$ toroidal grid. % [cite: 22]
+	
+	\subsection{The Arsenal and The Fixed Pulse}
+	Each player selects a customized arsenal of four distinct rulesets harvested from Level 1. % [cite: 23, 24]
+	Activating a piece triggers a massive computational burst. % [cite: 29]
+	Upon activation, the piece executes its transition function $\delta$ for exactly $2^{14} = 16,384$ computational steps. % 
+	This guarantees the piece breaks past local chaos and builds a major structural trail. % [cite: 32]
+	
+	\subsection{Faction-Agnostic Trail Stigmergy}
+	When an active piece traverses a path, it acts with complete indifference to ownership. % [cite: 33]
+	Because all pieces share compatible rule structures, any trail tile is read purely as an environmental variable. % [cite: 34]
+	
+	\subsection{Core Cell Overwrite and Permadeath}
+	When an active piece completes its 16,384-step pulse, it instantly freezes. % [cite: 37]
+	The final coordinate is its \textbf{Core Cell}. % [cite: 38]
+	If an active piece's trajectory processes and overwrites the color of a frozen opponent's Core Cell, the frozen piece is permanently destroyed. % [cite: 41, 42]
+	
+	\subsection{Match Termination and Victory Metrics}
+	Matches are strictly limited to a maximum of 64 moves per player. % [cite: 43]
+	Victory is determined by a strict evaluation hierarchy:
+	
+	\begin{enumerate}
+		\item \textbf{Piece Differential (Simple Biomass):} The easiest metric to compute. The player with the highest number of surviving pieces remaining on the board wins. % 
+		\item \textbf{Spatial Biomass Dominance (Complex Biomass):} If the piece count is tied, or if the tournament explicitly calls for it, the engine executes a computationally expensive evaluation of the spatial footprint. % [cite: 45]
+		Let $O(x,y) \in \{P_1, P_2, \emptyset\}$ be an ownership matrix tracking which player's automaton was the \textit{last} to overwrite coordinate $(x,y)$. % [cite: 46]
+		The Biomass $B$ for player $P$ is formalized as:
+		\begin{equation}
+			B_P = \sum_{x=1}^{512} \sum_{y=1}^{512} \mathbb{I}(O(x,y) == P)
+		\end{equation}
+		The player with the highest total Biomass wins. % [cite: 48]
+	\end{enumerate}
+	
+\end{document}
