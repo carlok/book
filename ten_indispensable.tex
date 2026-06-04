@@ -1,0 +1,313 @@
+\documentclass[11pt,a4paper]{article}
+
+% ── Font (pdflatex-safe, modern sans) ──
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[scaled=0.92]{helvet}  % Helvetica (modern sans)
+\renewcommand{\familydefault}{\sfdefault}
+
+% ── Layout ──
+\usepackage[
+top=28mm, bottom=30mm, left=26mm, right=26mm,
+headheight=14pt
+]{geometry}
+\usepackage{parskip}
+\setlength{\parskip}{0.45em}
+
+% ── Packages ──
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{amssymb,amsmath}
+
+% ── Colours ──
+\definecolor{deep}{HTML}{1B2A4A}
+\definecolor{accent}{HTML}{C0392B}
+\definecolor{steel}{HTML}{5D6D7E}
+\definecolor{light}{HTML}{D5DBDB}
+
+% ── Hyperref ──
+\hypersetup{
+	colorlinks=true,
+	linkcolor=accent,
+	urlcolor=steel,
+	pdfauthor={Carlo Perassi},
+	pdftitle={Ten Things You Cannot Afford to Ignore},
+}
+
+% ── Section styling ──
+\titleformat{\section}
+{\Large\bfseries\color{deep}}
+{\thesection.}{0.5em}{}
+[\vspace{-0.3em}{\color{accent}\rule{\textwidth}{0.6pt}}]
+
+% ── Header / Footer ──
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[C]{\small\color{steel}\thepage}
+
+% ── Item card environment ──
+\newenvironment{card}[3]{%
+	% #1 = number, #2 = title, #3 = area tag
+	\vspace{0.8em}
+	\noindent
+	\begin{tikzpicture}[baseline=(num.base)]
+		\node[fill=deep, text=white, font=\Large\bfseries,
+		minimum width=9mm, minimum height=9mm,
+		inner sep=0pt, rounded corners=2pt] (num) {#1};
+	\end{tikzpicture}%
+	\hspace{0.4em}%
+	{\Large\bfseries\color{deep}#2}%
+	\hfill
+	{\small\color{accent}\MakeUppercase{#3}}%
+	\par\vspace{0.15em}\noindent\ignorespaces
+}{%
+	\par\vspace{0.4em}
+	\noindent{\color{light}\rule{\textwidth}{0.4pt}}
+}
+
+
+\begin{document}
+	
+	% ── TITLE PAGE ──
+	\thispagestyle{empty}
+	\vspace*{2.5cm}
+	
+	\begin{center}
+		{\color{accent}\rule{0.4\textwidth}{1pt}}\\[1.2em]
+		{\fontsize{28}{34}\selectfont\bfseries\color{deep}
+			Ten Things You Cannot\\[0.15em] Afford to Ignore}\\[1.2em]
+		{\color{accent}\rule{0.4\textwidth}{1pt}}\\[2em]
+		{\large\color{steel}\itshape
+			An inventory of ideas without which\\[0.3em]
+			no contemporary thought can call itself contemporary.}\\[3em]
+		{\color{deep}\bfseries Carlo Perassi}\\[0.3em]
+		{\small\color{steel} Octopus Lab\enspace\textperiodcentered\enspace Kiwifarm Srl}\\[0.3em]
+		{\small\color{steel} March 2026}
+	\end{center}
+	
+	\vfill
+	
+	\noindent\textcolor{steel}{\small
+		Despite the widespread availability of communication media, many people
+		essentially operate with a culture that is not of the twentieth century
+		but of the nineteenth. The following ten landmarks, drawn from
+		mathematics, physics, computer science, logic, and the philosophy of
+		science, are non-negotiable prerequisites for anyone who aspires to
+		formulate original, \emph{contemporary} thought.}
+	
+	\newpage
+
+% ── THE MERGE ALL TOGETHER APPROACH ──
+\section*{The ``merge all together'' approach}
+
+When synthesised, these ten pillars do not merely coexist; they interlock to form a single, unified epistemology. 
+
+Reality is not a clockwork stage but a dynamic, observer-dependent geometry (\emph{Relativity}) whose foundational layer is probabilistic and entangled (\emph{Quantum Mechanics}). The ultimate currency of this reality is \emph{information} (\emph{Shannon}). 
+
+When we attempt to decode this information, we are immediately met with hard limits. Our formal descriptions cannot prove every truth (\emph{G\"odel}), our algorithms cannot solve every problem (\emph{Turing}), and even systems with perfect deterministic rules defeat long-term prediction (\emph{Chaos}). Furthermore, finding solutions to the problems we \emph{can} compute is often blocked by insurmountable resource walls (\emph{Computational Complexity}).
+
+How, then, do we proceed? By recognising that human knowledge is the search for the most compressed algorithmic description of reality (\emph{Kolmogorov}). Because absolute certainty is structurally denied to us, we must navigate the world using graduated, probabilistic updates based on incoming evidence (\emph{Bayesian Inference}). And we must remain acutely aware that our reigning models are never final truths, but temporary, compressible frameworks destined to be overthrown when anomalies inevitably pile up (\emph{Kuhn}).
+
+To ``merge it all together'' is to accept a profound and humbling worldview: \textbf{we inhabit a universe of irreducible uncertainty and bounded computation, where knowledge is not the accumulation of absolute facts, but the continuous, probabilistic compression of information.}
+
+\vspace{2.5em}
+
+\begin{center}
+	\color{accent}\rule{0.25\textwidth}{0.6pt}
+\end{center}
+
+\newpage
+
+	% ── ON THE ORDERING ──
+	\section*{On the ordering}
+	
+	The sequence is neither chronological nor alphabetical; it follows a
+	\emph{logical dependency chain}, each result presupposes, or sharpens,
+	the ones before it.
+	
+	\textbf{Layer 1: the absolute limits of formal reason} (items 1--2).
+	G\"odel and Turing establish, respectively, that no single formal system
+	can capture all mathematical truth, and that no algorithm can decide
+	all well-posed questions. These are meta-results: they constrain every
+	subsequent framework. They come first because they delimit the
+	\emph{entire playing field}.
+	
+	\textbf{Layer 2: the physical world is not what you assumed} (items
+	3--4). Relativity and quantum mechanics dismantle the Newtonian stage on
+	which pre-twentieth-century thought operates. They appear immediately
+	after the logical limits because they show that reality
+	itself, space, time, matter, causality, is stranger than any
+	nineteenth-century formalism could express.
+	
+	\textbf{Layer 3: information as a first-class concept} (item 5).
+	Shannon's information theory bridges physics and computation. It
+	depends on the probabilistic worldview opened by quantum mechanics and
+	provides the quantitative language without which items 7--10 cannot be
+	stated precisely.
+	
+	\textbf{Layer 4: how knowledge itself changes} (item 6). Kuhn's
+	philosophy of science is placed after the physical revolutions it
+	\emph{explains}. One needs relativity and quantum mechanics as concrete
+	examples before the concept of ``paradigm shift'' acquires its full
+	force.
+	
+	\textbf{Layer 5: reasoning under uncertainty} (item 7). Bayesian
+	inference is the operational counterpart of Kuhn's insight: if
+	paradigms shift, certainty is unavailable, and rational belief must be
+	graduated. This requires Shannon's notion of information to be
+	quantitatively precise.
+	
+	\textbf{Layer 6: the limits of prediction, computation, and
+		description} (items 8--10). Chaos theory shows that determinism does
+	not imply predictability. Complexity theory shows that computability
+	does not imply tractability. Kolmogorov complexity shows that
+	describability itself has an irreducible, uncomputable core. These
+	three results close the architecture by revisiting, at a finer grain,
+	the limits opened by G\"odel and Turing, completing the arc.
+	
+	\vspace{0.5em}
+	\noindent{\color{accent}\rule{\textwidth}{0.6pt}}
+	
+	\newpage
+	
+	% ── THE TEN ITEMS ──
+	
+	\begin{card}{1}{G\"odel's Incompleteness Theorems}{Logic / Mathematics}
+		In 1931 Kurt G\"odel proved that any consistent formal system powerful
+		enough to express elementary arithmetic contains true statements that
+		\emph{cannot} be proved within the system, and that such a system
+		cannot prove its own consistency. These results shattered the
+		Hilbert programme and placed permanent, structural limits on what
+		formal reasoning can achieve. Anyone who speaks of ``proof,''
+		``certainty,'' or ``foundations'' without awareness of incompleteness
+		is reasoning inside a nineteenth-century frame that was \emph{already
+			refuted} a century ago.
+	\end{card}
+	
+	\begin{card}{2}{Turing Computability}{Computer Science / Mathematics}
+		Alan Turing's 1936 paper introduced the abstract machine that bears his
+		name and proved the existence of well-posed problems that \emph{no
+			algorithm can solve}, most famously, whether an arbitrary programme
+		will halt. Computability theory defines the outer boundary of what
+		machines (and formalised procedures in general) can ever accomplish.
+		It is the operational twin of G\"odel's result: not all truths are
+		reachable by systematic computation. Without this, one cannot reason
+		honestly about algorithms, artificial intelligence, or automation.
+	\end{card}
+	
+	\begin{card}{3}{Special and General Relativity}{Physics / Geometry}
+		Einstein's theories (1905, 1915) replaced Newtonian absolute space and
+		time with a unified spacetime whose geometry is shaped by mass-energy.
+		Time is not universal; simultaneity is observer-dependent; gravity is
+		curvature. These are not exotic curiosities, they underpin GPS,
+		cosmology, and every modern understanding of causality. A worldview
+		that tacitly assumes a Newtonian stage is not merely imprecise: it is
+		\emph{wrong} about the very arena in which events occur.
+	\end{card}
+	
+	\begin{card}{4}{Quantum Mechanics}{Physics / Epistemology}
+		The quantum revolution (Planck, Bohr, Heisenberg, Schr\"odinger,
+		Dirac, 1900--1930) revealed that nature at its most fundamental level
+		is probabilistic, that measurement participates in determining
+		outcomes, and that the classical notion of a particle with definite
+		trajectory is an approximation. Entanglement, superposition, and the
+		uncertainty principle are not philosophical thought-experiments: they
+		are the basis of every semiconductor, laser, and, imminently, quantum
+		computer. Ignoring them means misunderstanding the material substrate of
+		modern technology.
+	\end{card}
+	
+\newpage
+
+	\begin{card}{5}{Shannon's Information Theory}{Mathematics / Engineering}
+		Claude Shannon's 1948 paper gave the first rigorous, quantitative
+		definition of \emph{information}, independent of meaning, and
+		established fundamental theorems on channel capacity, compression, and
+		error correction. Information theory is the invisible grammar of the
+		digital age: it governs how data is stored, transmitted, encrypted, and
+		compressed. Without Shannon, one cannot understand why a signal is
+		distinct from noise, or why perfect communication over an imperfect
+		channel is possible at all.
+	\end{card}
+	
+	\begin{card}{6}{Kuhn's \emph{Structure of Scientific Revolutions}}{Philosophy of Science}
+		Thomas Kuhn (1962) argued that science does not progress by linear
+		accumulation but through paradigm shifts: long periods of ``normal
+		science'' punctuated by crises and revolutionary replacements of the
+		reigning framework. The concepts of \emph{paradigm},
+		\emph{incommensurability}, and \emph{anomaly} transformed how we
+		understand scientific change and, by extension, how we evaluate
+		claims of knowledge. Anyone who treats ``science'' as a monolithic,
+		ever-advancing edifice has not reckoned with Kuhn.
+	\end{card}
+	
+	\begin{card}{7}{Bayesian reasoning and statistical inference}{Statistics / Epistemology}
+		Bayes' theorem (18th century in origin, 20th century in maturation)
+		provides a coherent framework for updating beliefs in the light of
+		evidence. Modern science, medicine, machine learning, and decision
+		theory are \emph{structurally} Bayesian: they deal in degrees of
+		belief, prior distributions, and likelihood ratios rather than
+		black-and-white ``proof.'' A person who reasons only in terms of
+		``true or false'' is using a logic inadequate for a world of partial
+		information and uncertain evidence.
+	\end{card}
+	
+	\begin{card}{8}{Chaos and sensitivity to initial conditions}{Mathematics / Physics}
+		Poincar\'e glimpsed it; Lorenz made it vivid in 1963. Deterministic
+		systems can be \emph{practically} unpredictable because tiny
+		differences in initial conditions grow exponentially over time.
+		This is not randomness: the equations are exact but it means that
+		long-range prediction is structurally impossible for a wide class of
+		systems (weather, turbulence, many biological processes). The
+		nineteenth-century dream of Laplacian determinism ``give me the
+		initial conditions and I will predict the future'' fails not for
+		lack of data, but for mathematical reasons.
+	\end{card}
+
+\newpage
+
+	\begin{card}{9}{Computational Complexity (P vs NP)}{Computer Science / Mathematics}
+		Even among computable problems, not all are \emph{tractable}. The
+		theory of complexity classes (P, NP, PSPACE, and beyond) classifies
+		problems by the resources required to solve them as input size grows.
+		The still-open question of whether $\mathrm{P} = \mathrm{NP}$ is among
+		the deepest in mathematics, and its practical consequences are
+		immediate: if $\mathrm{P} \neq \mathrm{NP}$ (as widely believed), an
+		enormous class of optimisation, scheduling, and verification problems
+		have \emph{no} efficient general solution. Ignoring this means
+		misunderstanding what software can and cannot do, and why cryptography
+		works.
+	\end{card}
+	
+	\begin{card}{10}{Kolmogorov Complexity}{Mathematics / Computer Science}
+		Kolmogorov complexity measures the intrinsic information content of an
+		object as the length of the shortest programme that produces it.
+		It unifies concepts of randomness, compressibility, and structure in a
+		single, mathematically rigorous framework, and it is
+		\emph{uncomputable}, which links it directly back to G\"odel and
+		Turing. A string is ``random'' if and only if it cannot be compressed;
+		a scientific law is ``good'' if it compresses the data it explains.
+		Without this lens, discussions of simplicity, Occam's razor, and
+		pattern recognition remain purely intuitive and pre-formal.
+	\end{card}
+	
+	\vspace{1.5em}
+	
+	\begin{center}
+		\color{accent}\rule{0.25\textwidth}{0.6pt}
+	\end{center}
+	
+	\vspace{0.5em}
+	
+	\noindent\textcolor{steel}{\small\itshape
+		These ten results are not optional cultural enrichment. They are the
+		load-bearing walls of contemporary thought. A mind that has not
+		absorbed them can still be erudite in a nineteenth-century sense, but
+		it cannot produce ideas that are genuinely \emph{of this century}.}
+
+\end{document}
