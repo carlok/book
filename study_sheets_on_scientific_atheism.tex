@@ -1,0 +1,846 @@
+% !TEX program = xelatex
+\documentclass[11pt,twoside]{article}
+
+%% ──────────────────────────────────────────────
+%%  GEOMETRY — A5 paper
+%% ──────────────────────────────────────────────
+\usepackage[
+  a5paper,
+  top=18mm,
+  bottom=20mm,
+  inner=18mm,
+  outer=14mm,
+  headheight=22pt,
+  footskip=12mm
+]{geometry}
+
+%% ──────────────────────────────────────────────
+%%  FONTS & ENCODING
+%% ──────────────────────────────────────────────
+\usepackage{fontspec}
+\setmainfont{Charter}
+\setsansfont{Helvetica Neue}
+\setmonofont{Menlo}[Scale=0.85]
+\usepackage{microtype}
+
+%% ──────────────────────────────────────────────
+%%  LANGUAGE
+%% ──────────────────────────────────────────────
+\usepackage[english]{babel}
+\usepackage{csquotes}
+
+%% ──────────────────────────────────────────────
+%%  COLOURS
+%% ──────────────────────────────────────────────
+\usepackage[dvipsnames,svgnames,x11names]{xcolor}
+\definecolor{sheetbg}{HTML}{F5F0E8}
+\definecolor{sheetframe}{HTML}{8B4513}
+\definecolor{sectioncol}{HTML}{6B1D1D}
+\definecolor{linkcol}{HTML}{1A4D6E}
+\definecolor{notebg}{HTML}{FFFDE7}
+\definecolor{noteframe}{HTML}{BDB76B}
+\definecolor{quotebg}{HTML}{EDE7F6}
+\definecolor{quoteframe}{HTML}{5E35B1}
+
+%% ──────────────────────────────────────────────
+%%  HEADERS & FOOTERS
+%% ──────────────────────────────────────────────
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\small\textsf{\textcolor{sectioncol}{\leftmark}}}
+\fancyhead[RO]{\small\textsf{\textcolor{sectioncol}{\rightmark}}}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\headrule}{\hbox to\headwidth{%
+  \color{sheetframe}\leaders\hrule height \headrulewidth\hfill}}
+
+%% ──────────────────────────────────────────────
+%%  SECTION TITLES
+%% ──────────────────────────────────────────────
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\Large\bfseries\sffamily\color{sectioncol}}
+  {\thesection}{0.8em}{}
+  [\vspace{2pt}{\color{sheetframe}\titlerule[1pt]}]
+
+\titleformat{\subsection}
+  {\large\bfseries\sffamily\color{sectioncol!80!black}}
+  {\thesubsection}{0.6em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\sffamily\color{sectioncol!65!black}}
+  {\thesubsubsection}{0.5em}{}
+
+\titlespacing*{\section}{0pt}{16pt plus 4pt minus 2pt}{8pt plus 2pt}
+\titlespacing*{\subsection}{0pt}{10pt plus 3pt minus 2pt}{4pt plus 1pt}
+\titlespacing*{\subsubsection}{0pt}{8pt plus 2pt minus 1pt}{3pt plus 1pt}
+
+%% ──────────────────────────────────────────────
+%%  BOXES (tcolorbox)
+%% ──────────────────────────────────────────────
+\usepackage[most]{tcolorbox}
+
+\newtcolorbox{scheda}[1][]{%
+  enhanced,
+  breakable,
+  colback=sheetbg,
+  colframe=sheetframe,
+  fonttitle=\bfseries\sffamily,
+  title={#1},
+  coltitle=white,
+  colbacktitle=sheetframe,
+  boxrule=0.6pt,
+  arc=2mm,
+  top=5pt, bottom=5pt,
+  left=6pt, right=6pt,
+  before skip=8pt,
+  after skip=8pt,
+  shadow={1mm}{-1mm}{0mm}{black!15},
+  attach boxed title to top left={xshift=4mm, yshift=-2mm},
+  boxed title style={arc=1.5mm, boxrule=0.4pt}
+}
+
+\newtcolorbox{notabox}[1][Key Point]{%
+  enhanced,
+  breakable,
+  colback=notebg,
+  colframe=noteframe,
+  fonttitle=\bfseries\sffamily\small,
+  title={#1},
+  coltitle=black,
+  colbacktitle=notebg,
+  boxrule=0.5pt,
+  arc=1.5mm,
+  top=3pt, bottom=3pt,
+  left=5pt, right=5pt,
+  before skip=6pt,
+  after skip=6pt,
+  borderline west={2pt}{0pt}{noteframe}
+}
+
+\newtcolorbox{citazione}{%
+  enhanced,
+  breakable,
+  colback=quotebg,
+  colframe=quoteframe,
+  boxrule=0pt,
+  arc=1.5mm,
+  top=4pt, bottom=4pt,
+  left=8pt, right=6pt,
+  before skip=6pt,
+  after skip=6pt,
+  borderline west={3pt}{0pt}{quoteframe}
+}
+
+%% ──────────────────────────────────────────────
+%%  LISTS
+%% ──────────────────────────────────────────────
+\usepackage{enumitem}
+\setlist{nosep, leftmargin=1.2em}
+\setlist[itemize,1]{label=\textcolor{sheetframe}{\textbullet}}
+\setlist[itemize,2]{label=\textcolor{sheetframe}{--}}
+\setlist[enumerate,1]{label=\textcolor{sectioncol}{\arabic*.}}
+
+%% ──────────────────────────────────────────────
+%%  INDEX
+%% ──────────────────────────────────────────────
+\usepackage{imakeidx}
+\makeindex[title=Analytical Index, intoc, columns=2,
+           options={-s index_style.ist}]
+
+%% ──────────────────────────────────────────────
+%%  HYPERLINKS
+%% ──────────────────────────────────────────────
+\usepackage[
+  colorlinks=true,
+  linkcolor=linkcol,
+  urlcolor=linkcol,
+  bookmarksdepth=3
+]{hyperref}
+
+%% ──────────────────────────────────────────────
+%%  MISC
+%% ──────────────────────────────────────────────
+\usepackage{booktabs}
+\usepackage{multicol}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt plus 1pt minus 1pt}
+
+%% ──────────────────────────────────────────────
+%%  DOCUMENT
+%% ──────────────────────────────────────────────
+\begin{document}
+
+%% ── TITLE PAGE ──────────────────────────────
+\begin{titlepage}
+\centering
+\vspace*{25mm}
+
+{\color{sheetframe}\rule{\textwidth}{1.5pt}}
+
+\vspace{10mm}
+
+{\fontsize{22}{26}\selectfont\bfseries\sffamily\color{sectioncol}
+  Study Sheets on\\[4pt]
+  Scientific Atheism}
+
+\vspace{8mm}
+
+{\large\sffamily\color{sectioncol!70!black}
+  A Systematic Critique\\[2pt]
+  of Religious Frameworks}
+
+\vspace{10mm}
+
+{\color{sheetframe}\rule{\textwidth}{1.5pt}}
+
+\vspace{15mm}
+
+{\normalsize\sffamily\textit{%
+  From epistemological foundations\\
+  to the doctrines of Grace and Predestination}}
+
+\vspace{10mm}
+
+{\small\sffamily
+  In the tradition of Russell, Hume, Feuerbach, Nietzsche}
+
+\vfill
+
+{\small\sffamily\color{gray} A5 Study Guide --- \the\year}
+\end{titlepage}
+
+%% ── EPIGRAPH ────────────────────────────────
+\thispagestyle{empty}
+\vspace*{35mm}
+\begin{citazione}
+\textit{``The whole problem with the world is that fools and fanatics are always
+so certain of themselves, and wiser people so full of doubts.''}
+
+\medskip
+\hfill--- Bertrand Russell
+\end{citazione}
+
+\vspace{15mm}
+
+\begin{citazione}
+\textit{``Is God willing to prevent evil, but not able? Then he is not
+omnipotent.  Is he able, but not willing?  Then he is malevolent.
+Is he both able and willing?  Then whence cometh evil?
+Is he neither able nor willing?  Then why call him God?''}
+
+\medskip
+\hfill--- Epicurus (attr.)
+\end{citazione}
+
+\newpage
+
+%% ── TABLE OF CONTENTS ───────────────────────
+\tableofcontents
+\newpage
+
+%% ════════════════════════════════════════════
+%%  I — GENERAL THESES
+%% ════════════════════════════════════════════
+\section{General Theses: The Epistemology of Disbelief}
+\index{epistemology}\index{burden of proof}\index{atheism!scientific}
+
+\begin{scheda}[Sheet 1 --- The Burden of Proof]
+The foundational principle of scientific atheism is not that ``God does not
+exist'' as a dogmatic assertion, but that \textbf{extraordinary claims require
+extraordinary evidence}\index{extraordinary claims}.
+
+\begin{enumerate}
+  \item \textbf{Russell's Teapot\index{Russell's Teapot}.}
+    If someone claims that a china teapot orbits the Sun between Earth and Mars,
+    the burden of proof rests on the claimant, not on the sceptic.  Religious
+    claims about a transcendent being are no different epistemologically.
+  \item \textbf{The null hypothesis.}
+    The rational default is non-belief in entities for which no falsifiable
+    evidence\index{falsifiability} is presented.
+  \item \textbf{Unfalsifiability as a defect.}
+    Theological propositions are typically constructed so that \emph{no
+    conceivable observation} could refute them.  This makes them
+    epistemically vacuous, not unassailable.
+\end{enumerate}
+\end{scheda}
+
+\begin{scheda}[Sheet 2 --- Contradictions in the Concept of God]
+\index{omnipotence}\index{omniscience}\index{omnibenevolence}
+
+Classical theism attributes three properties to God simultaneously:
+\textbf{omnipotence}, \textbf{omniscience}, and \textbf{omnibenevolence}.
+Each pair generates well-known paradoxes:
+
+\begin{itemize}
+  \item \textbf{The Omnipotence Paradox\index{omnipotence paradox}.}
+    Can God create a stone so heavy that He cannot lift it?  Either answer
+    limits omnipotence.
+  \item \textbf{The Problem of Evil\index{problem of evil} (Theodicy\index{theodicy}).}
+    If God is all-knowing, all-powerful, and all-good, the existence of
+    gratuitous suffering is logically inexplicable.  Classical ``free will''
+    defences\index{free will defence} fail to account for natural evil
+    (earthquakes, childhood leukaemia, pandemics).
+  \item \textbf{Divine foreknowledge vs.\ free will\index{free will!vs.\ foreknowledge}.}
+    If God knows all future events with certainty, then the future is fixed,
+    and human freedom is illusory.  This undermines the entire apparatus of
+    sin, merit, and punishment.
+\end{itemize}
+\end{scheda}
+
+\begin{scheda}[Sheet 3 --- Psychological \& Sociological Origins of Religion]
+\index{Feuerbach}\index{projection theory}\index{Marx}\index{Durkheim}
+
+\begin{itemize}
+  \item \textbf{Feuerbach's projection thesis\index{Feuerbach!projection}.}
+    God is an externalisation of idealised human qualities.  Theology is
+    anthropology\index{anthropology!theological} in disguise.
+  \item \textbf{Marx's social function.}
+    Religion is the ``opium of the people''\index{opium of the people}---it
+    anaesthetises the exploited against the perception of their own condition,
+    serving the interests of ruling classes.
+  \item \textbf{Durkheim's social cohesion.}
+    The ``sacred'' is a symbolic representation of society itself.  Ritual
+    reinforces group solidarity, not metaphysical truth.
+  \item \textbf{Cognitive science\index{cognitive science of religion}.}
+    Humans exhibit an evolved \emph{hyperactive agency detection
+    device}\index{HADD} (HADD): we over-attribute intentionality to
+    natural phenomena---a survival trait that predisposes us to theism.
+\end{itemize}
+\end{scheda}
+
+\begin{notabox}[Core Methodological Principle]
+Scientific atheism does not assert certainty about metaphysical negatives.
+It insists that belief should be proportioned to evidence, and that where
+evidence is absent, suspension of judgement---not faith---is the rational
+stance.
+\end{notabox}
+
+\newpage
+
+%% ════════════════════════════════════════════
+%%  II — MONOTHEISM
+%% ════════════════════════════════════════════
+\section{Monotheism: Critique of the One-God Concept}
+\index{monotheism}
+
+\begin{scheda}[Sheet 4 --- Historical Contingency of Monotheism]
+\index{monolatry}\index{Aten}\index{Zoroastrianism}
+
+Monotheism is not a ``natural'' or inevitable theological development.  It
+emerged from specific historical pressures:
+
+\begin{enumerate}
+  \item \textbf{From polytheism\index{polytheism} to monolatry.}
+    Early Israelite religion was not monotheistic but
+    \emph{monolatrous}\index{monolatry}: Yahweh\index{Yahweh} was
+    worshipped as the \emph{national} god among many existing gods
+    (cf.\ Psalm~82, Deuteronomy~32:8--9 in the Dead Sea Scrolls reading).
+  \item \textbf{Political consolidation.}
+    The Josiah reforms\index{Josiah reforms} (c.~621~BCE) centralised cult
+    worship in Jerusalem, suppressing rival sanctuaries and local deities.
+    Monotheism was, in part, a political technology for national unification.
+  \item \textbf{Persian influence.}
+    Zoroastrian\index{Zoroastrianism} dualism profoundly shaped post-exilic
+    Jewish theology: eschatology\index{eschatology}, angelology, the figure
+    of Satan\index{Satan}, and bodily resurrection.
+\end{enumerate}
+\end{scheda}
+
+\begin{scheda}[Sheet 5 --- Logical Problems Specific to Monotheism]
+\index{divine simplicity}\index{personal God}
+
+\begin{itemize}
+  \item \textbf{The problem of divine attributes\index{divine attributes}.}
+    A ``simple'' God (Aquinas\index{Aquinas}) who is identical with His
+    attributes cannot be a person in any meaningful sense---persons have
+    contingent properties.  If God is love itself, He cannot \emph{choose}
+    to love; love becomes a tautology.
+  \item \textbf{Creation \emph{ex nihilo}\index{creation ex nihilo}.}
+    If God is ``outside'' time\index{timelessness!divine} and space, He
+    lacks the temporal framework necessary for the act of ``deciding'' or
+    ``causing,'' since causation presupposes temporal succession.
+  \item \textbf{The problem of divine hiddenness\index{divine hiddenness}.}
+    If an omnibenevolent God exists, He would ensure that every sincere
+    seeker could find adequate evidence for His existence.  The existence of
+    reasonable non-belief is itself evidence against such a God
+    (J.~L.~Schellenberg\index{Schellenberg}).
+  \item \textbf{Mono\-theism's exclusive truth-claim.}
+    Each monotheism declares all others false while offering the same
+    \emph{type} of evidence (scripture, testimony, inner experience).  The
+    symmetry of competing revelations\index{competing revelations} refutes
+    all equally.
+\end{itemize}
+\end{scheda}
+
+\newpage
+
+%% ════════════════════════════════════════════
+%%  III — REVEALED RELIGIONS
+%% ════════════════════════════════════════════
+\section{Revealed Religions: The Claim of Divine Revelation}
+\index{revelation}\index{scripture!authority}
+
+\begin{scheda}[Sheet 6 --- Epistemology of Revelation]
+\index{revelation!epistemology}
+
+The concept of ``divine revelation'' faces several structural difficulties:
+
+\begin{enumerate}
+  \item \textbf{The authentication problem\index{authentication problem}.}
+    How does one distinguish a genuine divine revelation from a hallucination,
+    a delusion, an epileptic seizure\index{temporal lobe epilepsy}, or a
+    political fabrication?  No non-circular criterion exists within the
+    revelatory framework.
+  \item \textbf{The transmission problem\index{transmission problem}.}
+    Even if an original revelation occurred, centuries of oral transmission,
+    copying, editing, and translation introduce noise\index{textual
+    corruption} that make the current text an unreliable witness to the
+    original event.
+  \item \textbf{The interpretation problem\index{hermeneutics}.}
+    Sacred texts are radically polysemic.  The same verses have been used to
+    justify slavery\index{slavery} and abolition, war and pacifism, monarchy
+    and democracy.  If God intended a clear message, He failed.
+  \item \textbf{The exclusivity problem.}
+    Multiple religions claim mutually exclusive revelations.  Since each
+    relies on the same \emph{kind} of evidence (a text said to be inspired),
+    internal consistency alone cannot adjudicate between them.
+\end{enumerate}
+\end{scheda}
+
+\begin{scheda}[Sheet 7 --- Miracles and Natural Law]
+\index{miracles}\index{Hume, David}
+
+\begin{citazione}
+\textit{``No testimony is sufficient to establish a miracle, unless the
+testimony be of such a kind, that its falsehood would be more miraculous,
+than the fact, which it endeavours to establish.''}
+
+\medskip
+\hfill--- David Hume, \textit{Of Miracles} (1748)
+\end{citazione}
+
+\begin{itemize}
+  \item \textbf{Hume's maxim\index{Hume's maxim}.}
+    The probability of human error, exaggeration, or fraud \emph{always}
+    exceeds the probability that a law of nature has been violated.
+  \item \textbf{Survivor bias\index{survivor bias}.}
+    Miracle accounts survive because they are extraordinary.  The vast
+    majority of prayers unanswered, of relics that healed nobody, vanish
+    from the record.
+  \item \textbf{Cultural dependence\index{miracles!cultural dependence}.}
+    Miracle reports cluster in pre-scientific, low-literacy societies.
+    They decline precisely where education, record-keeping, and medical
+    knowledge advance.
+\end{itemize}
+\end{scheda}
+
+\newpage
+
+%% ════════════════════════════════════════════
+%%  IV — JUDAISM
+%% ════════════════════════════════════════════
+\section{Judaism: Historical and Theological Critique}
+\index{Judaism}
+
+\begin{scheda}[Sheet 8 --- The Old Testament as History]
+\index{Old Testament}\index{archaeology!biblical}\index{historicity}
+
+Modern biblical archaeology\index{Finkelstein}\index{Silberman} has
+undermined the historicity of the foundational narratives:
+
+\begin{itemize}
+  \item \textbf{The Exodus\index{Exodus!historicity}.}
+    No Egyptian record mentions a mass departure of slaves.
+    Archaeological surveys of the Sinai find no trace of forty years of
+    wandering by 600,000 men (plus families).  The story is best understood
+    as a national origin myth crystallised during the Babylonian
+    exile\index{Babylonian exile}.
+  \item \textbf{The Conquest of Canaan\index{Conquest of Canaan}.}
+    Jericho\index{Jericho} was unfortified and largely uninhabited at the
+    supposed date of conquest.  The archaeological evidence suggests a gradual
+    internal emergence of Israelite identity from Canaanite\index{Canaanites}
+    society, not a military invasion.
+  \item \textbf{The United Monarchy\index{United Monarchy}.}
+    The grandeur of Solomon's kingdom\index{Solomon} described in Kings is
+    not supported by the modest material record of 10th-century~BCE
+    Jerusalem.
+\end{itemize}
+\end{scheda}
+
+\begin{scheda}[Sheet 9 --- Ethical Critique of the Hebrew Bible]
+\index{ethics!biblical}\index{genocide}\index{herem}
+
+The moral content of the Torah\index{Torah} presents acute difficulties for
+any attempt to derive universal ethics from it:
+
+\begin{itemize}
+  \item \textbf{Commanded genocide (\emph{herem}\index{herem}).}
+    Deuteronomy~20:16--17 and~1~Samuel~15:3 command the total extermination
+    of conquered peoples, including women and children, explicitly attributed
+    to God's will.
+  \item \textbf{Slavery legislation\index{slavery!Mosaic law}.}
+    Exodus~21 regulates slavery as a lawful institution.  Non-Israelite
+    slaves may be owned permanently and bequeathed as property
+    (Leviticus~25:44--46).
+  \item \textbf{Collective punishment\index{collective punishment}.}
+    God punishes children for the sins of their parents
+    (Exodus~20:5, Numbers~16:27--33).
+  \item \textbf{Gender subordination\index{gender!subordination}.}
+    Women are treated as property in marriage law (Deuteronomy~22:28--29),
+    inheritance law, and purity regulations.
+\end{itemize}
+
+\begin{notabox}[Hermeneutical Escape?]
+The standard defence---``these laws must be read in historical
+context''---concedes the central atheist point: the text is a human product
+reflecting the moral limitations of its authors, not the utterance of a
+timeless, perfect being.
+\end{notabox}
+\end{scheda}
+
+\begin{scheda}[Sheet 10 --- The Chosen People Concept]
+\index{chosen people}\index{election!divine}\index{particularism}
+
+\begin{itemize}
+  \item \textbf{Moral arbitrariness.}
+    The election\index{election!divine} of one ethnic group as God's
+    favoured people implies that the Creator of the universe has ethnic
+    preferences---a claim that sits uneasily with any concept of universal
+    justice.
+  \item \textbf{From theology to politics.}
+    The ``chosen people'' concept has been instrumentalised throughout
+    history to justify territorial claims, cultural supremacism, and the
+    exclusion of outsiders from moral concern.
+  \item \textbf{Internal contradiction.}
+    Later prophetic universalism\index{universalism} (Isaiah~2:2--4,
+    Micah~4:1--3) contradicts the particularism of Deuteronomic theology,
+    exposing the composite, multi-authored nature of the tradition.
+\end{itemize}
+\end{scheda}
+
+\newpage
+
+%% ════════════════════════════════════════════
+%%  V — CHRISTIANITY
+%% ════════════════════════════════════════════
+\section{Christianity: Dogmas and Contradictions}
+\index{Christianity}
+
+\begin{scheda}[Sheet 11 --- The Historical Jesus Problem]
+\index{Jesus!historical}\index{Gospels!reliability}
+
+\begin{itemize}
+  \item \textbf{Sources.}
+    The four canonical Gospels\index{Gospels!canonical} are not eyewitness
+    accounts.  They were composed 40--70 years after the events they
+    describe, in Greek, by authors drawing on earlier oral traditions and
+    written sources (Q\index{Q source}, Mark).
+  \item \textbf{Contradictions\index{Gospels!contradictions}.}
+    The Gospels disagree on: the genealogy of Jesus (Matthew vs.\ Luke),
+    the date of the crucifixion (synoptics vs.\ John), the events at the
+    tomb, and the post-resurrection appearances.
+  \item \textbf{Mythologisation\index{mythologisation}.}
+    Many elements of the Jesus narrative---virgin birth\index{virgin birth},
+    star of Bethlehem, walking on water, resurrection---have parallels in
+    pre-Christian Mediterranean religions (Dionysus\index{Dionysus},
+    Osiris\index{Osiris}, Mithras\index{Mithras}), suggesting a pattern
+    of mythological accretion rather than historical reporting.
+  \item \textbf{Paul vs.\ Jesus\index{Paul of Tarsus}.}
+    Paul, the earliest Christian author, shows almost no interest in the
+    teachings or biography of the earthly Jesus.  His ``Christ'' is a cosmic
+    figure encountered in visions, not a remembered teacher.
+\end{itemize}
+\end{scheda}
+
+\begin{scheda}[Sheet 12 --- The Trinity]
+\index{Trinity}\index{Nicaea, Council of}
+
+\begin{itemize}
+  \item \textbf{Logical incoherence.}
+    The doctrine asserts that God is three ``persons'' but one ``substance.''
+    No definition of ``person'' and ``substance'' has ever been offered that
+    makes this claim non-contradictory without evacuating both terms of
+    meaning.
+  \item \textbf{Historical contingency.}
+    The Trinitarian formula was settled at Nicaea\index{Nicaea, Council of}
+    (325~CE) by majority vote under imperial pressure from
+    Constantine\index{Constantine}.  Alternative Christologies
+    (Arianism\index{Arianism}, Adoptionism\index{Adoptionism},
+    Modalism\index{Modalism}) were not refuted but \emph{suppressed}.
+  \item \textbf{Biblical absence\index{Trinity!biblical basis}.}
+    The word ``Trinity'' does not appear in the Bible.  The Johannine
+    Comma\index{Johannine Comma} (1~John~5:7--8), long cited as scriptural
+    support, is a later interpolation absent from all early manuscripts.
+\end{itemize}
+\end{scheda}
+
+\begin{scheda}[Sheet 13 --- Original Sin and Atonement]
+\index{original sin}\index{atonement}\index{penal substitution}
+
+\begin{itemize}
+  \item \textbf{Inherited guilt\index{inherited guilt}.}
+    The doctrine of Original Sin\index{original sin} asserts that all humans
+    are guilty because of Adam's transgression.  This violates the most
+    elementary principle of justice: that guilt is personal and
+    non-transferable.
+  \item \textbf{The logic of atonement\index{atonement!logic}.}
+    God requires a blood sacrifice\index{blood sacrifice}---of Himself, to
+    Himself---to forgive a transgression He could simply have pardoned.
+    The mechanism is incoherent: how does the suffering of an innocent party
+    erase the guilt of the guilty?
+  \item \textbf{The ``sacrifice'' that costs nothing.}
+    If Jesus is God and therefore cannot truly die, the ``supreme sacrifice''
+    amounts to a weekend of discomfort followed by eternal glory---not a
+    genuine sacrifice by any meaningful standard.
+  \item \textbf{Moral hazard\index{moral hazard}.}
+    The doctrine of vicarious atonement teaches that personal responsibility
+    can be transferred.  The deathbed conversion\index{deathbed conversion}
+    of a lifelong criminal is valued above the virtuous life of an
+    unbeliever---a morally monstrous conclusion.
+\end{itemize}
+\end{scheda}
+
+\begin{scheda}[Sheet 14 --- Eschatology: Hell and Eternal Punishment]
+\index{hell}\index{eternal punishment}\index{eschatology!Christian}
+
+\begin{itemize}
+  \item \textbf{Infinite punishment for finite sins\index{proportionality}.}
+    No finite transgression can merit \emph{infinite} punishment.
+    Eternal hell is not justice; it is sadism elevated to a cosmic principle.
+  \item \textbf{The geography of injustice.}
+    Billions of humans have lived and died without hearing the Christian
+    message.  Condemning them for failing to believe what they never
+    encountered is incompatible with any coherent concept of justice or
+    mercy.
+  \item \textbf{Fear as a tool of control\index{fear!as social control}.}
+    The doctrine of hell functions not as a metaphysical truth but as a
+    mechanism of psychological coercion, keeping believers obedient and
+    sceptics silent.
+\end{itemize}
+\end{scheda}
+
+\newpage
+
+%% ════════════════════════════════════════════
+%%  VI — THE PROTESTANT REFORMATION
+%% ════════════════════════════════════════════
+\section{The Reformation: Grace, Faith, and Predestination}
+\index{Reformation}\index{Protestantism}
+
+\subsection{Luther and \textit{Sola Fide}}
+\index{Luther, Martin}\index{sola fide}\index{sola gratia}
+
+\begin{scheda}[Sheet 15 --- Luther's Soteriological Revolution]
+\index{soteriology}\index{justification by faith}
+
+Martin Luther's\index{Luther, Martin} break with Rome rested on a radical
+reinterpretation of salvation\index{salvation}:
+
+\begin{enumerate}
+  \item \textbf{\textit{Sola fide}\index{sola fide} (faith alone).}
+    Humans are justified (declared righteous) not by works---moral effort,
+    sacraments, pilgrimages---but solely by faith in Christ.
+  \item \textbf{\textit{Sola gratia}\index{sola gratia} (grace alone).}
+    Even faith itself is not a human achievement but a gift of divine
+    grace\index{grace}.  The human will is, in Luther's phrase, a
+    ``\textit{servum arbitrium}''\index{servum arbitrium}---a bound will,
+    incapable of turning toward God without prior divine intervention.
+  \item \textbf{\textit{Sola scriptura}\index{sola scriptura}.}
+    The Bible alone is the supreme authority in matters of doctrine, against
+    the Catholic triad of scripture, tradition, and papal magisterium.
+\end{enumerate}
+
+\begin{notabox}[The Ethical Problem]
+If salvation depends entirely on grace and not on moral conduct, then ethics
+become instrumentally irrelevant to the ultimate human concern.  Luther
+struggled with this implication and never resolved it satisfactorily.
+His notorious advice to ``sin boldly''\index{sin boldly} (\textit{pecca
+fortiter, sed fortius fide}) captures the paradox.
+\end{notabox}
+\end{scheda}
+
+\subsection{Calvin and Double Predestination}
+\index{Calvin, John}\index{predestination}\index{double predestination}
+
+\begin{scheda}[Sheet 16 --- The Doctrine of Predestination]
+\index{predestination!unconditional}\index{TULIP}\index{election!unconditional}
+
+John Calvin\index{Calvin, John} radicalised Luther's soteriology into the
+doctrine of \textbf{double predestination}\index{double predestination}:
+
+\begin{enumerate}
+  \item \textbf{Unconditional election\index{election!unconditional}.}
+    Before the creation of the world, God chose (\emph{elected}) some
+    individuals for salvation and others for damnation.  This choice is
+    entirely sovereign: it is not based on foreseen faith, merit, or any
+    human quality.
+  \item \textbf{Limited atonement\index{limited atonement}.}
+    Christ did not die for all humanity, but only for the elect.
+    The ``universalist'' passages of the New Testament
+    (John~3:16, 1~Timothy~2:4) must be reinterpreted to mean ``all kinds
+    of people,'' not ``every individual.''
+  \item \textbf{Irresistible grace\index{irresistible grace}.}
+    Those whom God has chosen cannot refuse His grace.  Conversely, the
+    reprobate\index{reprobate} cannot attain grace no matter how earnestly
+    they seek it.
+  \item \textbf{Perseverance of the saints\index{perseverance of the saints}.}
+    The elect cannot fall from grace.  Apparent apostasy in a believer
+    proves only that they were never truly elect.
+\end{enumerate}
+
+These five points are sometimes summarised by the acrostic
+\textbf{TULIP}\index{TULIP}:\linebreak
+\textbf{T}otal depravity,
+\textbf{U}nconditional election,
+\textbf{L}imited atonement,
+\textbf{I}rresistible grace,
+\textbf{P}erseverance of the saints.
+\end{scheda}
+
+\begin{scheda}[Sheet 17 --- Critique of Predestination]
+\index{predestination!critique}\index{justice!divine}
+
+\begin{itemize}
+  \item \textbf{Moral monstrosity.}
+    A God who creates beings \emph{for the express purpose} of damning them
+    eternally is not merely unjust but indistinguishable from a cosmic
+    torturer.  The traditional language of ``divine justice'' becomes an
+    Orwellian\index{Orwellian inversion} inversion.
+
+  \item \textbf{Destruction of moral agency\index{moral agency}.}
+    If every human action is determined by prior divine decree, then praise
+    and blame, reward and punishment, are meaningless.  The entire moral
+    universe collapses into a puppet theatre\index{puppet theatre metaphor}.
+
+  \item \textbf{Epistemic paralysis\index{assurance of salvation}.}
+    The doctrine generates intolerable anxiety: \emph{am I among the elect?}
+    Since no human action can confirm or deny election, the believer is
+    trapped in permanent uncertainty about the only question that
+    (supposedly) matters.  Weber\index{Weber, Max} famously argued that this
+    anxiety drove Calvinists toward compulsive worldly activity and
+    capital accumulation as \emph{indirect} signs of election---the
+    ``Protestant ethic''\index{Protestant ethic} as psychological
+    compensation.
+
+  \item \textbf{The problem of prayer\index{prayer!futility under predestination}.}
+    If God's decrees are fixed from eternity, prayer is futile: it cannot
+    change outcomes.  Yet Calvin insisted on its necessity---an incoherence
+    masked by appeals to mystery.
+
+  \item \textbf{Internal biblical contradiction.}
+    Predestination sits in tension with numerous biblical passages that
+    presuppose genuine human choice:
+    ``Choose this day whom you will serve'' (Joshua~24:15\index{Joshua 24:15});
+    ``Whoever will, let him come'' (Revelation~22:17).
+    Calvin's exegesis requires reading these as divine rhetoric addressed
+    to beings who cannot, in fact, choose---a reading bordering on divine
+    deception\index{divine deception}.
+\end{itemize}
+\end{scheda}
+
+\begin{scheda}[Sheet 18 --- Grace: A Genealogy of the Concept]
+\index{grace!concept of}\index{Augustine}\index{Pelagius}
+
+\begin{itemize}
+  \item \textbf{Pauline origins\index{Paul of Tarsus!on grace}.}
+    Paul's letters introduce \textit{charis}\index{charis} (grace) as
+    God's unmerited favour, set against the ``works of the
+    law''\index{works of the law}.  However, Paul's own usage is
+    inconsistent: Romans~9 suggests absolute divine sovereignty, while
+    Romans~2:6--7 implies judgement according to works.
+
+  \item \textbf{Augustine's systematisation\index{Augustine!on grace}.}
+    Augustine, shaped by his personal struggle with desire and his
+    anti-Pelagian\index{Pelagianism} polemic, hardened grace into
+    irresistible divine causality.  His doctrine of \textit{massa
+    damnata}\index{massa damnata}---the entire human race as a ``lump of
+    damnation'' from which God rescues a few---laid the foundation for
+    Calvin.
+
+  \item \textbf{The Pelagian alternative\index{Pelagius}.}
+    Pelagius argued that humans have genuine free will\index{free will!Pelagian}
+    and the natural capacity for moral perfection.  Grace is helpful but
+    not indispensable.  His position was condemned---but its condemnation
+    was a \emph{political} victory of the Augustinian party, not a
+    philosophical refutation.
+
+  \item \textbf{Modern assessment.}
+    The concept of ``grace'' resolves nothing.  It is a placeholder for
+    the mystery of why some believe and others do not---a mystery that
+    naturalistic psychology\index{psychology!of belief} (upbringing,
+    temperament, social context) explains without supernatural residue.
+\end{itemize}
+\end{scheda}
+
+\subsection{Synthesis: The Reformation as Radicalised Incoherence}
+\index{Reformation!critique}
+
+\begin{scheda}[Sheet 19 --- The Reformation's Deepened Contradictions]
+
+Far from ``purifying'' Christianity, the Reformation \emph{intensified} its
+deepest contradictions:
+
+\begin{enumerate}
+  \item \textbf{It replaced one authority with another.}
+    \textit{Sola scriptura} did not liberate conscience; it substituted the
+    authority of the pope\index{papal authority} with the authority of
+    competing biblical interpreters.  The result was not freedom but
+    fragmentation: tens of thousands of Protestant
+    denominations\index{denominations!proliferation}, each claiming the
+    ``plain sense'' of the same text.
+
+  \item \textbf{It deepened the moral abyss.}
+    Catholic theology, for all its faults, at least preserved a space for
+    human moral effort.  Calvinist predestination annihilates it.  The
+    Reformation's God is \emph{more} arbitrary, \emph{more} cruel, and
+    \emph{more} indifferent to human striving than the medieval God it
+    replaced.
+
+  \item \textbf{It exposed the constructedness of doctrine.}
+    The very fact that Christianity could be so radically reinterpreted---that
+    ``the faith once delivered'' was, in practice, endlessly mutable---is
+    itself powerful evidence that Christian doctrine is a human
+    construction\index{social construction of doctrine}, not a
+    fixed divine revelation.
+\end{enumerate}
+\end{scheda}
+
+\newpage
+
+%% ════════════════════════════════════════════
+%%  CONCLUDING NOTE
+%% ════════════════════════════════════════════
+\section*{Concluding Note}
+\addcontentsline{toc}{section}{Concluding Note}
+
+\begin{citazione}
+\textit{``We want to stand upon our own feet and look fair and square at the
+world---its good facts, its bad facts, its beauties, and its ugliness; see
+the world as it is and be not afraid of it.  Conquer the world by
+intelligence and not merely by being slavishly subdued by the terror that
+comes from it.''}
+
+\medskip
+\hfill--- Bertrand Russell, \textit{Why I Am Not a Christian} (1927)
+\end{citazione}
+
+The purpose of these study sheets is not to promote hostility toward
+believers, but to demonstrate that the arguments \emph{for} theism (and
+especially for the specific doctrines of Judaism, Christianity, and
+Protestantism) fail to meet the evidentiary and logical standards we
+apply to every other domain of human inquiry.
+
+Where evidence is absent, reason is the only honest guide.  Where
+contradictions abound, intellectual courage demands that we name them.  And
+where doctrines cause suffering---eternal damnation, predestined reprobation,
+inherited guilt---moral decency demands that we reject them.
+
+%% ── INDEX ───────────────────────────────────
+\newpage
+\printindex
+
+\end{document}
