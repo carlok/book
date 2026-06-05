@@ -47,7 +47,7 @@
 \DeclareMathOperator{\Ent}{H}
 \DeclareMathOperator{\Score}{Score}
 
-\title{AI-Native Games:\\Computational Physics as a Strategic Substrate}
+\title{AI-Native Games:\\Computational physics as a strategic substrate}
 \author{Carlo Perassi}
 \date{\today}
 
@@ -73,7 +73,7 @@ The premise is not that human games are obsolete. It is that they occupy only a 
 
 We call this restriction the \emph{corset problem}. A transplanted human game squeezes machine cognition into an interface tailored for human play. An AI-native game begins elsewhere: with computational physics. It treats the substrate itself as active, memory-bearing, and strategically meaningful.
 
-\section{Transplanted and Native Games}\label{sec:transplanted-native}
+\section{Transplanted and native games}\label{sec:transplanted-native}
 
 Let a conventional human game be idealized as
 \[
@@ -108,7 +108,7 @@ A \emph{transplanted game} is a rule system whose state space, action vocabulary
 
 Chess, Go, poker, and most video-game benchmarks are transplanted in this sense. They can still be mathematically deep. Their limitation is not shallowness, but origin: their strategic vocabulary is inherited from human bodies and human culture.
 
-\section{The Substrate as the Real Game}\label{sec:substrate}
+\section{The Substrate as the real game}\label{sec:substrate}
 
 In many classical games, the board is passive. It records the positions of pieces but has no independent dynamics. In an AI-native game, this passivity is usually a defect. The substrate should remember, propagate, decay, crystallize, mutate, fold, become infected, or change topology. A move should not simply replace one position with another. It should perturb an artificial world whose autonomous dynamics matter.
 
@@ -128,7 +128,7 @@ This changes the questions that strategy asks. Instead of asking which piece sho
 
 The game is less like a board and more like an adversarial laboratory. Its strategic object is artificial causality.
 
-\section{A Minimal Formal Model}\label{sec:model}
+\section{A minimal formal model}\label{sec:model}
 
 A broad class of AI-native games can be modeled as a sequence of interventions into an evolving substrate. Let $X_t\in\X$ be the global state at macro-time $t$. An agent chooses an intervention $\pi_t\in\Pi$, and the substrate evolves for $\tau$ micro-steps:
 \[
@@ -144,11 +144,11 @@ Strategic decisions should occur at a macro-scale, while their consequences are 
 
 This is the computational analogue of strategic abstraction in physical games. A human chess player does not reason about wood molecules. An AI-native agent need not reason about every cell update, but it must learn how local interventions unfold through the substrate's own law.
 
-\section{Mechanic Families}\label{sec:mechanics}
+\section{Mechanic families}\label{sec:mechanics}
 
 The following families are not exhaustive. They indicate where AI-native game design can depart from human symbolic play while remaining mathematically tractable.
 
-\subsection{Cellular-Automaton Warfare}\label{subsec:ca}
+\subsection{Cellular-automaton warfare}\label{subsec:ca}
 
 Let the arena be a finite toroidal lattice
 \[
@@ -172,7 +172,7 @@ When the ant visits a cell, it reads the current color, writes the next color pr
 
 This rule space is small enough to exhaust for low $n$, but already rich enough to generate nontrivial behavior. It is a useful first crucible because it allows full enumeration, tournament evaluation, and direct study of emergent morphology.
 
-\subsection{Stigmergic Trail Games}\label{subsec:stigmergy}
+\subsection{Stigmergic trail games}\label{subsec:stigmergy}
 
 In stigmergic games, actions leave traces that future actions read. The trace is not a decorative ownership mark; it is part of the input state for later computation. A strong form is \emph{faction-agnostic stigmergy}: trails do not encode who produced them. They exist as shared environmental variables.
 
@@ -182,7 +182,7 @@ Persistent traces should be readable and writable by all agents. A mark left by 
 
 This principle prevents the game from reducing to protected property. Players interact through a common medium. They weaponize history.
 
-\subsection{Morphogenetic Combat}\label{subsec:morphogenesis}
+\subsection{Morphogenetic combat}\label{subsec:morphogenesis}
 
 Discrete grids are not required. A substrate may be a continuous or discretized field. Let $D\subset\R^2$ be a domain and let
 \[
@@ -196,7 +196,7 @@ where $D_u$ is a diffusion operator, $F$ is a nonlinear reaction term, $\theta$ 
 
 The game objects are no longer pieces but morphologies: waves, fronts, spots, solitons, labyrinths, oscillators, and self-maintaining localized structures. Combat becomes the attempt to preserve one's own morphology while destabilizing the opponent's.
 
-\subsection{Information-Theoretic Objectives}\label{subsec:information}
+\subsection{Information-theoretic objectives}\label{subsec:information}
 
 Human games often score material, territory, or survival. AI-native games can instead score the informational character of the substrate. If $P_t$ is an empirical distribution over colors, local patterns, motifs, or coarse-grained regions, define
 \[
@@ -210,7 +210,7 @@ Other objectives can use mutual information, transfer entropy, algorithmic compr
 Victory should be stated in terms of invariants or observables native to the substrate: entropy, stability, biomass, lineage survival, basin control, reversibility, infection, or predictive structure.
 \end{principle}
 
-\subsection{Dynamic Topology}\label{subsec:topology}
+\subsection{Dynamic topology}\label{subsec:topology}
 
 A more radical class lets agents alter the substrate's connectivity. Let $G_t=(V,E_t)$ be a graph and let $x_t$ assign states to vertices. The update law depends on both state and topology:
 \[
@@ -224,7 +224,7 @@ An agent can redirect waves, isolate hostile growth, open shortcuts, change neig
 
 Here the board is not a surface. It is a contested law-space.
 
-\subsection{Chimeric Infection and Rule Fusion}\label{subsec:infection}
+\subsection{Chimeric infection and rule fusion}\label{subsec:infection}
 
 Many human games treat capture as removal. AI-native games can replace removal with transformation. If an organism is represented by a rule genome $g\in\Gamma$, an infection operator may be written as
 \[
@@ -234,7 +234,7 @@ mapping attacker genome, defender genome, and local substrate state into a hybri
 
 The target survives but its future activations change. This breaks the simple boundary between self and opponent. A player may try to produce useful enemies: agents formally controlled by the opponent but behaviorally compromised by a hybrid rule.
 
-\section{The Toroidal Crucible}\label{sec:crucible}
+\section{The toroidal crucible}\label{sec:crucible}
 
 The simplest concrete research platform is a toroidal automaton tournament. It is small enough to implement and inspect, yet strange enough to avoid immediate translation into a familiar human game.
 
@@ -263,7 +263,7 @@ The winner is the larger biomass, except that overwriting the opponent's frozen 
 This crucible is not proposed as the final form of AI-native play. It is a first instrument. Its value is that it joins exhaustive rule search, artificial-life morphology, and adversarial scoring in a single minimal system.
 \end{remark}
 
-\section{Design Principles}\label{sec:principles}
+\section{Design principles}\label{sec:principles}
 
 The drafts synthesized for this article converge on several principles. They can be stated compactly.
 
@@ -287,7 +287,7 @@ The same state should admit several useful descriptions: geometric, statistical,
 The machine strategic interface and the human spectator interface should be separated. A game may be visualized for humans without being designed around human cognitive limits.
 \end{principle}
 
-\section{Research Hypotheses}\label{sec:hypotheses}
+\section{Research hypotheses}\label{sec:hypotheses}
 
 The case for AI-native games is not only aesthetic. It suggests testable research hypotheses.
 
@@ -305,7 +305,7 @@ Some skills learned in one native substrate, such as reasoning about attractors,
 
 These hypotheses can be tested by training agents across families of native environments and measuring transfer, representation, adaptation, and exploit discovery.
 
-\section{A Minimal Research Program}\label{sec:program}
+\section{A minimal research program}\label{sec:program}
 
 A practical program can proceed in four stages.
 
@@ -325,7 +325,7 @@ Introduce actions on the environment itself: local parameter changes, topology s
 
 Allow persistent lineages, mutation, infection, and meta-evolution across matches. The boundary between game, ecology, and research platform becomes porous. Agents no longer merely play in a world; they participate in producing new strategic species.
 
-\section{Spectatorship and Interpretability}\label{sec:spectatorship}
+\section{Spectatorship and interpretability}\label{sec:spectatorship}
 
 One objection is that AI-native games may become incomprehensible to people. This is a serious risk, but it should not be solved by weakening the substrate. Scientific visualization offers a better analogy. We do not redesign fluid dynamics to resemble chess; we build instruments for seeing vortices, turbulence, pressure, and flow.
 
@@ -342,7 +342,7 @@ For AI-native games, useful spectator instruments may include:
 
 The human view is therefore an interpretive layer. It should explain without dictating the game ontology.
 
-\section{Risks and Failure Modes}\label{sec:risks}
+\section{Risks and failure modes}\label{sec:risks}
 
 AI-native games can fail in several ways.
 
