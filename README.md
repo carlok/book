@@ -4,11 +4,15 @@ LaTeX drafts by Carlo Perassi.
 
 ## Documents
 
-- `book.tex`: first integrated book draft importing the standalone articles in
-  non-math and math groups.
+- `book.tex`: first incremental book draft importing editable chapter copies in
+  math-first order.
+- `chapters/math/`: book chapter copies converted from mathematical,
+  computational, and formal-model drafts.
+- `chapters/non_math/`: book chapter copies converted from essay and
+  cultural/political drafts.
 - `articles/non_math/`: essay and cultural/political drafts.
 - `articles/math/`: mathematical, computational, and formal-model drafts.
-- `proposals/book_structure_proposal.tex`: preliminary structure proposal.
+- `archive/book_structure_proposal.tex`: older preliminary structure proposal.
 
 ## Build
 
