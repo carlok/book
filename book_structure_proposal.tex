@@ -1,0 +1,186 @@
+\documentclass[11pt,twoside,openright]{book}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage[
+  paperwidth=170mm,
+  paperheight=240mm,
+  inner=24mm,
+  outer=18mm,
+  top=22mm,
+  bottom=24mm,
+  headsep=7mm
+]{geometry}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  citecolor=black,
+  urlcolor=blue,
+  pdfauthor={Carlo Perassi},
+  pdftitle={Book structure proposal}
+}
+
+\setlist[itemize]{leftmargin=2em,itemsep=0.25em,topsep=0.4em}
+\setlist[enumerate]{leftmargin=2em,itemsep=0.25em,topsep=0.4em}
+
+\title{Book Structure Proposal}
+\author{Carlo Perassi}
+\date{\today}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+\tableofcontents
+
+\chapter{Editorial premise}
+
+This file proposes a book-shaped container for the existing draft material. It is
+not a final table of contents. Its purpose is to make the physical format,
+reader journey, and merge points explicit before the individual essays are
+rewritten into a single manuscript.
+
+\section*{Format}
+
+\begin{itemize}
+  \item Book class, two-sided layout, chapters opening on right-hand pages.
+  \item Trim size: 170mm by 240mm.
+  \item Wider inner margin for binding and a compact outer margin for notes.
+  \item Plain LaTeX dependencies so individual drafts can be imported gradually.
+\end{itemize}
+
+\section*{Working editorial rule}
+
+Each existing document should enter the book only after it has a clear role:
+foundation, case study, mathematical appendix, or speculative essay. The book
+should avoid becoming a repository dump; the structure should create a sequence
+of questions and answers.
+
+\mainmatter
+
+\part{Foundations}
+
+\chapter{The problem space}
+
+Opening chapter for the central question, target reader, and intellectual
+stakes. This should define the book's recurring vocabulary and explain why the
+chapters belong together.
+
+\section{Candidate functions}
+
+\begin{itemize}
+  \item State the core thesis in a form that can survive across technical and
+        philosophical chapters.
+  \item Introduce the reader to the recurring method: precise models, strategic
+        consequences, and cultural interpretation.
+  \item Mark what the book intentionally does not try to settle.
+\end{itemize}
+
+\chapter{Conceptual primitives}
+
+A short catalogue of indispensable concepts. This can absorb or adapt material
+from \texttt{ten\_indispensable.tex}, but should be rewritten as connective
+tissue rather than kept as a standalone list.
+
+\part{Mathematical and computational models}
+
+\chapter{Limits, branches, and continuation}
+
+Candidate home for material from \texttt{limit\_complex.tex}. The chapter should
+motivate the mathematics before formal development, then explain why the model
+matters for the broader argument.
+
+\chapter{Signals and transient spherical models}
+
+Candidate home for \texttt{two\_transient\_spherical\_signal\_models.tex}. This
+chapter can work as a technical case study: two models, their assumptions, and
+what their comparison teaches.
+
+\chapter{Games native to computation}
+
+Candidate home for \texttt{ai-native-games-v01.tex} and related game material.
+The chapter should connect mathematical substrate design to strategic systems,
+rather than only presenting a taxonomy.
+
+\part{Culture, institutions, and interpretation}
+
+\chapter[Strategic challenges]{Strategic challenges and civilizational pressure}
+
+Candidate home for \texttt{seven\_strategic\_challenges\_europe.tex}. The
+chapter should be framed as an applied analysis that uses the book's primitives,
+not as a separate geopolitical essay.
+
+\chapter[Demography and integration]{Demography, integration, and liberal self-preservation}
+
+Candidate home for \texttt{western\_death.tex}. This section likely needs the
+strongest editorial framing, because it will set the tone for how controversial
+claims are argued, bounded, and evidenced.
+
+\chapter[Religion and explanatory discipline]{Religion, atheism, and explanatory discipline}
+
+Candidate home for \texttt{study\_sheets\_on\_scientific\_atheism.tex}. The
+chapter can be organized around what counts as a good explanatory replacement,
+not merely around critique.
+
+\part{Synthesis}
+
+\chapter{What world do they want?}
+
+Candidate home for \texttt{what\_world\_do\_they\_want.tex}. This chapter can
+serve as the synthetic payoff, asking how explicit models of agency, value, and
+constraint change the interpretation of political or technological programs.
+
+\chapter{After the models}
+
+Closing chapter. It should return to the reader's practical question: how to
+think better after the abstractions have done their work.
+
+\appendix
+
+\chapter{Appendix: Source draft inventory}
+
+\begin{itemize}
+  \item \texttt{ai-native-games-v01.tex}: computational games and strategic
+        substrates.
+  \item \texttt{limit\_complex.tex}: complex-analysis note on exponent limits.
+  \item \texttt{two\_transient\_spherical\_signal\_models.tex}: mathematical
+        comparison of transient signal models.
+  \item \texttt{seven\_strategic\_challenges\_europe.tex}: strategic pressures
+        facing Europe.
+  \item \texttt{western\_death.tex}: demography and liberal-democratic
+        preservation.
+  \item \texttt{study\_sheets\_on\_scientific\_atheism.tex}: structured critique
+        and explanatory alternatives.
+\end{itemize}
+
+\chapter{Appendix: Merge checklist}
+
+\begin{enumerate}
+  \item Decide whether each draft becomes a chapter, section, appendix, or source
+        note.
+  \item Normalize title capitalization and theorem/list styles across imported
+        material.
+  \item Replace standalone introductions with chapter-level transitions.
+  \item Add a bibliography strategy before importing claims that need citations.
+  \item Build the full book after each imported chapter to catch package
+        conflicts early.
+\end{enumerate}
+
+\backmatter
+
+\chapter{Notes for next revision}
+
+\begin{itemize}
+  \item Decide the actual book title and subtitle.
+  \item Choose whether the manuscript should be mainly technical, essayistic, or
+        hybrid.
+  \item Identify which drafts should be excluded from the first integrated
+        version.
+\end{itemize}
+
+\end{document}
