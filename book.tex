@@ -1,0 +1,355 @@
+\documentclass[11pt,twoside,openright]{book}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{csquotes}
+\usepackage[dvipsnames,svgnames,x11names]{xcolor}
+\usepackage[
+  paperwidth=170mm,
+  paperheight=240mm,
+  inner=24mm,
+  outer=18mm,
+  top=22mm,
+  bottom=24mm,
+  headsep=7mm,
+  headheight=22pt
+]{geometry}
+
+\usepackage{amsmath,amssymb,amsthm,amsfonts,mathtools,bm,mathrsfs,stmaryrd}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{import}
+\usepackage{docmute}
+\usepackage{imakeidx}
+
+\makeindex[title=Analytical Index, intoc, columns=2]
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=MidnightBlue,
+  citecolor=ForestGreen,
+  urlcolor=RoyalBlue,
+  hypertexnames=false,
+  pdfauthor={Carlo Perassi},
+  pdftitle={First Integrated Book Draft}
+}
+
+\setlist{leftmargin=2em,itemsep=0.25em,topsep=0.5em}
+\allowdisplaybreaks
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\small\itshape\leftmark}
+\fancyhead[RO]{\small\itshape\rightmark}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}
+  {\chaptertitlename\ \thechapter}
+  {12pt}
+  {\Huge}
+  [\vspace{0.5em}\titlerule]
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{construction}[theorem]{Construction}
+\newtheorem{principle}[theorem]{Design Principle}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{problem}[theorem]{Problem}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{warning}[theorem]{Warning}
+\newtheorem*{verdict}{Verdict}
+
+\newenvironment{abstract}
+  {\begin{quote}\small\itshape\noindent}
+  {\end{quote}}
+
+\definecolor{deep}{HTML}{1B2A4A}
+\definecolor{accent}{HTML}{C0392B}
+\definecolor{steel}{HTML}{5D6D7E}
+\definecolor{light}{HTML}{D5DBDB}
+\definecolor{sheetbg}{HTML}{F5F0E8}
+\definecolor{sheetframe}{HTML}{8B4513}
+\definecolor{sectioncol}{HTML}{6B1D1D}
+\definecolor{linkcol}{HTML}{1A4D6E}
+\definecolor{notebg}{HTML}{FFFDE7}
+\definecolor{noteframe}{HTML}{BDB76B}
+\definecolor{quotebg}{HTML}{EDE7F6}
+\definecolor{quoteframe}{HTML}{5E35B1}
+
+\newenvironment{card}[3]{%
+  \vspace{0.8em}
+  \noindent
+  \begin{tikzpicture}[baseline=(num.base)]
+    \node[fill=deep, text=white, font=\Large\bfseries,
+    minimum width=9mm, minimum height=9mm,
+    inner sep=0pt, rounded corners=2pt] (num) {#1};
+  \end{tikzpicture}%
+  \hspace{0.4em}%
+  {\Large\bfseries\color{deep}#2}%
+  \hfill
+  {\small\color{accent}\MakeUppercase{#3}}%
+  \par\vspace{0.15em}\noindent\ignorespaces
+}{%
+  \par\vspace{0.4em}
+  \noindent{\color{light}\rule{\textwidth}{0.4pt}}
+}
+
+\newtcolorbox{scheda}[1][]{%
+  enhanced,
+  breakable,
+  colback=sheetbg,
+  colframe=sheetframe,
+  fonttitle=\bfseries\sffamily,
+  title={#1},
+  coltitle=white,
+  colbacktitle=sheetframe,
+  boxrule=0.6pt,
+  arc=2mm,
+  top=5pt,
+  bottom=5pt,
+  left=6pt,
+  right=6pt,
+  before skip=8pt,
+  after skip=8pt,
+  shadow={1mm}{-1mm}{0mm}{black!15},
+  attach boxed title to top left={xshift=4mm, yshift=-2mm},
+  boxed title style={arc=1.5mm, boxrule=0.4pt}
+}
+
+\newtcolorbox{notabox}[1][Key Point]{%
+  enhanced,
+  breakable,
+  colback=notebg,
+  colframe=noteframe,
+  fonttitle=\bfseries\sffamily\small,
+  title={#1},
+  coltitle=black,
+  colbacktitle=notebg,
+  boxrule=0.5pt,
+  arc=1.5mm,
+  top=3pt,
+  bottom=3pt,
+  left=5pt,
+  right=5pt,
+  before skip=6pt,
+  after skip=6pt,
+  borderline west={2pt}{0pt}{noteframe}
+}
+
+\newtcolorbox{citazione}{%
+  enhanced,
+  breakable,
+  colback=quotebg,
+  colframe=quoteframe,
+  boxrule=0pt,
+  arc=1.5mm,
+  top=4pt,
+  bottom=4pt,
+  left=8pt,
+  right=6pt,
+  before skip=6pt,
+  after skip=6pt,
+  borderline west={3pt}{0pt}{quoteframe}
+}
+
+\newcommand{\bookCommonMacros}{%
+  \def\A{\mathcal{A}}%
+  \def\B{\mathbf{B}}%
+  \def\Cat{\mathbf{Cat}}%
+  \def\Disc{\mathbf{Disc}}%
+  \def\E{\mathcal{E}}%
+  \def\Ent{\operatorname{H}}%
+  \def\Frame{\mathfrak{A}}%
+  \def\G{\mathcal{G}}%
+  \def\Harm{\mathbf{Harm}}%
+  \def\I{\mathcal{I}}%
+  \def\J{\mathcal{J}}%
+  \def\Mel{\mathbf{Mel}}%
+  \def\Pitch{\mathbf{Pitch}}%
+  \def\Rhy{\mathbf{Rhy}}%
+  \def\Score{\operatorname{Score}}%
+  \def\Set{\mathbf{Set}}%
+  \def\V{\mathcal{V}}%
+  \def\X{\mathcal{X}}%
+  \def\Xmus{X_{\mathrm{mus}}}%
+  \def\op{^{\mathrm{op}}}%
+}
+
+\newcommand{\bookBlackboardMacros}{%
+  \bookCommonMacros
+  \def\C{\mathbb{C}}%
+  \def\D{\mathbb{D}}%
+  \def\N{\mathbb{N}}%
+  \def\Q{\mathbb{Q}}%
+  \def\R{\mathbb{R}}%
+  \def\T{\mathbb{T}}%
+  \def\Z{\mathbb{Z}}%
+  \def\Arg{\operatorname{Arg}}%
+  \def\Log{\operatorname{Log}}%
+  \def\diam{\operatorname{diam}}%
+  \def\dimH{\dim_{\mathrm H}}%
+  \def\dist{\operatorname{dist}}%
+  \def\HTop{h_{\mathrm{top}}}%
+  \def\im{\operatorname{Im}}%
+  \def\re{\operatorname{Re}}%
+  \def\shift{\sigma}%
+  \def\SigmaK{\Sigma_K}%
+}
+
+\newcommand{\bookAIGameMacros}{%
+  \bookCommonMacros
+  \def\C{\mathcal{C}}%
+  \def\N{\mathbb{N}}%
+  \def\R{\mathbb{R}}%
+  \def\T{\mathbb{T}}%
+}
+
+\newcommand{\bookMusicMacros}{%
+  \bookCommonMacros
+  \def\C{\mathbb{C}}%
+  \def\N{\mathbb{N}}%
+  \def\R{\mathbb{R}}%
+  \def\Z{\mathbb{Z}}%
+}
+
+\newcommand{\importStandaloneChapter}[4]{%
+  \chapter[#2]{#1}
+  \begingroup
+    \bookBlackboardMacros
+    #4%
+    \let\maketitle\relax
+    \let\tableofcontents\relax
+    \let\printindex\relax
+    \subimport{./}{#3}
+  \endgroup
+}
+
+\title{First Integrated Book Draft}
+\author{Carlo Perassi}
+\date{\today}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+\tableofcontents
+
+\chapter{Editorial note}
+
+This is a first integrated view of the existing standalone drafts. The source
+articles remain independent files under \texttt{articles/}; this master document
+groups and imports them to test a book-scale order, shared layout, and shared
+LaTeX preamble.
+
+\mainmatter
+
+\part{Non-Mathematical Essays}
+
+\importStandaloneChapter
+  {Ten Things You Cannot Afford to Ignore}
+  {Ten Things}
+  {articles/non_math/ten_indispensable.tex}
+  {}
+
+\importStandaloneChapter
+  {What World Do They Want?}
+  {What World}
+  {articles/non_math/what_world_do_they_want.tex}
+  {}
+
+\importStandaloneChapter
+  {Seven Strategic Challenges for Contemporary Europe}
+  {Seven Strategic Challenges}
+  {articles/non_math/seven_strategic_challenges_europe.tex}
+  {}
+
+\importStandaloneChapter
+  {Demographic Transformation and Liberal Democracy}
+  {Demographic Transformation}
+  {articles/non_math/western_death.tex}
+  {}
+
+\importStandaloneChapter
+  {Study Sheets on Scientific Atheism}
+  {Scientific Atheism}
+  {articles/non_math/study_sheets_on_scientific_atheism.tex}
+  {}
+
+\part{Mathematical and Computational Notes}
+
+\importStandaloneChapter
+  {The 2-Categorical Position of Music}
+  {2-Categorical Music}
+  {articles/math/music_meta.tex}
+  {\bookMusicMacros}
+
+\importStandaloneChapter
+  {AI-Native Games}
+  {AI-Native Games}
+  {articles/math/ai-native-games-v01.tex}
+  {\bookAIGameMacros}
+
+\importStandaloneChapter
+  {Emergent Strategy via Meta-Evolutionary Cellular Automata}
+  {Emergent Strategy}
+  {articles/math/lifechess.tex}
+  {}
+
+\importStandaloneChapter
+  {Two Rational Models for a Transient Spherical Signal}
+  {Transient Spherical Signal}
+  {articles/math/two_transient_spherical_signal_models.tex}
+  {}
+
+\importStandaloneChapter
+  {Branch-Resolved Logarithmic Skew Products}
+  {Logarithmic Skew Products}
+  {articles/math/strange_attractors_candidate.tex}
+  {}
+
+\importStandaloneChapter
+  {A Complex Limit Across Exponents}
+  {Complex Limit}
+  {articles/math/limit_complex.tex}
+  {}
+
+\backmatter
+
+\chapter{Build note}
+
+Compile this draft at least twice so the table of contents and PDF outlines are
+stable:
+
+\begin{verbatim}
+mkdir -p /tmp/book-build
+pdflatex -interaction=nonstopmode -halt-on-error \
+  -output-directory=/tmp/book-build book.tex
+pdflatex -interaction=nonstopmode -halt-on-error \
+  -output-directory=/tmp/book-build book.tex
+\end{verbatim}
+
+The standalone study-sheet index entries are preserved in the source article,
+but index printing is intentionally disabled in this first integrated draft.
+
+\end{document}
