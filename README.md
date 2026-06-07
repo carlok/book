@@ -57,3 +57,8 @@ The current documents use only standard LaTeX packages plus common packages such
 `amsmath`, `amssymb`, `amsthm`, `bm`, `booktabs`, `csquotes`, `geometry`,
 `hyperref`, `lmodern`, `mathrsfs`, `stmaryrd`, `tcolorbox`, `tikz`, and
 `titlesec`.
+
+## Publishing
+
+The GitHub Pages PDF publishing workflow is documented in
+`docs/publishing.md`.
