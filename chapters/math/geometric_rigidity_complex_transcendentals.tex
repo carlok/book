@@ -1,0 +1,639 @@
+\chapter{Geometric Rigidity and Algebraic Symmetries of Complex Transcendental Numbers}
+
+\begingroup
+
+% Local notation copied from the standalone source.
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\calE}{\mathcal{E}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\e}{\mathrm{e}}
+\newcommand{\G}{\mathbb{G}}
+\newcommand{\gtransf}{\mathcal{G}}
+\newcommand{\hplane}{\mathbb{H}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\rsphere}{\hat{\mathbb{C}}}
+\newcommand{\Stab}{\operatorname{Stab}}
+\newcommand{\tnum}{\mathbb{T}_{\!M}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\aff}{\mathrm{Aff}}
+\newcommand{\Ac}{\Alg}
+\newcommand{\Alg}{\overline{\mathbb{Q}}}
+\newcommand{\PAlg}{\mathbb{P}^{1}(\Alg)}
+\newcommand{\trans}{\mathbb{T}}
+\newcommand{\Tc}{\trans}
+\newcommand{\orbit}{\mathcal{O}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Fix}{\operatorname{Fix}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\height}{\operatorname{h}}
+\newcommand{\Mu}{\operatorname{M}}
+\newcommand{\PeriodicPoints}{\operatorname{Per}}
+\newcommand{\PSL}{\operatorname{PSL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\PGL}{\operatorname{PGL}}
+\newcommand{\trdeg}{\operatorname{trdeg}}
+\newcommand{\Inn}{\operatorname{Inn}}
+\newcommand{\Orb}{\operatorname{Orb}}
+\newcommand{\Attr}{\operatorname{Attr}}
+\newcommand{\attrhol}{\Attr_{\mathrm{hol}}}
+\newcommand{\attranti}{\Attr_{\mathrm{anti}}}
+\newcommand{\ssymm}{\Tc_{\mathrm{symm}}}
+\newcommand{\sgen}{\Tc_{\mathrm{gen}}}
+\newcommand{\sind}{\Tc_{\mathrm{ind}}}
+\newcommand{\J}{\mathrm{conj}}
+\newcommand{\gl}{\mathrm{GL}}
+\newcommand{\gacircle}[4]{#1\,\lvert #4\rvert^2 + #2\,#4 + \overline{#2}\,\overline{#4} + #3}
+\newcommand{\gacircleeq}[4]{\gacircle{#1}{#2}{#3}{#4}=0}
+
+\begin{abstract}
+	We propose a structural classification of complex transcendental numbers based on the geometric rigidity of their minimal algebraic locus in $\mathbb{P}^1(\mathbb{C})$. By analyzing the action of the extended algebraic degree-one group $\Gamma^{\pm}=\langle \PGL(2,\Alg),\,\mathrm{conj}\rangle$, we establish a dichotomy between \emph{flexible} and \emph{rigid} geometries.
+	The \emph{flexible locus} consists of transcendental points admitting a non-trivial algebraic degree-one symmetry; we prove this locus coincides precisely with the set of transcendental points on algebraic generalized circles (real forms of genus zero). While these curves are geometrically rigid under intersection, the dynamics upon them are chaotic: the orbit equivalence relation is shown to be meagre, non-smooth, and admitting perfect antichains.
+	In contrast, the \emph{generic locus} is characterized by geometric rigidity and trivial stabilizers. This includes the \emph{independence locus} (points of transcendence degree 2), which is topologically generic (comeagre) and measure-theoretically dominant. We prove that the group action on this locus is topologically transitive (dense orbits).
+	Finally, we establish a maximality theorem characterizing $\Gamma^{\pm}$ as the unique maximal degree-one transfer semigroup compatible with the algebraic structure of $\mathbb{P}^1$, identifying it as a natural boundary for this particular notion of algebraic symmetry.
+\end{abstract}
+
+%\tableofcontents
+
+\section{Introduction}\label{grct:sec:introduction}
+The study of complex transcendental numbers $\Tc = \mathbb{C} \setminus \Alg$ is traditionally approached through the lens of Diophantine approximation. This work proposes an alternative structural classification based on geometric rigidity. We treat the domain as the complex projective line $\mathbb{P}^1(\mathbb{C})$ endowed with a rigid algebraic skeleton $\Alg$ and a system of real forms. We analyze the action of the extended algebraic automorphism group
+\[
+	\Gamma^{\pm}:=\langle\,\PGL(2,\Alg),\ \J\,\rangle
+\]
+on this space, revealing a fundamental dichotomy in the geometry of transcendental points.
+
+Our classification relies on algebraic degree-one symmetries relative to the algebraic skeleton. This yields a stratification of $\Tc$ into a \textbf{flexible locus} and a \textbf{generic (rigid) locus}. The algebraic-coefficient group $\Gamma^{\pm}$ is countable, so ``flexible'' here does not mean that a point has a continuous stabilizer inside $\Gamma^{\pm}$. Rather, the point lies on a real form that carries a continuous Möbius geometry over $\mathbb{R}$ or $\mathbb{C}$, while the algebraic subgroup supplies a countable arithmetic shadow of that geometry. We prove that the flexible locus coincides precisely with the set of transcendental points lying on algebraic generalized circles (real forms of genus zero). Every such point is stabilized by a unique anti-Möbius reflection in $\Gamma^{\pm}$.
+
+In contrast, the generic locus encompasses points where geometric rigidity prevails. This includes points in general position, specifically, the \textbf{independence locus} where the real and imaginary parts are algebraically independent (transcendence degree 2). For these points, the algebraic stabilizer is trivial. We prove that this generic behavior is dominant in terms of measure and topology (conull and comeagre), and that the group action on this locus exhibits dense, ergodic-like orbits.
+
+A central result of this work is the characterization of the dynamical complexity on the flexible locus. Despite the geometric stability of generalized circles, we prove that the orbit equivalence relation restricted to such curves is descriptively non-smooth and admits perfect antichains. This indicates that while the locus itself is rigid, the algebraic dynamics upon it are chaotic.
+
+Finally, we establish a maximality theorem, proving that $\Gamma^{\pm}$ is the largest possible degree-one transfer semigroup compatible with the algebraic structure of $\mathbb{P}^1$. Thus $\Gamma^{\pm}$ is not the only conceivable symmetry group for transcendence questions, but it is a natural maximal one under the degree-one and algebraic-skeleton constraints imposed here.
+
+%The paper is organized as follows. Section~\ref{grct:sec:defining-domain} establishes the structural foundations, defining the automorphism group and the real forms of the space. Section~\ref{grct:sec:group-actions} analyzes the global dynamics, proving the invariance of the transcendental locus and the topological transitivity of the action. Section~\ref{grct:sec:symmetric-generic} introduces the geometric hierarchy, formally defining the flexible and generic loci. Section~\ref{grct:sec:geometric-interpretations} provides a detailed geometric and dynamical analysis of the flexible locus, including the non-smoothness of the orbit relation. Sections~\ref{grct:sec:constructing-seeds} and \ref{grct:sec:tools} provide explicit constructions of transcendental seeds and the auxiliary dynamical tools underpinning our density results.
+
+\section{Structural foundations: automorphisms and real forms}\label{grct:sec:defining-domain}
+In this section, we establish the structures that define the geometry of transcendence. We view the domain of investigation as the complex projective line $\mathbb{P}^1(\mathbb{C})$, endowed with a rigid algebraic skeleton $\Alg$ and a system of real forms.
+
+Throughout, $\Alg\subset\mathbb{C}$ denotes the field of algebraic numbers, which forms the countable, rigid skeleton of our space (a set of Lebesgue measure zero). We write $\PAlg:=\Alg\cup\{\infty\}$ for the corresponding projective skeleton. Its affine complement, the set of transcendental numbers, is denoted by $\Tc:=\mathbb{C}\setminus\Alg$.
+
+We study the symmetries of this space via degree-one maps with algebraic coefficients. Let $\Gamma=\PGL(2,\Alg)$ be the group of algebraic M\"obius transformations. We define the extended group $\Gamma^{\pm}:=\langle \Gamma,\J\rangle$, where $\J(z)=\overline{z}$ is complex conjugation. This group is the holomorphic/anti-holomorphic degree-one group over the algebraic skeleton. Elements of $\Gamma^{\pm}\setminus\Gamma$ are of the form
+\[
+	z \longmapsto \frac{a\,\overline{z}+b}{c\,\overline{z}+d}\,,\qquad a,b,c,d\in\Alg,\ ad-bc\neq 0.
+\]
+
+\begin{definition}[Algebraic generalized circles]\label{grct:def:alg-generalized-circle}
+	An \emph{algebraic generalized circle} is a non-degenerate generalized circle in $\rsphere$ cut out by a Hermitian equation
+	\[
+		A|z|^2+Bz+\overline B\,\overline z+C=0,
+		\qquad A,C\in\Alg\cap\R,\quad B\in\Alg.
+	\]
+	Thus it is either a line or a genuine circle, not a point and not the empty set.
+\end{definition}
+
+The real forms associated with this action manifest as algebraic generalized circles. Geometrically, these are the real algebraic curves of genus $0$ defined over $\Alg$. They are the curves on which the flexible part of the theory lives.
+
+\begin{lemma}[Rigidity of intersections]\label{grct:lem:alg-intersection}
+	If $H\not\sim K$ are distinct algebraic generalized circles, their intersection is geometrically rigid: every point in $\{H=0\}\cap\{K=0\}$ lies in $\PAlg$.
+\end{lemma}
+\begin{proof}
+	Two distinct generalized circles meet in at most two points on $\rsphere$; otherwise they would have infinitely many common points and hence define the same real curve. The finite intersection points are solutions of polynomial equations with algebraic coefficients, obtained by writing $z=x+iy$ and expanding the two Hermitian equations in $x$ and $y$. Therefore any isolated finite intersection point has algebraic coordinates, and hence lies in $\Alg$. The only remaining projective point is $\infty$, which lies in $\PAlg$.
+\end{proof}
+
+\begin{lemma}[Algebraic normalization of generalized circles]\label{grct:lem:circle-normalization}
+	For every algebraic generalized circle $C$, there exists $M\in\PGL(2,\Alg)$ such that $M(\R\cup\{\infty\})=C$. Consequently $C$ also admits an algebraic normalization to $S^1$.
+\end{lemma}
+\begin{proof}
+	Every algebraic generalized circle contains at least three points of $\PAlg$. For a line this is immediate. For a genuine circle, its center is algebraic and its squared radius is a positive real algebraic number, hence the radius is algebraic; this gives, for instance, algebraic points in the horizontal and vertical directions from the center.
+	
+	Choose three distinct points $p_1,p_2,p_3\in C\cap\PAlg$. There is a unique Möbius map $M\in\PGL(2,\Alg)$ sending $\infty,0,1$ to $p_1,p_2,p_3$. Since a generalized circle is determined by any three of its points, $M(\R\cup\{\infty\})=C$. Composing with the algebraic Cayley transform gives a normalization to $S^1$.
+\end{proof}
+
+\subsection{Geometric generators}\label{grct:subsec:inversive-input}
+
+The structure of $\Gamma^{\pm}$ is closely related to the classical inversive geometry of circle reflections.
+
+\begin{remark}[Classical two-reflection picture]\label{grct:rem:two-reflections}
+	Classical inversive geometry says that orientation-preserving Möbius transformations can be decomposed into products of circle reflections, and algebraic transformations can be decomposed using algebraic generalized circles. This geometric picture explains why reflections are natural in the present setting. The classification results below, however, do not rely on this factorization; they use only the explicit reflection attached to a Hermitian circle and the stabilizer argument for individual transcendental points.
+\end{remark}
+
+\subsection{Rigidity of the algebraic structure}\label{grct:subsec:max-transfer}
+
+We now establish that $\Gamma^{\pm}$ is not merely an arbitrary choice of symmetry group, but the maximal one compatible with the algebraic skeleton. Any attempt to extend this group while preserving algebraicity fails, demonstrating the rigidity of the structure.
+
+\begin{definition}[Transfer functions]\label{grct:def:transfer-semigroup}
+	A \emph{transfer function} is a degree-$1$ self-map of $\rsphere$ of the form
+	\[
+		T(z)=\frac{az+b}{cz+d}\quad\text{or}\quad
+		T(z)=\frac{a\,\overline z+b}{c\,\overline z+d},
+	\]
+	with $ad-bc\ne0$. We say that $T$ is \emph{algebraic} if $a,b,c,d\in\Alg$.
+	A \emph{transfer semigroup} is any semigroup $\mathcal S$ of transfer functions.
+\end{definition}
+
+\begin{lemma}[Three algebraic points determine algebraic coefficients]\label{grct:lem:three-pts}
+	Let $T$ be a holomorphic M\"obius transformation. If $T$ maps three distinct points of $\PAlg$ to points of $\PAlg$, then $T\in\PGL(2,\Alg)$.
+	Similarly, if $T$ is anti-holomorphic and maps three distinct points of $\PAlg$ to points of $\PAlg$, then $T\in\langle \PGL(2,\Alg),\J\rangle=\Gamma^{\pm}$.
+\end{lemma}
+\begin{proof}
+	A holomorphic Möbius transformation is determined by the images of three distinct points. Choose algebraic Möbius transformations $A,B\in\PGL(2,\Alg)$ sending the three source points and the three target points, respectively, to $\infty,0,1$. Then $BTA^{-1}$ fixes $\infty,0,1$, hence is the identity. Therefore $T=B^{-1}A\in\PGL(2,\Alg)$. The anti-holomorphic case follows by composing with $\J$, since $\J$ preserves $\Alg$.
+\end{proof}
+
+\begin{theorem}[Maximality as structural rigidity]\label{grct:thm:maximal-transfer}
+	Let $\mathcal S$ be any transfer semigroup such that $T(\PAlg)\subseteq\PAlg$ for all $T\in\mathcal S$. Then $\mathcal S\subseteq \Gamma^{\pm}$. Consequently, $\Gamma^{\pm}$ is the unique maximal transfer semigroup compatible with the projective algebraic skeleton.
+\end{theorem}
+\begin{proof}
+	Fix $T\in\mathcal S$. Since $T(\PAlg)\subseteq\PAlg$, in particular $T$ maps the three algebraic projective points $\infty,0,1$ to algebraic projective points. By Lemma~\ref{grct:lem:three-pts}, $T\in\Gamma^{\pm}$. Hence $\mathcal S\subseteq\Gamma^{\pm}$. Maximality follows because $\Gamma^{\pm}$ itself has this property.
+\end{proof}
+
+\begin{remark}[Real forms do not replace the skeleton]\label{grct:rem:real-forms-skeleton}
+	The family of algebraic generalized circles is useful because its intersections recover algebraic projective points (Lemma~\ref{grct:lem:alg-intersection}). Still, a bare statement such as ``$T$ maps some algebraic generalized circles to algebraic generalized circles'' is not, by itself, a clean replacement for the hypothesis $T(\PAlg)\subseteq\PAlg$. To force $T\in\Gamma^{\pm}$ one needs enough incidence data to know that three distinct algebraic projective points are sent to algebraic projective points; then Lemma~\ref{grct:lem:three-pts} applies. For this reason, the maximality theorem above is stated in terms of the projective algebraic skeleton itself.
+\end{remark}
+
+\begin{remark}[Justification of the scope]\label{grct:rem:why-g}
+	This maximality result justifies our focus on $\Gamma^{\pm}$ within the class of degree-one transfer maps. Any degree-one extension by a non-algebraic map would break the coherence of the algebraic skeleton: some algebraic points would be mapped to transcendentals. The class $\Gamma^{\pm}$ is therefore a natural boundary for algebraic symmetry under the degree-one restriction.
+\end{remark}
+
+\section{Global dynamics: invariance and transitivity}\label{grct:sec:group-actions}
+
+In this section, we analyze the global dynamical properties of the action. We establish two fundamental facts: the invariance of the transcendental locus under algebraic symmetries, and the topological transitivity (density) of the orbits.
+
+First, we observe that the decomposition of the space into algebraic and transcendental points is dynamically invariant. Furthermore, the action of the holomorphic subgroup is free on the transcendental locus, a fact that will later help distinguish rigid from flexible geometries.
+
+\begin{lemma}[No holomorphic stabilizers on $\Tc$]\label{grct:lem:no-holo-stab}
+	If $g\in\Gamma$ is not the identity, then all fixed points of $g$ lie in the projective algebraic skeleton $\PAlg$.
+\end{lemma}
+\begin{proof}
+	Write $g(z)=(az+b)/(cz+d)$ with $a,b,c,d\in\Alg$ and $ad-bc\ne0$. The fixed points satisfy
+	\[
+		cz^2+(d-a)z-b=0,
+	\]
+	with the evident linear interpretation when $c=0$. Thus every finite fixed point is algebraic; the point at infinity is algebraic in $\rsphere$ as well.
+\end{proof}
+
+\begin{theorem}[Invariance of the transcendental locus]\label{grct:thm:preservation-transcendence}
+	$\Tc$ is invariant under algebraic automorphisms. Specifically, if $z\in \Tc$ and $g\in\Gamma$, then $g(z) \in \Tc$.
+\end{theorem}
+\begin{proof}
+	If $g(z)$ were algebraic, then $z=g^{-1}(g(z))$ would be algebraic because $g^{-1}\in\Gamma$ preserves $\Alg$. This contradicts $z\in\Tc$.
+\end{proof}
+
+This invariance naturally extends to the full group of automorphisms.
+
+\begin{theorem}[Transcendence preserved by $\Gamma^{\pm}$]\label{grct:thm:preservation-transcendence-anti}
+	If $z\in \Tc$ and $g\in\Gamma^{\pm}$, then $g(z) \in \Tc$.
+\end{theorem}
+\begin{proof}
+	The holomorphic case is Theorem~\ref{grct:thm:preservation-transcendence}. In the anti-holomorphic case, write $g=h\circ\J$ with $h\in\Gamma$. Complex conjugation preserves $\Alg$, so it also preserves $\Tc$; applying the holomorphic case to $h$ finishes the proof.
+\end{proof}
+
+Having established invariance, we turn to the orbit structure. The density statement is elementary, but it is useful to isolate the proof.
+
+\begin{lemma}[Dense affine algebraic orbits]\label{grct:lem:dense-affine-orbits}
+	For every $z\in\C$, the affine algebraic orbit
+	\[
+		\{\,uz+v:\ u,v\in\Q(i),\ u\ne0\,\}
+	\]
+	is dense in $\C$. In particular, if $z\in\Tc$, then the $\Gamma$-orbit of $z$ is dense in $\C$.
+\end{lemma}
+\begin{proof}
+	Fix $w\in\C$ and $\varepsilon>0$. Choose any non-zero $u\in\Q(i)$. Since $\Q(i)$ is dense in $\C$, choose $v\in\Q(i)$ with
+	\[
+		|v-(w-uz)|<\varepsilon.
+	\]
+	Then $|uz+v-w|<\varepsilon$. The map $x\mapsto ux+v$ belongs to $\Gamma$, so the last assertion follows.
+\end{proof}
+
+\begin{corollary}[Topological transitivity]\label{grct:cor:topological-transitivity}
+	For any nonempty open sets $U,V\subset\C$, there exists an algebraic affine map $T\in\Gamma$ such that $T(U)\cap V\ne\varnothing$. The same statement holds for nonempty relatively open subsets of $\Tc$.
+\end{corollary}
+\begin{proof}
+	Choose $x\in U$ and $y\in V$. Since $V$ is open, Lemma~\ref{grct:lem:dense-affine-orbits} gives an affine algebraic map $T$ with $T(x)\in V$, and hence $T(U)\cap V\ne\varnothing$. If $U,V$ are relatively open in $\Tc$, choose $x\in U$ and use the density of the orbit in $\C$ together with the invariance of $\Tc$ under $\Gamma$.
+\end{proof}
+
+\section{The geometric hierarchy: flexible, rigid, and generic loci}\label{grct:sec:symmetric-generic}
+
+In this section, we refine the structural classification of transcendental numbers by analyzing the rigidity of their stabilizers. This naturally stratifies $\Tc$ into a \textit{flexible locus} (where at least one non-trivial algebraic degree-one symmetry remains) and a \textit{generic locus} (where the stabilizer is trivial).
+
+\subsection{The flexible locus: genus 0 symmetries}
+
+The primary dichotomy is defined by the existence of non-trivial algebraic automorphisms stabilizing a point.
+
+\begin{definition}[Stabilizers and the flexible Locus]\label{grct:def:stabilizer}
+	For $z\in\C$, let $\Stab_{\Gamma^{\pm}}(z):=\{g\in\Gamma^{\pm}:g(z)=z\}$ be its algebraic stabilizer. We classify a transcendental point $z$ as:
+	\begin{itemize}[leftmargin=2em]
+		\item Symmetric (Flexible) if $\Stab_{\Gamma^{\pm}}(z)\neq\{1\}$;
+		\item Generic (Rigid) if $\Stab_{\Gamma^{\pm}}(z)=\{1\}$.
+	\end{itemize}
+	We denote the corresponding loci by $\ssymm$ and $\sgen$.
+\end{definition}
+
+The geometry of the flexible locus is governed by the real forms of genus $0$. As the following results show, the existence of a symmetry implies the point lies on a generalized circle, which carries a unique algebraic reflection through that point.
+
+\begin{lemma}[Reflections from Hermitian forms]\label{grct:lem:R_H}
+	Let $H(z)=A|z|^2+Bz+\overline{B}\,\overline{z}+C$ be a Hermitian form with algebraic coefficients ($A,C\in\Alg\cap\R$ and $B\in\Alg$), and suppose that its zero locus $\mathcal{C}_H:=\{z: H(z)=0\}$ is a non-empty generalized circle. Then $\mathcal{C}_H$ is the fixed set of the anti-Möbius involution
+	\[
+		R_H(z):=\frac{-B\,\overline{z}-C}{A\,\overline{z}+\overline{B}}\in\Gamma^{\pm}\setminus\Gamma.
+	\]
+\end{lemma}
+\begin{proof}
+	The equation $R_H(z)=z$ is exactly
+	\[
+		A|z|^2+Bz+\overline B\,\overline z+C=0.
+	\]
+	The same formula, interpreted on $\rsphere$, also handles the point at infinity for lines. A direct substitution shows that $R_H^2=\id$; geometrically this is the usual reflection across the generalized circle $\mathcal C_H$. Since the coefficients of $H$ are algebraic, $R_H$ belongs to $\Gamma^{\pm}$.
+\end{proof}
+
+\begin{proposition}[Flexible geometry of circles]\label{grct:prop:lines-circles-general}
+	Every transcendental point on an algebraic generalized circle (including lines, where $A=0$, and proper circles, where $A\ne0$) is symmetric. Its stabilizer contains the reflection $R_H$ defined in Lemma~\ref{grct:lem:R_H}.
+\end{proposition}
+\begin{proof}
+	If $z\in\Tc$ lies on the circle $\mathcal C_H$, then Lemma~\ref{grct:lem:R_H} gives an element $R_H\in\Gamma^{\pm}$ with $R_H(z)=z$. Since $R_H$ is anti-holomorphic, it is not the identity. Hence the stabilizer of $z$ is non-trivial.
+\end{proof}
+
+This gives one inclusion in the flexible-locus classification: transcendental points on algebraic generalized circles are flexible. Standard examples include:
+
+\begin{example}[Canonical axes]\label{grct:ex:real-imag}
+	The real axis $\R$ is fixed by conjugation $\J(z)=\overline{z}$; the imaginary axis is fixed by the reflection $z\mapsto-\overline z$. Any transcendental point on these axes belongs to $\ssymm$.
+\end{example}
+
+\begin{example}[Algebraic circles]\label{grct:ex:algebraic-circles}
+	For a circle $|z|=r$ with radius $r\in\Alg_{>0}$, the stabilizing reflection is the geometric inversion $z\mapsto r^2/\overline z$.
+\end{example}
+
+\subsection{The generic locus: general position}
+
+The complement of the flexible locus is the generic locus $\sgen$, where rigidity prevails. Within this locus, we identify points of general position, defined by maximal algebraic independence.
+
+\begin{lemma}[Symmetry implies algebraic dependence]\label{grct:lem:symm-dependence}
+	If $t\in\ssymm$, then $t$ satisfies a non-trivial Hermitian equation over $\Alg$:
+	\[
+		A|t|^2+B t+\overline{B}\,\overline t+C=0 \quad (A,C\in\Alg\cap\R,\ B\in\Alg).
+	\]
+	Expanding $t = x+iy$, this implies a non-trivial polynomial relation between the real and imaginary parts. Consequently, $\trdeg_{\Alg}\Alg(\Re t,\Im t)\le 1$.
+\end{lemma}
+\begin{proof}
+	By Theorem~\ref{grct:thm:symm-locus}, the point $t$ lies on an algebraic generalized circle, hence satisfies a non-trivial Hermitian equation with coefficients in $\Alg$. Writing $t=x+iy$ rewrites that Hermitian equation as a polynomial equation in $x$ and $y$ with algebraic coefficients. Therefore $x$ and $y$ cannot be algebraically independent over $\Alg$.
+\end{proof}
+
+This observation motivates the definition of the \textit{independence locus}, which represents the generic behavior in terms of transcendence degree.
+
+\begin{definition}[Independence locus]\label{grct:def:ind-locus}
+	The independence locus consists of points whose real and imaginary parts are algebraically independent:
+	\[
+		\sind:=\{\,t\in\Tc:\ \trdeg_{\Alg}\Alg(\Re t,\Im t)=2\,\}.
+	\]
+	By Lemma~\ref{grct:lem:symm-dependence}, we have $\sind\subseteq\sgen$.
+\end{definition}
+
+\begin{lemma}[Invariance of the independence locus]\label{grct:lem:ind-locus-invariant}
+	The set $\sind$ is invariant under $\Gamma^{\pm}$.
+\end{lemma}
+\begin{proof}
+	Write $t=x+iy$. A holomorphic or anti-holomorphic Möbius transformation with algebraic coefficients gives the real and imaginary parts of $g(t)$ as rational functions in $x$ and $y$ with algebraic coefficients, away from the algebraic pole. The inverse transformation has the same form. Hence
+	\[
+		\Alg(\Re g(t),\Im g(t))
+	\]
+	and $\Alg(x,y)$ have the same transcendence degree over $\Alg$. Thus transcendence degree $2$ is preserved. 
+\end{proof}
+
+\begin{proposition}[Genericity of the independence locus]\label{grct:prop:ind-locus-generic}
+	The independence locus $\sind$ is comeagre in $\C$, has full Lebesgue measure, and has Hausdorff dimension $2$.
+\end{proposition}
+\begin{proof}
+	The complement of $\sind$ is contained in the union of the algebraic numbers and the zero sets
+	\[
+		\{\,x+iy:\ P(x,y)=0\,\},
+	\]
+	where $P\in\Alg[X,Y]$ ranges over all non-zero polynomials. There are countably many such polynomials. Each zero set has empty interior and Lebesgue measure zero in $\R^2$; it also has Hausdorff dimension at most $1$. The countable union is therefore meagre and null. Its complement is comeagre and conull, and any conull subset of the plane has Hausdorff dimension $2$.
+\end{proof}
+
+\begin{corollary}[Dense orbits in the independence locus]\label{grct:cor:ind-locus-dense-orbits}
+	For every $t\in\sind$, the orbit $\Gamma^{\pm}\cdot t$ is dense in $\sind$ with its relative topology. In particular, the action on $\sind$ is topologically transitive.
+\end{corollary}
+\begin{proof}
+	By Lemma~\ref{grct:lem:ind-locus-invariant}, the orbit stays in $\sind$. By Lemma~\ref{grct:lem:dense-affine-orbits}, the $\Gamma$-orbit is dense in $\C$, hence it meets every non-empty open subset of $\C$ whose intersection with $\sind$ is non-empty.
+\end{proof}
+
+Thus, while the flexible locus is dense, the generic geometry of $\Tc$ is dominated by the rigid independence locus.
+
+\section{Geometry and dynamics of the flexible locus}\label{grct:sec:geometric-interpretations}
+
+In this section, we refine the geometric description of the flexible locus $\ssymm$, characterizing it via Hermitian forms and establishing its uniqueness properties.
+
+\subsection{Characterization via Hermitian forms}
+
+The flexible locus is structured by the real forms of genus 0, which admit multiple equivalent descriptions.
+
+\begin{remark}[Algebraic generalized circles: equivalent descriptions]\label{grct:rem:equiv-alg-circle}
+	For a generalized circle $C$, the following conditions are equivalent:
+	\begin{enumerate}[itemsep=0.2ex,topsep=0.3ex,leftmargin=1.75em]
+		\item $C$ is the zero locus of a Hermitian form $H(z)=A|z|^2+Bz+\overline{B}\,\overline{z}+C$ with coefficients $A,C\in\Alg\cap\R$ and $B\in\Alg$ (unique up to scaling by a non-zero element of $\Alg\cap\R$);
+		\item $C$ is the image of the projective real line under an algebraic automorphism, i.e., $C=M(\R\cup\{\infty\})$ for some $M\in\PGL(2,\Alg)$.
+	\end{enumerate}
+	\end{remark}
+
+These curves arise naturally from the fixed-point equations of those anti-holomorphic symmetries that actually stabilize transcendental points. This distinction matters: an arbitrary anti-Möbius map need not be a reflection and may have no fixed circle.
+
+\begin{lemma}[Anti-M\"obius stabilizers force a circle]\label{grct:lem:anti-fix}
+	Let $t\in\Tc$ and let $g\in\Gamma^{\pm}\setminus\Gamma$ satisfy $g(t)=t$. Then $g$ is an anti-Möbius involution, and $t$ lies on an algebraic generalized circle.
+\end{lemma}
+\begin{proof}
+	The square $g^2$ is holomorphic and belongs to $\Gamma$. Since $g(t)=t$, we also have $g^2(t)=t$. By Lemma~\ref{grct:lem:no-holo-stab}, no non-identity element of $\Gamma$ can fix a transcendental point. Hence $g^2=\id$, so $g$ is an anti-Möbius involution.
+	
+	Write
+	\[
+		g(z)=\frac{a\,\overline z+b}{c\,\overline z+d}
+	\]
+	with $a,b,c,d\in\Alg$. Since $g(t)=t$, the point $t$ satisfies
+	\[
+		F(t,\overline t)=0,\qquad
+		F(z,\overline z):=cz\overline z+d z-a\overline z-b.
+	\]
+	Conjugating gives $\overline{F(t,\overline t)}=0$ as well. For any $\lambda\in\Alg$, the expression
+	\[
+		H_\lambda(z):=\lambda F(z,\overline z)+\overline{\lambda}\,\overline{F(z,\overline z)}
+	\]
+	is Hermitian:
+	\[
+		H_\lambda(z)
+		=
+		A_\lambda |z|^2+B_\lambda z+\overline{B_\lambda}\,\overline z+C_\lambda
+	\]
+	with $A_\lambda,C_\lambda\in\Alg\cap\R$ and $B_\lambda\in\Alg$. Because $F$ is not the zero expression, at least one of $H_1$ and $H_i$ is non-zero. Choose such a $\lambda$. Then $H_\lambda(t)=0$.
+	
+	The zero locus of this non-zero Hermitian form cannot be empty and cannot be a single algebraic point, since it contains the transcendental point $t$. Hence it is an algebraic generalized circle containing $t$.
+\end{proof}
+
+Since the group of coefficients is countable, the geometry is countably generated.
+
+\begin{lemma}[Countably many algebraic circles]\label{grct:lem:countable-circles}
+	The family of algebraic generalized circles is countable.
+\end{lemma}
+\begin{proof}
+	The coefficient field $\Alg$ is countable, so the set of triples $(A,B,C)$ with $A,C\in\Alg\cap\R$ and $B\in\Alg$ is countable. Passing from coefficient triples to their non-degenerate zero loci cannot increase cardinality.
+\end{proof}
+
+This allows us to formally identify the flexible locus with the union of these curves.
+
+\begin{theorem}[Structure of the flexible locus]\label{grct:thm:symm-locus}
+	A transcendental point $z$ is symmetric (flexible) if and only if it lies on an algebraic generalized circle. Equivalently,
+	\[
+		\ssymm \ = \ \Tc\cap\bigcup_C C,
+	\]
+	where $C$ ranges over all algebraic generalized circles. Thus $\ssymm$ is a countable union of transcendental parts of algebraic generalized circles.
+\end{theorem}
+\begin{proof}
+	Suppose first that $z\in\ssymm$. Then some non-identity $g\in\Gamma^{\pm}$ fixes $z$. By Lemma~\ref{grct:lem:no-holo-stab}, $g$ cannot be holomorphic. Hence $g$ is anti-holomorphic, and Lemma~\ref{grct:lem:anti-fix} places $z$ on an algebraic generalized circle.
+	
+	Conversely, if $z\in\Tc$ lies on an algebraic generalized circle $C=\mathcal C_H$, then Lemma~\ref{grct:lem:R_H} gives an anti-Möbius reflection $R_H\in\Gamma^{\pm}$ fixing every point of $C$, in particular $z$. Thus $z$ is flexible. Countability follows from Lemma~\ref{grct:lem:countable-circles}.
+\end{proof}
+
+\begin{proposition}[Footprint of the flexible locus]\label{grct:prop:flexible-footprint}
+	The flexible locus $\ssymm$ is dense in $\C$, meagre, Lebesgue null, and has Hausdorff dimension $1$.
+\end{proposition}
+\begin{proof}
+	By Theorem~\ref{grct:thm:symm-locus} and Lemma~\ref{grct:lem:countable-circles}, $\ssymm$ is contained in a countable union of generalized circles. Each such circle is closed with empty interior in $\C$, has planar Lebesgue measure zero, and has Hausdorff dimension at most $1$. Hence $\ssymm$ is meagre, null, and has Hausdorff dimension at most $1$.
+	
+	It is dense because the horizontal lines $\Im z=q$, with $q\in\Alg\cap\R$, are algebraic generalized circles and these lines meet every non-empty open disc in transcendental points. Finally, $\R\cap\Tc\subseteq\ssymm$ has Hausdorff dimension $1$, since it is the real line minus a countable set. Therefore $\dim_H(\ssymm)=1$.
+\end{proof}
+
+Furthermore, this flexibility is confined to genus 0 geometry in the following elementary sense: an irreducible real algebraic curve that is not one of these generalized circles can share only finitely many points with each algebraic generalized circle, and hence intersects $\ssymm$ in at most countably many points. The symmetry structure is also rigid: for any $z\in\Tc$, the stabilizer is either trivial or consists of the identity and one anti-Möbius involution.
+
+\begin{proposition}[Uniqueness of the stabilizing reflection]\label{grct:prop:unique-reflection}
+	If $z\in\Tc$ is a point in the flexible locus, then the stabilizing reflection $R_z$ is unique. Consequently, $z$ lies on a unique algebraic generalized circle, confirming the rigidity of the association between the point and its flexible curve.
+\end{proposition}
+\begin{proof}
+	If two anti-Möbius elements $R$ and $S$ both fixed $z$, then $RS$ would be holomorphic and would fix $z$. Lemma~\ref{grct:lem:no-holo-stab} forces $RS=\id$, hence $R=S$. Thus the stabilizing reflection is unique.
+	
+	If $z$ lay on two distinct algebraic generalized circles, the two corresponding reflections from Lemma~\ref{grct:lem:R_H} would both fix $z$, contradicting uniqueness. Equivalently, two distinct algebraic generalized circles meet only in algebraic points by Lemma~\ref{grct:lem:alg-intersection}.
+\end{proof}
+
+\begin{remark}[Notation for flexible coordinates]\label{grct:rem:CtRt}
+	For any $t\in\ssymm$, we denote by $C(t)$ the unique algebraic generalized circle passing through $t$ (as guaranteed by Proposition~\ref{grct:prop:unique-reflection}), and by $R_t$ the unique anti–Möbius reflection such that $\Fix(R_t)=C(t)$.
+\end{remark}
+
+\begin{lemma}[Transport of flexible geometry]\label{grct:lem:G-preserves-circles}
+	The group action respects the geometric structure: every $G\in\Gamma^{\pm}$ maps algebraic generalized circles to algebraic generalized circles.
+\end{lemma}
+\begin{proof}
+	Let $C$ be given by a Hermitian equation $H(z,\overline z)=0$ with algebraic coefficients. If $G\in\Gamma^{\pm}$, then $w\in G(C)$ exactly when $G^{-1}(w)\in C$. Substituting the algebraic Möbius or anti-Möbius formula for $G^{-1}(w)$ into $H$ and clearing denominators gives another Hermitian equation with algebraic coefficients. Since $G$ is a homeomorphism of $\rsphere$, the image is again a non-degenerate generalized circle.
+\end{proof}
+
+This structural preservation extends to the stabilizing reflections themselves, which transform equivariantly under the group action: for any $t\in\ssymm$ and $G\in\Gamma^{\pm}$, we have $C(G\cdot t)=G(C(t))$ and $G\,R_{t}\,G^{-1}=R_{G\cdot t}$. Furthermore, the dynamics on the transcendental locus are free of finite cycles, except for the trivial period-2 cycles of reflections: if $g$ is holomorphic and nontrivial, or anti-holomorphic and not an involution, then every finite periodic point of $g$ lies in the algebraic skeleton.
+
+\begin{lemma}[Coordinate field trap on a flexible curve]\label{grct:lem:coordinate-field-trap}
+	Let $C$ be an algebraic generalized circle and let $s\in C\cap\Tc$. Then $\overline{s}\in\Alg(s)$. Consequently,
+	\[
+		\Gamma^{\pm}\cdot s\subseteq \Alg(s).
+	\]
+\end{lemma}
+\begin{proof}
+	Write $C$ as
+	\[
+		A|z|^2+Bz+\overline B\,\overline z+C_0=0,
+		\qquad A,C_0\in\Alg\cap\R,\quad B\in\Alg.
+	\]
+	At $z=s$ this becomes
+	\[
+		(A s+\overline B)\overline{s}=-(Bs+C_0).
+	\]
+	If $A s+\overline B=0$, then either $A\ne0$ and $s=-\overline B/A\in\Alg$, impossible, or $A=0$ and $\overline B=0$, in which case the non-degenerate equation would be constant. Thus
+	\[
+		\overline{s}=-\,\frac{Bs+C_0}{A s+\overline B}\in\Alg(s).
+	\]
+	A holomorphic element of $\Gamma^{\pm}$ sends $s$ to a rational function of $s$ with algebraic coefficients, and an anti-holomorphic element sends $s$ to a rational function of $\overline s$. Since $\overline s\in\Alg(s)$, the whole orbit lies in $\Alg(s)$.
+\end{proof}
+
+\begin{theorem}[Perfect antichains on flexible curves]\label{grct:thm:perfect-antichain}
+	Let $C$ be an algebraic generalized circle and let $X:=C\cap\Tc$ denote its transcendental component with the subspace topology. Let $E$ be the orbit equivalence relation on $X$ induced by the action of $\Gamma^{\pm}$. Then there exists a perfect set $P\subset X$ such that no two distinct points of $P$ are $E$-equivalent, demonstrating the high complexity of the quotient space.
+\end{theorem}
+\begin{proof}
+	View $C$ with its natural topology as a generalized circle in $\rsphere$. It is a perfect Polish space, and the projective skeleton $C\cap\PAlg$ is countable. Hence
+	\[
+		X=C\setminus(C\cap\PAlg)
+	\]
+	is a dense $G_\delta$, and thus Polish and perfect. For each $g\in\Gamma^{\pm}$, consider the relative graph
+	\(
+	\Gamma_g:=\{\,(x,gx):x\in X,\ gx\in X\,\}\subset X\times X.
+	\)
+	This is closed in $X\times X$ and has empty interior: a graph cannot contain a non-empty open rectangle in a product of a perfect space with itself. Thus $\Gamma_g$ is nowhere dense. Since $\Gamma^{\pm}$ is countable, the orbit relation $E=\bigcup_{g\in\Gamma^{\pm}}\Gamma_g$ is a meagre subset of $X\times X$. By Mycielski’s theorem, there exists a perfect set $P\subset X$ such that $(P\times P)\cap E\subset\Delta$, where $\Delta$ is the diagonal. Consequently, distinct points of $P$ are not $E$-equivalent.
+\end{proof}
+
+This obstruction to orbit equivalence is deeply linked to algebraic independence. By Lemma~\ref{grct:lem:coordinate-field-trap}, the $\Gamma^{\pm}$-orbit of a transcendental point on $C$ is trapped in a one-variable algebraic function field. Consequently, if $t_1,t_2\in C\cap\Tc$ are algebraically independent over $\Alg$, they cannot be $\Gamma^{\pm}$-equivalent; any algebraically independent subset of $C\cap\Tc$ is therefore an antichain for the orbit relation.
+
+\subsection{Descriptive complexity on the flexible locus}
+
+\begin{theorem}[Non-smoothness of flexible dynamics]\label{grct:thm:orbit-complexity-circle}
+	Let $C$ be an algebraic generalized circle and let $X:=C\cap\Tc$ be the set of flexible transcendental points on it. Let $E$ be the orbit equivalence relation on $X$ induced by the action of $\Gamma^{\pm}$. Then:
+	\begin{enumerate}[leftmargin=2em,itemsep=0.25ex]
+		\item $E$ is a countable Borel equivalence relation, an $F_\sigma$ subset of $X\times X$, and a meagre subset of $X\times X$.
+		\item $E$ is not smooth (meaning there exists no Borel map $f:X\to\R$ that classifies the orbits, i.e., such that $xEy \iff f(x)=f(y)$).
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Part 1: Meagre and $F_\sigma$.
+	Since the group $\Gamma^{\pm}$ is countable (being generated by the countable set $\PGL(2,\Alg)$), the orbit relation $E$ is a countable union of relative graphs
+	\[
+		E = \bigcup_{g\in\Gamma^{\pm}} \{\,(x,g(x)) : x\in X,\ g(x)\in X\,\}.
+	\]
+	Each graph is closed in $X\times X$ and has empty interior. Thus $E$ is an $F_\sigma$ set and a countable union of nowhere dense sets, i.e., meagre.
+
+	Part 2: Non-smoothness.
+	By Lemma~\ref{grct:lem:circle-normalization}, normalize $C$ to the unit circle $S^1$ by some $M\in\PGL(2,\Alg)$. Smoothness is preserved under this conjugacy, so it suffices to argue on $S^1\cap\Tc$.
+	
+	Let $\alpha=(3+4i)/5$. Then $\alpha\in\Alg$, $|\alpha|=1$, and $\alpha$ is not a root of unity, so $z\mapsto \alpha z$ is an irrational rotation belonging to $\Gamma$. Its restriction to $S^1$ is ergodic for Haar measure. Therefore every Borel set saturated for $E$ has Haar measure $0$ or $1$, because it is in particular invariant under this irrational rotation.
+	
+	If $E$ were smooth, there would be a Borel map $f:X\to\R$ with $xEy$ iff $f(x)=f(y)$. Since every $E$-class is countable, every fiber of $f$ has Haar measure zero. The pushforward of Haar measure by $f$ would therefore be non-atomic, so some Borel set $B\subset\R$ would have pushforward measure strictly between $0$ and $1$. But $f^{-1}(B)$ is $E$-saturated, contradicting the previous paragraph. Hence $E$ is not smooth.
+\end{proof}
+
+\section{Constructing seeds in the transcendental locus}\label{grct:sec:constructing-seeds}
+
+To make the existence of flexible and generic points concrete, we require explicit constructions of elements in the transcendental locus $\Tc$. We isolate a convenient engine for producing such seeds based on the Lindemann--Weierstrass theorem.
+
+\begin{theorem}[Lindemann--Weierstrass generation]\label{grct:thm:lindemann-weierstrass}
+	If $\alpha_1,\dots,\alpha_n\in\Alg$ are pairwise distinct algebraic numbers, then the set of exponentials $\{\e^{\alpha_j}\}_{j=1}^n$ is linearly independent over $\Alg$.
+	In particular, if $\alpha\in\Alg\setminus\{0\}$ then both $\e^{\alpha}$ and $\cos\alpha$ lie in $\Tc$.
+\end{theorem}
+\begin{proof}
+	The first assertion is the Lindemann--Weierstrass theorem. Taking the two distinct algebraic numbers $0$ and $\alpha$ shows that $1$ and $\e^\alpha$ are linearly independent over $\Alg$, so $\e^\alpha$ is transcendental.
+	
+	For $\cos\alpha$, suppose it were algebraic. Then $\e^{i\alpha}$ would satisfy
+	\[
+		X^2-2(\cos\alpha)X+1=0,
+	\]
+	and hence would be algebraic. But $i\alpha$ is a non-zero algebraic number, so the previous paragraph applied to $i\alpha$ makes $\e^{i\alpha}$ transcendental, a contradiction.
+\end{proof}
+
+This allows us to construct explicit transcendental numbers by linear combination, providing concrete starting points for our dynamical orbits.
+
+\begin{theorem}[Linear–exponential seeds]\label{grct:thm:linear-exponential-seed}
+	Let $\alpha_0,\alpha_1,\dots,\alpha_n\in\Alg$ be pairwise distinct, with $\alpha_0:=0$, and let $c_0,\dots,c_n\in\Alg$. Assume that at least one coefficient $c_j$ with $j\ge1$ is non-zero. Then the sum
+	\(
+	S:=\sum_{j=0}^n c_j\,\e^{\alpha_j}
+	\)
+	is transcendental.
+\end{theorem}
+\begin{proof}
+	Suppose, toward a contradiction, that $S\in\Alg$. Then
+	\[
+		(c_0-S)\e^0+\sum_{j=1}^n c_j\e^{\alpha_j}=0
+	\]
+	is an algebraic linear relation among exponentials of distinct algebraic numbers. By Theorem~\ref{grct:thm:lindemann-weierstrass}, all coefficients in this relation must vanish. This contradicts the assumption that some $c_j$ with $j\ge1$ is non-zero.
+\end{proof}
+
+\section{Auxiliary dynamical tools}\label{grct:sec:tools}
+
+In this final section, we collect the technical tools underpinning the density and stability results. We focus on the quantitative aspects of orbit density and the metric stability of approximation exponents.
+
+\subsection{Quantifying orbit density}
+
+The topological transitivity of the group action relies on the ability to approximate arbitrary translations and scalings using algebraic coefficients.
+
+\begin{lemma}[Möbius difference formula]\label{grct:lem:mob-difference}
+	For any M\"obius transformation $T(z)=\dfrac{az+b}{cz+d}$ with $ad-bc\ne0$, the difference between images is given by:
+	\[
+		T(z)-T(w)=\frac{(ad-bc)(z-w)}{(cz+d)(cw+d)}.
+	\]
+\end{lemma}
+\begin{proof}
+	Bring the two fractions to a common denominator and cancel the terms $acz w$ and $bd$.
+\end{proof}
+
+\begin{theorem}[Explicit $\varepsilon$-net construction]\label{grct:thm:epsilon-net}
+	Fix $z,w\in\C$ and $\varepsilon>0$. There exist Gaussian rational parameters $u,v\in\Q(i)$ with $u\neq0$ such that
+	\(
+	|uz+v-w|<\varepsilon.
+	\)
+	Hence, the set $\{uz+v:u,v\in\Q(i),\,u\ne0\}\subset\Gamma\cdot z$ forms an explicit $\varepsilon$-net for the orbit.
+\end{theorem}
+\begin{proof}
+	Choose any non-zero $u\in\Q(i)$. Since $\Q(i)$ is dense in $\C$, choose $v\in\Q(i)$ with $|v-(w-uz)|<\varepsilon$. Then $|uz+v-w|<\varepsilon$, and $z\mapsto uz+v$ belongs to $\Gamma$.
+\end{proof}
+
+This approximation capability implies that the group action can arbitrarily expand or compress the metric space.
+
+\begin{proposition}[Coarse expansion/compression]\label{grct:prop:coarse-expansion}
+	For any distinct $x,y\in\C$,
+	\[
+		\inf_{g\in\Gamma}|g(x)-g(y)|=0
+		\qquad\text{and}\qquad
+		\sup_{g\in\Gamma}|g(x)-g(y)|=+\infty.
+	\]
+	Consequently, the action can shrink any compact set $K$ to diameter $<\varepsilon$, or expand any open set $U$ to arbitrary diameter.
+\end{proposition}
+\begin{proof}
+	For affine maps $g_u(z)=uz$ with $u\in\Q(i)^\times$, one has
+	\[
+		|g_u(x)-g_u(y)|=|u|\,|x-y|.
+	\]
+	Taking $|u|$ arbitrarily small or large gives the two displayed claims. The statements about compact and open sets follow from the same scaling of diameters; for an open set choose two distinct points in it before expanding.
+\end{proof}
+
+\begin{corollary}[Affine mixing]\label{grct:cor:affine-semigroup-transitive}
+	Let $\mathcal A:=\{\,z\mapsto uz+v:\ u,v\in\Alg,\ u\ne0\,\}$ be the affine algebraic semigroup. For any nonempty open sets $U,V\subset\C$, there exists $T\in\mathcal A$ such that $T(U)\cap V\neq\varnothing$.
+\end{corollary}
+\begin{proof}
+	Choose $x\in U$ and $y\in V$. Since $V$ is open and the affine algebraic orbit of $x$ is dense by Lemma~\ref{grct:lem:dense-affine-orbits}, there is $T\in\mathcal A$ with $T(x)\in V$.
+\end{proof}
+
+\subsection{Metric invariants}
+
+While the group action mixes the space topologically, certain metric properties remain invariant under rational restrictions. Let $\mu(\xi)$ be the irrationality exponent of a real number $\xi$.
+
+\begin{theorem}[Invariance of $\mu$ under rational Möbius]\label{grct:thm:irr-exp-invariance}
+	Let $T(x)=\dfrac{ax+b}{cx+d}$ with rational coefficients $a,b,c,d\in\Q$ and $ad-bc\ne0$. If $c\xi+d\neq 0$, then the irrationality exponent is preserved:
+	\(
+	\mu(T(\xi))=\mu(\xi).
+	\)
+\end{theorem}
+\begin{proof}
+	After clearing denominators, assume $a,b,c,d\in\Z$. For rationals $p/q$ sufficiently close to $\xi$, the denominator $cp+dq$ is comparable to $q$, and Lemma~\ref{grct:lem:mob-difference} gives
+	\[
+		\left|T(\xi)-T(p/q)\right|
+		\asymp
+		\left|\xi-p/q\right|,
+	\]
+	with constants depending on $T$ and $\xi$. Moreover $T(p/q)=(ap+bq)/(cp+dq)$ is rational with height comparable to $q$. Thus rational approximations to $\xi$ transfer to rational approximations to $T(\xi)$ with the same exponent. Applying the same argument to $T^{-1}$ gives the reverse inequality, so the exponents are equal.
+\end{proof}
+
+\subsection{Geometric generation of the group}
+
+Finally, we record the geometric generation viewpoint, separated from the main classification arguments.
+
+\begin{remark}[Generation by flexible reflections]\label{grct:rem:gen-by-reflections}
+	If one invokes the classical two-reflection factorization from Remark~\ref{grct:rem:two-reflections}, then the extended group is generated by reflections across the symmetric locus:
+	\[
+		\Gamma^{\pm}=\langle\, R_y\ :\ y\in\ssymm\,\rangle.
+	\]
+	Every algebraic generalized circle contains transcendental points, and by Proposition~\ref{grct:prop:unique-reflection} all such points on the same circle determine the same reflection. Thus the notation $R_y$ ranges over the algebraic circle reflections.
+	
+	By the classical factorization, every element of $\Gamma$ is a product of such reflections. The conjugation $\J$ is itself the reflection across the real axis, and the real axis contains transcendental points. Hence adjoining the reflections $R_y$ for $y\in\ssymm$ generates both $\Gamma$ and $\J$, and therefore generates $\Gamma^{\pm}$.
+\end{remark}
+
+\begin{thebibliography}{99}
+	\bibitem{barsky-bbp}
+	D.\ Barsky, V.\ Mu\~noz, R.\ P\'erez-Marco,
+	\newblock ``On the genesis of BBP formulas'',
+	\newblock Acta Arithmetica \textbf{198} (2021), 401--426; \href{https://arxiv.org/abs/1906.09629}{arXiv:1906.09629}.
+
+	\bibitem{chaphalkar-transcendental}
+	R.\ M.\ Chaphalkar, S.-G.\ Hwang, C.\ H.\ Lee, K.-B.\ Nam,
+	\newblock ``New Gelfond-type transcendental numbers'',
+	\newblock \href{https://arxiv.org/abs/2106.04055}{arXiv:2106.04055} (2021).
+
+	\bibitem{garciaramos-hurwitz}
+	F.\ Garc\'ia-Ramos, G.\ Gonz\'alez Robert, M.\ Hussain,
+	\newblock ``Transcendence and normality of complex numbers via Hurwitz continued fractions'',
+	\newblock International Mathematics Research Notices \textbf{2024}, no.\ 23, 14289--14320; \href{https://arxiv.org/abs/2310.20029}{arXiv:2310.20029}.
+
+	\bibitem{hwang-transcendental}
+	S.-G.\ Hwang, C.\ H.\ Lee, K.-B.\ Nam, R.\ M.\ Chaphalkar,
+	\newblock ``Generalized Lindemann--Weierstrass and Gelfond--Schneider--Baker theorems'',
+	\newblock \href{https://arxiv.org/abs/2212.03418}{arXiv:2212.03418} (2022).
+\end{thebibliography}
+
+\endgroup
