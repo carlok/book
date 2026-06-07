@@ -18,9 +18,15 @@
 %%  FONTS & ENCODING
 %% ──────────────────────────────────────────────
 \usepackage{fontspec}
-\setmainfont{Charter}
-\setsansfont{Helvetica Neue}
-\setmonofont{Menlo}[Scale=0.85]
+\IfFontExistsTF{Charter}
+  {\setmainfont{Charter}}
+  {\setmainfont{TeX Gyre Schola}}
+\IfFontExistsTF{Helvetica Neue}
+  {\setsansfont{Helvetica Neue}}
+  {\setsansfont{TeX Gyre Heros}}
+\IfFontExistsTF{Menlo}
+  {\setmonofont{Menlo}[Scale=0.85]}
+  {\setmonofont{Latin Modern Mono}[Scale=0.85]}
 \usepackage{microtype}
 
 %% ──────────────────────────────────────────────
