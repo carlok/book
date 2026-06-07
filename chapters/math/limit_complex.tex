@@ -1,0 +1,542 @@
+\chapter{The Limit in the Complex Plane}
+
+\begingroup
+
+% Local macros copied from the standalone source.
+
+\def\C{\mathbb{C}}
+
+\def\R{\mathbb{R}}
+
+\def\Z{\mathbb{Z}}
+
+\def\N{\mathbb{N}}
+
+\def\Q{\mathbb{Q}}
+
+\def\Log{\operatorname{Log}}
+
+\def\Arg{\operatorname{Arg}}
+
+\def\re{\operatorname{Re}}
+
+\def\im{\operatorname{Im}}
+
+\begin{abstract}
+We examine the limit $\lim_{z \to a} \frac{z^n - a^n}{z - a}$ where $z, a, n \in \C$. Unlike the real case, the complex setting introduces fundamental complications: multi-valued functions, branch cuts, path dependence, and holomorphicity conditions. We provide a systematic treatment of all cases and subtleties.
+\end{abstract}
+
+%==============================================================================
+\section{Preliminaries: Complex Exponentiation}
+%==============================================================================
+
+\subsection{The Complex Exponential and Logarithm}
+
+\begin{definition}[Complex Exponential]
+For $z = x + iy \in \C$:
+\begin{equation}
+e^z = e^x(\cos y + i \sin y).
+\end{equation}
+This function is entire (holomorphic on all of $\C$) and periodic with period $2\pi i$.
+\end{definition}
+
+\begin{definition}[Complex Logarithm]
+For $z \in \C \setminus \{0\}$, the \textbf{multi-valued logarithm} is:
+\begin{equation}
+\log z = \ln|z| + i \arg(z) = \ln|z| + i(\Arg(z) + 2\pi k), \quad k \in \Z,
+\end{equation}
+where $\Arg(z) \in (-\pi, \pi]$ is the \textbf{principal argument}.
+\end{definition}
+
+\begin{definition}[Principal Logarithm]
+The \textbf{principal branch} of the logarithm is:
+\begin{equation}
+\Log z = \ln|z| + i\Arg(z), \quad z \in \C \setminus (-\infty, 0].
+\end{equation}
+This is holomorphic on $\C \setminus (-\infty, 0]$, with branch cut along the negative real axis.
+\end{definition}
+
+\subsection{Complex Powers}
+
+\begin{definition}[Complex Power]
+For $z, n \in \C$ with $z \neq 0$:
+\begin{equation}
+z^n = e^{n \log z} = e^{n(\ln|z| + i\arg(z))}.
+\label{eq:complex_power}
+\end{equation}
+This is generally \textbf{multi-valued} due to the multi-valuedness of $\log z$.
+\end{definition}
+
+\begin{definition}[Principal Power]
+Using the principal logarithm:
+\begin{equation}
+z^n_{\text{principal}} = e^{n \Log z}, \quad z \in \C \setminus (-\infty, 0].
+\end{equation}
+\end{definition}
+
+\begin{remark}[When is $z^n$ single-valued?]
+The function $z^n$ is single-valued if and only if $n \in \Z$. For $n \notin \Z$, different branches of $\log z$ yield different values of $z^n$.
+\end{remark}
+
+%==============================================================================
+\section{The Main Limit: Statement and Classification}
+%==============================================================================
+
+\subsection{Problem Statement}
+
+We study:
+\begin{equation}
+L = \lim_{z \to a} \frac{z^n - a^n}{z - a}, \quad z, a, n \in \C.
+\label{eq:main_limit}
+\end{equation}
+
+\subsection{Classification of Cases}
+
+The analysis depends critically on the parameters:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|c|l|l|}
+\hline
+\textbf{Case} & \textbf{Condition} & \textbf{Nature} \\
+\hline
+I & $n \in \Z^+$ (positive integer) & Single-valued, entire \\
+II & $n \in \Z^-$ (negative integer) & Single-valued, meromorphic \\
+III & $n = 0$ & Trivial \\
+IV & $n \in \Q \setminus \Z$ (rational) & Multi-valued, finite branches \\
+V & $n \in \R \setminus \Q$ (irrational) & Multi-valued, infinite branches \\
+VI & $n \in \C \setminus \R$ (complex) & Multi-valued, infinite branches \\
+\hline
+\end{tabular}
+\end{center}
+
+For each case, we must also consider the value of $a$:
+\begin{itemize}
+    \item $a = 0$: Special treatment required
+    \item $a \in (-\infty, 0)$: On the branch cut (for principal branch)
+    \item $a \in \C \setminus (-\infty, 0]$: Away from branch cut
+\end{itemize}
+
+%==============================================================================
+\section{Case I: Positive Integer Exponent ($n \in \Z^+$)}
+%==============================================================================
+
+\subsection{General Result}
+
+When $n \in \Z^+$, $f(z) = z^n$ is a polynomial, hence entire.
+
+\begin{theorem}
+For $n \in \Z^+$ and any $a \in \C$:
+\begin{equation}
+\lim_{z \to a} \frac{z^n - a^n}{z - a} = n a^{n-1}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The polynomial $z^n - a^n$ has $a$ as a root, so it factors as:
+\begin{equation}
+z^n - a^n = (z - a)(z^{n-1} + z^{n-2}a + z^{n-3}a^2 + \cdots + a^{n-1}).
+\end{equation}
+Thus:
+\begin{align}
+\lim_{z \to a} \frac{z^n - a^n}{z - a} &= \lim_{z \to a} \sum_{k=0}^{n-1} z^{n-1-k} a^k \\
+&= \sum_{k=0}^{n-1} a^{n-1-k} a^k = \sum_{k=0}^{n-1} a^{n-1} = n a^{n-1}.
+\end{align}
+\end{proof}
+
+\subsection{Subcase: $a = 0$}
+
+\begin{proposition}
+For $n \in \Z^+$ and $a = 0$:
+\begin{equation}
+\lim_{z \to 0} \frac{z^n - 0}{z - 0} = \lim_{z \to 0} z^{n-1} = 
+\begin{cases}
+1 & \text{if } n = 1, \\
+0 & \text{if } n \geq 2.
+\end{cases}
+\end{equation}
+\end{proposition}
+
+\begin{remark}
+This is consistent with $n \cdot 0^{n-1}$: for $n = 1$, we get $1 \cdot 0^0 = 1$ (using the convention $0^0 = 1$); for $n \geq 2$, we get $n \cdot 0 = 0$.
+\end{remark}
+
+%==============================================================================
+\section{Case II: Negative Integer Exponent ($n \in \Z^-$)}
+%==============================================================================
+
+Let $n = -m$ where $m \in \Z^+$. Then $z^n = z^{-m} = 1/z^m$.
+
+\begin{theorem}
+For $n = -m \in \Z^-$ and $a \in \C \setminus \{0\}$:
+\begin{equation}
+\lim_{z \to a} \frac{z^{-m} - a^{-m}}{z - a} = -m \cdot a^{-m-1}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+\begin{align}
+\frac{z^{-m} - a^{-m}}{z - a} &= \frac{\frac{1}{z^m} - \frac{1}{a^m}}{z - a} = \frac{a^m - z^m}{z^m a^m (z - a)} \\
+&= -\frac{z^m - a^m}{z - a} \cdot \frac{1}{z^m a^m}.
+\end{align}
+Taking $z \to a$:
+\begin{equation}
+L = -m a^{m-1} \cdot \frac{1}{a^{2m}} = -m a^{-m-1}.
+\end{equation}
+\end{proof}
+
+\subsection{Subcase: $a = 0$}
+
+\begin{warning}
+For $a = 0$ and $n < 0$, the limit does \textbf{not exist} in $\C$:
+\begin{equation}
+\lim_{z \to 0} \frac{z^{-m} - 0^{-m}}{z - 0}
+\end{equation}
+is undefined because $0^{-m} = \frac{1}{0^m}$ is undefined.
+\end{warning}
+
+%==============================================================================
+\section{Case III: Zero Exponent ($n = 0$)}
+%==============================================================================
+
+\begin{proposition}
+For $n = 0$ and any $a \in \C \setminus \{0\}$:
+\begin{equation}
+\lim_{z \to a} \frac{z^0 - a^0}{z - a} = \lim_{z \to a} \frac{1 - 1}{z - a} = 0.
+\end{equation}
+\end{proposition}
+
+\begin{remark}
+This is consistent with $n a^{n-1} = 0 \cdot a^{-1} = 0$.
+\end{remark}
+
+\subsection{Subcase: $a = 0$}
+
+\begin{warning}
+The expression $0^0$ is indeterminate. With the convention $z^0 = 1$ for all $z$:
+\begin{equation}
+\lim_{z \to 0} \frac{z^0 - 0^0}{z - 0} = \lim_{z \to 0} \frac{1 - 1}{z} = 0.
+\end{equation}
+However, this requires adopting the convention $0^0 = 1$.
+\end{warning}
+
+%==============================================================================
+\section{Case IV: Rational Non-Integer Exponent ($n \in \Q \setminus \Z$)}
+%==============================================================================
+
+Let $n = p/q$ where $p \in \Z$, $q \in \Z^+$, $\gcd(|p|, q) = 1$, and $q \geq 2$.
+
+\subsection{Multi-Valuedness}
+
+\begin{definition}
+The $q$-th roots of $z$ are:
+\begin{equation}
+z^{1/q} = |z|^{1/q} e^{i(\Arg(z) + 2\pi k)/q}, \quad k = 0, 1, \ldots, q-1.
+\end{equation}
+There are exactly $q$ distinct values.
+\end{definition}
+
+\begin{proposition}
+For $n = p/q$, the function $z^n = z^{p/q}$ has exactly $q$ branches, corresponding to the $q$ choices of $z^{1/q}$.
+\end{proposition}
+
+\subsection{Limit on a Fixed Branch}
+
+\begin{theorem}
+Let $n = p/q \in \Q \setminus \Z$ and let $a \in \C \setminus \{0\}$ not lie on the branch cut. Fix a branch of $z^n$ that is holomorphic in a neighborhood of $a$. Then:
+\begin{equation}
+\lim_{z \to a} \frac{z^n - a^n}{z - a} = n a^{n-1},
+\end{equation}
+where $a^{n-1}$ is computed using the same branch.
+\end{theorem}
+
+\begin{proof}
+On any branch where $z^n$ is holomorphic, it is the complex derivative:
+\begin{equation}
+\frac{d}{dz} z^n = n z^{n-1}.
+\end{equation}
+\end{proof}
+
+\subsection{Subcase: $a$ on the Branch Cut}
+
+\begin{warning}
+If $a \in (-\infty, 0)$ (on the branch cut for the principal branch), the limit requires careful treatment:
+\begin{itemize}
+    \item The principal branch $z^n$ is discontinuous at $a$.
+    \item The limit depends on the \textbf{path of approach}.
+    \item One may define a different branch that is continuous at $a$.
+\end{itemize}
+\end{warning}
+
+\begin{example}
+Let $n = 1/2$, $a = -1$. The principal square root $\sqrt{z}$ has a branch cut on $(-\infty, 0]$.
+
+Approaching $a = -1$ from above ($z = -1 + i\epsilon$, $\epsilon \to 0^+$):
+\[
+\sqrt{-1 + i\epsilon} \to i.
+\]
+
+Approaching from below ($z = -1 - i\epsilon$, $\epsilon \to 0^+$):
+\[
+\sqrt{-1 - i\epsilon} \to -i.
+\]
+
+The limits differ, so $\sqrt{z}$ is not continuous at $z = -1$ in the principal branch.
+\end{example}
+
+\subsection{Subcase: $a = 0$}
+
+\begin{proposition}
+For $n = p/q$ with $p > 0$ and $a = 0$:
+\begin{equation}
+\lim_{z \to 0} \frac{z^{p/q}}{z} = \lim_{z \to 0} z^{p/q - 1} = 
+\begin{cases}
+0 & \text{if } p/q > 1, \\
+1 & \text{if } p/q = 1 \text{ (but } n \notin \Z\text{, contradiction)}, \\
+\text{does not exist} & \text{if } 0 < p/q < 1.
+\end{cases}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+For $0 < p/q < 1$, we have $p/q - 1 < 0$, so $z^{p/q - 1} = z^{-(1 - p/q)} \to \infty$ as $z \to 0$.
+\end{proof}
+
+\begin{warning}
+For $p < 0$, the limit at $a = 0$ is undefined since $0^{p/q}$ is undefined for negative $p$.
+\end{warning}
+
+%==============================================================================
+\section{Case V: Irrational Real Exponent ($n \in \R \setminus \Q$)}
+%==============================================================================
+
+\begin{definition}
+For $n \in \R \setminus \Q$ and $z \neq 0$:
+\begin{equation}
+z^n = e^{n \log z} = e^{n(\ln|z| + i\arg(z))}.
+\end{equation}
+Since $\arg(z)$ is determined only modulo $2\pi$, and $n$ is irrational, $e^{2\pi i n k}$ takes infinitely many distinct values as $k$ ranges over $\Z$.
+\end{definition}
+
+\begin{proposition}
+For $n \in \R \setminus \Q$, the function $z^n$ has \textbf{infinitely many branches}.
+\end{proposition}
+
+\begin{theorem}
+Fix a branch of $z^n$ (e.g., the principal branch). For $a \in \C$ with $|a| > 0$ and $a$ not on the branch cut:
+\begin{equation}
+\lim_{z \to a} \frac{z^n - a^n}{z - a} = n a^{n-1}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+On any branch, $z^n = e^{n \Log z}$ is holomorphic (since $\Log z$ is), and the derivative is $n z^{n-1}$.
+\end{proof}
+
+\begin{example}
+Let $n = \sqrt{2}$, $a = 1$. Using the principal branch:
+\begin{align}
+a^n &= 1^{\sqrt{2}} = e^{\sqrt{2} \cdot 0} = 1, \\
+a^{n-1} &= 1^{\sqrt{2}-1} = 1.
+\end{align}
+Thus, $L = \sqrt{2} \cdot 1 = \sqrt{2}$.
+\end{example}
+
+%==============================================================================
+\section{Case VI: Complex Exponent ($n \in \C \setminus \R$)}
+%==============================================================================
+
+\subsection{Definition and Multi-Valuedness}
+
+Let $n = \alpha + i\beta$ with $\beta \neq 0$.
+
+\begin{definition}
+\begin{equation}
+z^n = e^{n \log z} = e^{(\alpha + i\beta)(\ln|z| + i\arg(z))}.
+\end{equation}
+\end{definition}
+
+\begin{proposition}
+For $n = \alpha + i\beta$ with $\beta \neq 0$:
+\begin{equation}
+z^n = |z|^\alpha e^{-\beta \arg(z)} \cdot e^{i(\beta \ln|z| + \alpha \arg(z))}.
+\end{equation}
+The factor $e^{-\beta \arg(z)}$ shows that even the \textbf{modulus} of $z^n$ depends on $\arg(z)$.
+\end{proposition}
+
+\begin{remark}
+Unlike the real case, $|z^n| \neq |z|^{\re(n)}$ in general; it depends on the argument of $z$.
+\end{remark}
+
+\subsection{The Limit}
+
+\begin{theorem}
+For $n \in \C$ and $a \in \C \setminus \{0\}$ not on the branch cut, using a fixed branch:
+\begin{equation}
+\lim_{z \to a} \frac{z^n - a^n}{z - a} = n a^{n-1}.
+\end{equation}
+\end{theorem}
+
+\begin{example}
+Let $n = i$, $a = e$ (Euler's number). Using the principal branch:
+\begin{align}
+a^n &= e^i = e^{i \Log e} = e^{i \cdot 1} = \cos(1) + i\sin(1), \\
+a^{n-1} &= e^{i-1} = e^{-1} \cdot e^i = \frac{\cos(1) + i\sin(1)}{e}.
+\end{align}
+Thus:
+\begin{equation}
+L = i \cdot \frac{\cos(1) + i\sin(1)}{e} = \frac{i\cos(1) - \sin(1)}{e}.
+\end{equation}
+\end{example}
+
+\begin{example}
+Let $n = 1 + i$, $a = i$. Using the principal branch, $\Log(i) = i\pi/2$:
+\begin{align}
+a^n &= e^{(1+i) \cdot i\pi/2} = e^{i\pi/2 - \pi/2} = e^{-\pi/2} \cdot e^{i\pi/2} = e^{-\pi/2} \cdot i, \\
+a^{n-1} &= e^{i \cdot i\pi/2} = e^{-\pi/2}.
+\end{align}
+Thus:
+\begin{equation}
+L = (1+i) \cdot e^{-\pi/2}.
+\end{equation}
+\end{example}
+
+%==============================================================================
+\section{Corner Cases and Pathologies}
+%==============================================================================
+
+\subsection{The Point $a = 0$: Summary}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|c|c|l|}
+\hline
+\textbf{Exponent $n$} & \textbf{Limit at $a = 0$} & \textbf{Explanation} \\
+\hline
+$n \in \Z^+$, $n = 1$ & $1$ & $\lim z^0 = 1$ \\
+$n \in \Z^+$, $n \geq 2$ & $0$ & $\lim z^{n-1} = 0$ \\
+$n \in \Z^-$ & Undefined & $0^n$ undefined \\
+$n = 0$ & $0$ (with convention $0^0 = 1$) & \\
+$n \in (0,1) \cap \Q$ & Does not exist & $z^{n-1} \to \infty$ \\
+$n \in (1,\infty) \cap \Q$ & $0$ & $z^{n-1} \to 0$ \\
+$n \in (-\infty, 0) \cap \Q$ & Undefined & $0^n$ undefined \\
+$n \in \C \setminus \R$ & Undefined/Pathological & $0^n$ undefined \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Path Dependence at Branch Points}
+
+\begin{theorem}
+Let $f(z) = z^n$ with $n \notin \Z$, and let $a = 0$ or $a$ lie on a branch cut. The limit
+\begin{equation}
+\lim_{z \to a} \frac{z^n - a^n}{z - a}
+\end{equation}
+may depend on the path along which $z \to a$.
+\end{theorem}
+
+\begin{example}[Path dependence at branch cut]
+Let $n = 1/2$, $a = -1$ (on the branch cut). Consider paths:
+
+\textbf{Path 1:} $z(t) = -1 + it$, $t \to 0^+$ (from above).
+
+\textbf{Path 2:} $z(t) = -1 - it$, $t \to 0^+$ (from below).
+
+Using the principal branch, the two paths yield different limiting values because $\sqrt{z}$ is discontinuous across the branch cut.
+\end{example}
+
+\subsection{Essential Singularities}
+
+\begin{warning}
+At $z = 0$, the function $z^n$ for $n \notin \Z$ has a \textbf{branch point}, not an isolated singularity in the usual sense. The behavior near $z = 0$ is more complex than poles or removable singularities.
+\end{warning}
+
+\subsection{The Case $n = a$}
+
+\begin{proposition}
+If $n = a$ (the exponent equals the base point):
+\begin{equation}
+\lim_{z \to n} \frac{z^n - n^n}{z - n} = n \cdot n^{n-1} = n^n.
+\end{equation}
+\end{proposition}
+
+\subsection{The Case $n = 1/a$ (for $a \neq 0$)}
+
+\begin{proposition}
+If $n = 1/a$:
+\begin{equation}
+\lim_{z \to a} \frac{z^{1/a} - a^{1/a}}{z - a} = \frac{1}{a} \cdot a^{1/a - 1} = \frac{a^{1/a}}{a^2}.
+\end{equation}
+\end{proposition}
+
+%==============================================================================
+\section{Holomorphicity and the Complex Derivative}
+%==============================================================================
+
+\subsection{Connection to the Derivative}
+
+\begin{theorem}
+If $f(z) = z^n$ is holomorphic in a neighborhood of $a \neq 0$ (using a fixed branch), then:
+\begin{equation}
+\lim_{z \to a} \frac{z^n - a^n}{z - a} = f'(a) = n a^{n-1}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+This is the definition of the complex derivative. For $z^n = e^{n \Log z}$:
+\begin{equation}
+\frac{d}{dz} e^{n \Log z} = e^{n \Log z} \cdot \frac{n}{z} = z^n \cdot \frac{n}{z} = n z^{n-1}.
+\end{equation}
+\end{proof}
+
+\subsection{When is $z^n$ Holomorphic?}
+
+\begin{proposition}
+The function $f(z) = z^n$ is holomorphic on $\C \setminus \{0\}$ if and only if $n \in \Z$.
+
+For $n \notin \Z$, $z^n$ is holomorphic only on simply connected domains that avoid $0$ and do not encircle $0$.
+\end{proposition}
+
+\begin{remark}
+The obstruction to global holomorphicity is \textbf{monodromy}: continuing $z^n$ around a loop encircling $0$ returns a different branch.
+\end{remark}
+
+%==============================================================================
+\section{Summary}
+%==============================================================================
+
+\begin{theorem}[Main Result]
+For $a \in \C \setminus \{0\}$ not on the branch cut, and using a fixed branch of $z^n$:
+\begin{equation}
+\boxed{\lim_{z \to a} \frac{z^n - a^n}{z - a} = n a^{n-1}, \quad \forall n \in \C.}
+\end{equation}
+\end{theorem}
+
+\subsection{Key Caveats}
+
+\begin{enumerate}
+    \item \textbf{Branch selection:} For $n \notin \Z$, one must fix a branch of $z^n$.
+    \item \textbf{Branch cuts:} If $a$ lies on a branch cut, the limit is path-dependent or undefined.
+    \item \textbf{$a = 0$:} Requires case-by-case analysis; often undefined or pathological.
+    \item \textbf{Consistency:} $a^{n-1}$ must be computed using the same branch as $z^n$.
+    \item \textbf{Monodromy:} The result changes if $z$ winds around $0$ before approaching $a$.
+\end{enumerate}
+
+\subsection{Comparison: Real vs. Complex}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Aspect} & \textbf{Real ($\R$)} & \textbf{Complex ($\C$)} \\
+\hline
+Single-valuedness & For $a > 0$, $n \in \R$ & Only for $n \in \Z$ \\
+Branch cuts & Not applicable & Required for $n \notin \Z$ \\
+Path dependence & Not applicable & At branch points/cuts \\
+Domain of $a$ & $a > 0$ (or $a \neq 0$ for $n \in \Z$) & $a \neq 0$, off branch cuts \\
+Formula & $n a^{n-1}$ & $n a^{n-1}$ (branch-dependent) \\
+\hline
+\end{tabular}
+\end{center}
+
+\endgroup

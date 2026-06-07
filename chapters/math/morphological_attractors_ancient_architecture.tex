@@ -1,0 +1,300 @@
+\chapter{Morphological Attractors in Ancient Architecture}
+
+\begingroup
+
+% Local macros copied from the standalone source.
+
+\def\dist{\operatorname{dist}}
+
+\def\Prob{\operatorname{Pr}}
+
+\def\argmin{\operatorname{arg\,min}}
+
+\begin{abstract}
+This article proposes a mathematical framework for studying apparent overlaps between ancient architectural forms and modern formal representations of biological, physical, mathematical, or computational structures. The aim is not to support non-mainstream archaeological claims, nor to infer hidden knowledge from visual resemblance. Instead, the paper formulates a conservative research program: ancient artifacts, ornaments, plans, columns, cavities, and architectural complexes may be studied as endpoints of constrained generative processes. Some resulting shape classes may be common because they are large-basin attractors in a space of possible forms; others may be rare and therefore useful for identifying hidden craft constraints, technological procedures, or limitations in our null models. The proposed framework combines dynamical systems, shape grammars, topology, graph theory, metric geometry, symmetry analysis, and empirical simulation.
+\end{abstract}
+
+\section*{Preface: Origin and Scope of the Question}
+
+The starting point of this article is a simple but delicate observation. Certain ancient architectural objects, such as large rock-cut temples, intricate carved columns, perforated stone or bead structures, stepwells, stellate temple plans, labyrinthine complexes, or extremely detailed ornamental systems, sometimes seem to resemble forms that modern observers associate with contemporary scientific representations: biological microstructures, physical fields, dynamical systems, mathematical surfaces, computational graphs, or other formal models.
+
+Such resemblances are frequently discussed in contexts that may be called crypto-archaeological or crypto-architectural: unconventional narratives about lost civilizations, alien intervention, or hidden advanced knowledge. This article explicitly avoids that direction. It makes no anti-scientific or non-mainstream historical claim. The guiding assumption is methodological conservatism: resemblance is not evidence of transmission, intention, or advanced hidden knowledge unless a much stronger evidential burden is met.
+
+Nevertheless, the question itself is not meaningless. A refined version is mathematically legitimate:
+\begin{quote}
+When ancient craft traditions and modern formal sciences independently generate or describe forms, how often should we expect them to fall into the same structural, topological, or morphological classes?
+\end{quote}
+
+Even more generally, one may ask whether some architectural patterns are not isolated coincidences, but recurrent outcomes of constrained generative systems. In this view, the relevant object of study is not the spectacular resemblance between one artifact and one modern diagram, but the emergence of common or uncommon shape classes across different domains.
+
+The central proposal of this article is therefore to treat the phenomenon from the point of view of \emph{morphological dynamics}. Ancient artifacts are regarded as endpoints, traces, or fixed points of processes involving material constraints, tools, symbolic grammars, repetition, symmetry, variation, error, selection, and cultural stabilization. Modern scientific representations are likewise regarded as outputs of formal generative procedures. Their overlap may then be studied as a problem of convergence in a shared space of forms.
+
+\section{From Visual Resemblance to Shape-Class Convergence}
+
+A naive formulation asks whether an ancient detail ``looks like'' a modern structure. This is too weak. Visual resemblance depends on framing, projection, scale, lighting, selective attention, and the large number of possible comparisons available to the observer.
+
+A more rigorous formulation requires four ingredients:
+\begin{enumerate}[label=(\roman*)]
+    \item a corpus of artifacts $\mathcal{A}$;
+    \item a corpus of modern formal structures $\mathcal{M}$;
+    \item a descriptor map $F$ from physical or formal objects into a common representation space;
+    \item a null model $H_0$ describing what forms are expected under ordinary constrained human production.
+\end{enumerate}
+
+Let $A \in \mathcal{A}$ be an artifact and $M \in \mathcal{M}$ a modern formal model. A superficial comparison considers only whether $A$ and $M$ appear similar. A structural comparison asks whether their descriptors are close:
+\begin{equation}
+    d(F(A),F(M)) \leq \delta,
+\end{equation}
+where $d$ is a chosen distance and $\delta$ is a tolerance.
+
+However, even this is insufficient if $A$ and $M$ were chosen after inspection. The relevant probability is not the probability that one artifact resembles one preselected modern structure, but the probability that some artifact in a large corpus resembles some element of a large modern reference library:
+\begin{equation}
+    \Prob\left[\min_{A \in \mathcal{A},\, M \in \mathcal{M}} d(F(A),F(M)) \leq \delta \mid H_0\right].
+\end{equation}
+This is a version of the look-elsewhere effect. Large corpora of artifacts and large libraries of modern diagrams make striking coincidences much more likely than intuition suggests.
+
+The scientific goal is therefore not to eliminate coincidence, but to measure it under appropriate constraints.
+
+\section{The Space of Forms}
+
+Let $\mathcal{S}$ denote a space of forms. Depending on the scale of analysis, an element of $\mathcal{S}$ may be:
+\begin{itemize}
+    \item a two-dimensional plan;
+    \item a three-dimensional mesh;
+    \item a carved column segment;
+    \item a perforated cavity network;
+    \item a skeleton graph of corridors or structural members;
+    \item a symbolic ornament grammar;
+    \item a persistence diagram or other topological summary;
+    \item a metric object equipped with curvature, thickness, angle, and proportion data.
+\end{itemize}
+
+A physical artifact is not compared directly to a modern object. Both are mapped into $\mathcal{S}$ or into a product of descriptor spaces:
+\begin{equation}
+    F(X)=\bigl(T(X),G(X),S(X),M(X),P(X)\bigr),
+\end{equation}
+where:
+\begin{itemize}
+    \item $T(X)$ is a topological descriptor, such as Betti numbers or a persistence diagram;
+    \item $G(X)$ is a graph or skeleton representation;
+    \item $S(X)$ is a symmetry descriptor;
+    \item $M(X)$ contains metric and geometric data;
+    \item $P(X)$ contains production traces, such as tool marks, construction sequence, or drilling signatures.
+\end{itemize}
+
+The inclusion of $P(X)$ is important. A resemblance that ignores production traces is weaker than a resemblance compatible with known or reconstructible manufacturing processes.
+
+\section{Craft Traditions as Dynamical Systems}
+
+The main conceptual shift is to regard architecture and ornament not as isolated static objects but as outputs of constrained generative dynamics.
+
+Let $x_t \in \mathcal{S}$ denote the state of a form after $t$ constructional, ornamental, or design operations. A craft process may be idealized as
+\begin{equation}
+    x_{t+1}=G_{\theta}(x_t,\eta_t),
+\end{equation}
+where:
+\begin{itemize}
+    \item $G_{\theta}$ is a generative rule or family of rules;
+    \item $\theta$ encodes material, tools, symbolic conventions, symmetry preferences, ergonomic constraints, ritual constraints, and inherited design grammar;
+    \item $\eta_t$ represents variation, error, improvisation, local artisan choice, or stochastic perturbation.
+\end{itemize}
+
+This formulation does not imply that ancient builders consciously used dynamical systems. Rather, it gives the modern analyst a mathematical language for studying repeated operations, transformations, constraints, and stable outcomes.
+
+Examples of elementary operations include:
+\begin{equation}
+    \mathcal{O}=\{\text{repeat},\text{rotate},\text{reflect},\text{scale},\text{branch},\text{nest},\text{perforate},\text{twist},\text{erode},\text{extrude}\}.
+\end{equation}
+
+An architectural tradition may then be represented as a restricted semigroup or stochastic grammar generated by such operations, subject to material and cultural constraints.
+
+\section{Morphological Attractors}
+
+The key object is a shape class $C \subset \mathcal{S}$. This class may be defined topologically, graph-theoretically, geometrically, symmetrically, or by a combination of descriptors.
+
+\begin{definition}[Morphological attractor]
+A shape class $C \subset \mathcal{S}$ is a morphological attractor for a family of generators $\{G_{\theta}\}_{\theta \in \Theta}$ if a non-negligible set of parameters $\theta$ and initial forms $x_0$ produce trajectories that enter or approach $C$:
+\begin{equation}
+    \Prob_{\theta,x_0,\eta}\left[\dist(x_t,C)<\varepsilon \text{ for some sufficiently large } t\right] > \alpha,
+\end{equation}
+for chosen thresholds $\varepsilon>0$ and $\alpha>0$.
+\end{definition}
+
+This definition can be strengthened by requiring persistence:
+\begin{equation}
+    \dist(x_t,C)<\varepsilon \quad \text{for all } t \geq T,
+\end{equation}
+which corresponds to an attracting or stable class rather than a transient coincidence.
+
+The intuitive meaning is simple: a class of forms is an attractor if many different processes tend to produce it.
+
+\section{Common and Rare Patterns}
+
+Both common and rare patterns are informative.
+
+A common pattern is one with high probability under a constrained null model:
+\begin{equation}
+    p(C\mid H_0)=\Prob_{X\sim H_0}[X\in C].
+\end{equation}
+If $p(C\mid H_0)$ is large, then the pattern may be a high-basin attractor. Examples may include radial repetition, nested frames, spirals, cellular grids, branching ornaments, wave bands, and modular friezes.
+
+A rare pattern is one with low probability under the same null model:
+\begin{equation}
+    p(C\mid H_0) \ll 1.
+\end{equation}
+Rare patterns are not automatically evidence of extraordinary history. They may indicate that the null model is incomplete. For instance, a pattern may be rare under a naive random-shape model but common under a historically accurate model that includes a specific tool, ritual constraint, proportional canon, or construction procedure.
+
+Define the surprisal of a class $C$ under $H_0$ by
+\begin{equation}
+    I(C;H_0)=-\log p(C\mid H_0).
+\end{equation}
+Low surprisal suggests a common attractor. High surprisal suggests a rare convergence candidate or a defective null model.
+
+\section{A Taxonomy of Candidate Attractor Classes}
+
+The following table is not intended as evidence for particular historical claims. It is a working taxonomy for a research program.
+
+\begin{center}
+\begin{tabular}{p{3.2cm}p{4.4cm}p{5.2cm}}
+\toprule
+Attractor class & Architectural expression & Modern formal analogue \\
+\midrule
+Radial repetition & domes, mandalas, capitals & cyclic symmetry, polar fields \\
+Stellation & star-like plans, jagged shrines & Fourier-like modes, crystals \\
+Branching & vegetal relief, support networks & vascular trees, growth models \\
+Nested hierarchy & temple-in-temple, frames & recursive systems, multiscale graphs \\
+Cellular packing & screens, ceiling grids & tilings, foams, cellular automata \\
+Spiral/helical motifs & scrolls, twisted columns & vortices, helices, trajectories \\
+Wave bands & friezes, rhythmic relief & standing waves, reaction-diffusion \\
+Labyrinthine paths & caves, stepwells, corridors & state-space graphs, traversal systems \\
+Interlacing & braided ornament & knots, links, braid groups \\
+Porous structures & drilled beads, perforated stone & channels, networks, trabecular forms \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The hypothesis is not that these architectural expressions encode modern theories. The weaker and more defensible hypothesis is that different domains independently instantiate similar operations and constraints.
+
+\section{Null Models}
+
+A useful null model must be historically constrained. A uniform random distribution over all imaginable shapes is almost never appropriate. Ancient architecture was constrained by stone, wood, brick, metal, available tools, labor organization, religious function, inherited pattern books, proportional systems, and the physical sequence of construction.
+
+A null model may be written as
+\begin{equation}
+    H_0(c)=\text{forms generated by ordinary craft operations under context }c.
+\end{equation}
+The context $c$ includes material, tool resolution, local grammar, construction method, symbolic requirements, and feasible transformations.
+
+For example, a rock-cut temple should not be compared against arbitrary random architecture. It should be compared against a generator that includes subtractive excavation, structural preservation, axiality, symbolic hierarchy, relief carving, and local geological constraints. A carved column should be compared against turning, repetition, available chisels, radial symmetries, and ornament grammars. A drilled bead should be compared against drilling technology, abrasives, fracture mechanics, and microscopic tool traces.
+
+\section{Comparison Across Domains}
+
+Let $\mathcal{A}$ be a corpus of ancient artifacts, $\mathcal{M}$ a corpus of modern formal structures, and $\mathcal{G}$ a family of synthetic forms produced by generative models. The research program maps all three into a shared descriptor space:
+\begin{equation}
+    \mathcal{A}\cup\mathcal{M}\cup\mathcal{G}\longrightarrow \mathcal{S}.
+\end{equation}
+
+The question is then whether artifacts and modern structures occupy the same regions of $\mathcal{S}$, and whether those regions are easily generated by constrained null models.
+
+A class $C\subset\mathcal{S}$ may be classified as follows:
+\begin{center}
+\begin{tabular}{p{3.8cm}p{3.6cm}p{4.6cm}}
+\toprule
+Observation & Probability under $H_0$ & Interpretation \\
+\midrule
+Artifact-modern overlap & high & common morphological attractor \\
+Artifact-modern overlap & low & rare convergence candidate \\
+No overlap & high expected overlap & descriptor/model failure \\
+Repeated rare overlap & low & missing constraint or hidden rule \\
+Common across many generators & high globally & universal attractor candidate \\
+Common only locally & high in one context & cultural-technological attractor \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Bayesian Formulation}
+
+The conservative Bayesian framing compares two broad hypotheses:
+\begin{align}
+    H_0 &= \text{independent constrained human generation},\\
+    H_1 &= \text{a stronger shared formal principle or hidden generative mechanism}.
+\end{align}
+
+The Bayes factor is
+\begin{equation}
+    BF=\frac{\Prob(\text{observed similarity}\mid H_1)}{\Prob(\text{observed similarity}\mid H_0)}.
+\end{equation}
+
+In most cases, $H_0$ should be expected to explain a large fraction of apparent resemblances once the look-elsewhere effect and craft constraints are included. The purpose of the framework is not to favor $H_1$, but to make clear what would be required for an overlap to become genuinely surprising.
+
+A stronger standard would require that the target class be specified in advance, the descriptor be explicit, the null model be historically plausible, and the result survive correction for multiple comparisons.
+
+\section{Computational Research Program}
+
+A minimal computational implementation would proceed as follows:
+
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Corpus construction.} Collect scans, photographs, plans, meshes, and documented measurements of selected architectural details.
+    \item \textbf{Segmentation.} Divide objects into comparable units: columns, capitals, friezes, cavities, plans, corridors, platforms, or ornamental panels.
+    \item \textbf{Descriptor extraction.} Compute graph skeletons, symmetry descriptors, curvature histograms, persistence diagrams, spectral signatures, and motif frequencies.
+    \item \textbf{Modern reference library.} Build a controlled set of formal models: biological networks, minimal surfaces, tilings, reaction-diffusion patterns, physical field diagrams, cellular automata, and mathematical surfaces.
+    \item \textbf{Generative null models.} Generate synthetic forms using stochastic grammars, genetic programming, cellular systems, or constrained procedural design.
+    \item \textbf{Distance computation.} Measure distances between artifact descriptors, modern formal descriptors, and synthetic forms.
+    \item \textbf{Attractor detection.} Cluster generated and observed forms; estimate basin sizes and stability under perturbation.
+    \item \textbf{Surprisal estimation.} Compute empirical $p$-values and corrected surprisal scores.
+    \item \textbf{Interpretation.} Classify each observed overlap as common attractor, local attractor, rare convergence, model failure, or unsupported resemblance.
+\end{enumerate}
+
+A schematic algorithm is:
+\begin{enumerate}[label=\arabic*.]
+    \item Choose a shape class $C$ or learn candidate classes from clustering.
+    \item Generate $N$ synthetic forms $X_1,\dots,X_N\sim H_0(c)$.
+    \item Estimate
+    \begin{equation}
+        \widehat{p}(C\mid H_0)=\frac{1}{N}\sum_{i=1}^{N}\mathbf{1}_{X_i\in C}.
+    \end{equation}
+    \item Compute
+    \begin{equation}
+        \widehat{I}(C;H_0)=-\log \widehat{p}(C\mid H_0).
+    \end{equation}
+    \item Test robustness by perturbing $c$, $\theta$, descriptors, and distance thresholds.
+\end{enumerate}
+
+\section{Levels of Evidence}
+
+It is useful to distinguish three levels.
+
+\subsection*{Level 1: Coincidence}
+A single artifact resembles a single modern structure. This is the weakest level and is highly vulnerable to selection bias.
+
+\subsection*{Level 2: Convergence}
+Many artifacts and many modern formal objects fall into the same descriptor-defined class. This is stronger, especially if the class is not visually vague.
+
+\subsection*{Level 3: Attractor}
+The class is repeatedly generated by independent constrained processes and remains stable under perturbation. This is the most interesting level. It suggests that the form belongs to a robust region of shape-space.
+
+\section{Limitations}
+
+Several dangers must be avoided.
+
+First, topology alone is often too weak. Many unrelated objects share the same Betti numbers or graph connectivity. A meaningful comparison should combine topology, symmetry, metric geometry, hierarchy, and production traces.
+
+Second, the modern reference library must be controlled. If one searches across all possible scientific diagrams, some resemblance will almost certainly be found.
+
+Third, artifact selection must be explicit. Choosing only spectacular examples inflates apparent significance.
+
+Fourth, null models must be historically plausible. A shape that is rare under a naive random generator may be common under a realistic craft grammar.
+
+Finally, mathematical similarity is not historical explanation. Even a strong shape-class overlap does not by itself imply intention, transmission, or knowledge of the modern interpretation.
+
+\section{Conclusion}
+
+The phenomenon motivating this article is the uncanny impression that some ancient architectural forms resemble modern scientific or mathematical representations. The scientifically productive response is neither dismissal nor speculation, but formalization.
+
+Ancient architecture can be studied as the endpoint of constrained generative processes. Modern formal structures can also be treated as outputs of generative systems. Their overlap can then be analyzed in a shared space of forms using topology, graph theory, symmetry, metric geometry, stochastic grammars, and dynamical systems.
+
+The central object is the morphological attractor: a class of forms repeatedly reached by independent processes. Some attractors will be common and therefore unsurprising, but still fundamental. Others may be rare and therefore useful for discovering missing constraints, hidden craft procedures, or weaknesses in our models. In both cases, the goal is not to argue for extraordinary historical claims, but to understand how form emerges under constraint.
+
+The strongest version of the project is therefore not a theory of ancient hidden knowledge. It is a theory of convergent form: a mathematical and computational investigation of why certain structures appear again and again across architecture, nature, computation, and formal science.
+
+\endgroup

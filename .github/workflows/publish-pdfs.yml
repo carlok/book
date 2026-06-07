@@ -1,0 +1,145 @@
+name: Publish PDFs
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build PDF site
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Build book PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: book.tex
+          args: -pdf -interaction=nonstopmode -halt-on-error -outdir=build/book
+
+      - name: Build pdflatex article PDFs
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: |
+            articles/math/ai-native-games-v01.tex
+            articles/math/lifechess.tex
+            articles/math/limit_complex.tex
+            articles/math/morphological_attractors_ancient_architecture.tex
+            articles/math/music_meta.tex
+            articles/math/strange_attractors_candidate.tex
+            articles/math/two_transient_spherical_signal_models.tex
+            articles/non_math/seven_strategic_challenges_europe.tex
+            articles/non_math/ten_indispensable.tex
+            articles/non_math/western_death.tex
+            articles/non_math/what_world_do_they_want.tex
+          args: -pdf -interaction=nonstopmode -halt-on-error -outdir=build/articles
+
+      - name: Build xelatex article PDFs
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: articles/non_math/study_sheets_on_scientific_atheism.tex
+          args: -xelatex -interaction=nonstopmode -halt-on-error -outdir=build/articles
+
+      - name: Assemble Pages artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          mkdir -p site/pdfs/book
+          mkdir -p site/pdfs/articles/math
+          mkdir -p site/pdfs/articles/non_math
+
+          cp build/book/book.pdf site/pdfs/book/book.pdf
+
+          article_sources=(
+            articles/math/ai-native-games-v01.tex
+            articles/math/lifechess.tex
+            articles/math/limit_complex.tex
+            articles/math/morphological_attractors_ancient_architecture.tex
+            articles/math/music_meta.tex
+            articles/math/strange_attractors_candidate.tex
+            articles/math/two_transient_spherical_signal_models.tex
+            articles/non_math/seven_strategic_challenges_europe.tex
+            articles/non_math/study_sheets_on_scientific_atheism.tex
+            articles/non_math/ten_indispensable.tex
+            articles/non_math/western_death.tex
+            articles/non_math/what_world_do_they_want.tex
+          )
+
+          for source in "${article_sources[@]}"; do
+            name="$(basename "$source" .tex)"
+            section="$(basename "$(dirname "$source")")"
+            cp "build/articles/${name}.pdf" "site/pdfs/articles/${section}/${name}.pdf"
+          done
+
+          cat > site/pdfs/index.html <<'HTML'
+          <!doctype html>
+          <html lang="en">
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Book PDFs</title>
+          </head>
+          <body>
+            <main>
+              <h1>Book PDFs</h1>
+
+              <h2>Book</h2>
+              <ul>
+                <li><a href="book/book.pdf">book.pdf</a></li>
+              </ul>
+
+              <h2>Math Articles</h2>
+              <ul>
+                <li><a href="articles/math/ai-native-games-v01.pdf">ai-native-games-v01.pdf</a></li>
+                <li><a href="articles/math/lifechess.pdf">lifechess.pdf</a></li>
+                <li><a href="articles/math/limit_complex.pdf">limit_complex.pdf</a></li>
+                <li><a href="articles/math/morphological_attractors_ancient_architecture.pdf">morphological_attractors_ancient_architecture.pdf</a></li>
+                <li><a href="articles/math/music_meta.pdf">music_meta.pdf</a></li>
+                <li><a href="articles/math/strange_attractors_candidate.pdf">strange_attractors_candidate.pdf</a></li>
+                <li><a href="articles/math/two_transient_spherical_signal_models.pdf">two_transient_spherical_signal_models.pdf</a></li>
+              </ul>
+
+              <h2>Non-Math Articles</h2>
+              <ul>
+                <li><a href="articles/non_math/seven_strategic_challenges_europe.pdf">seven_strategic_challenges_europe.pdf</a></li>
+                <li><a href="articles/non_math/study_sheets_on_scientific_atheism.pdf">study_sheets_on_scientific_atheism.pdf</a></li>
+                <li><a href="articles/non_math/ten_indispensable.pdf">ten_indispensable.pdf</a></li>
+                <li><a href="articles/non_math/western_death.pdf">western_death.pdf</a></li>
+                <li><a href="articles/non_math/what_world_do_they_want.pdf">what_world_do_they_want.pdf</a></li>
+              </ul>
+            </main>
+          </body>
+          </html>
+          HTML
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy Pages artifact
+        id: deployment
+        uses: actions/deploy-pages@v4
