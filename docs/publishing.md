@@ -7,14 +7,18 @@ Pages.
 
 The workflow is defined in `.github/workflows/publish-pdfs.yml`.
 
-It is currently manual-only:
+It runs automatically when `main` changes in one of these paths:
+
+- `book.tex`
+- `chapters/**`
+- `articles/**`
+- `.github/workflows/publish-pdfs.yml`
+
+It can also be run manually:
 
 ```bash
-gh workflow run publish-pdfs.yml --ref codex/book-first-look --repo carlok/book
+gh workflow run publish-pdfs.yml --ref main --repo carlok/book
 ```
-
-This is deliberate while the workflow is being tested on
-`codex/book-first-look`. It prevents accidental publication from every push.
 
 ## What the workflow builds
 
@@ -40,8 +44,7 @@ pdfs/
 
 ## Production publishing
 
-After the branch is tested and merged to `main`, the workflow can be made
-automatic by adding push triggers for:
+The production trigger is:
 
 ```yaml
 on:
