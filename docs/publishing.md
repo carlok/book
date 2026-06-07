@@ -59,11 +59,10 @@ on:
       - .github/workflows/publish-pdfs.yml
 ```
 
-Until that change is made, publishing requires a human to run the workflow
-manually.
+Manual runs remain available for forced rebuilds.
 
 ## Visibility note
 
-GitHub Pages may expose the generated PDFs publicly, depending on the
-repository and account settings. Do not publish PDFs through this workflow
-unless the generated book and article PDFs are acceptable for Pages visibility.
+This repository is public, and the GitHub Pages output is public. Do not publish
+PDFs through this workflow unless the generated book and article PDFs are
+acceptable for public Pages visibility.
