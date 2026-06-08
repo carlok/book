@@ -41,6 +41,7 @@ jobs:
           root_file: |
             articles/math/ai-native-games-v01.tex
             articles/math/geometric_rigidity_complex_transcendentals.tex
+            articles/math/assur_groups_lie_kinematic_foundations.tex
             articles/math/lifechess.tex
             articles/math/limit_complex.tex
             articles/math/morphological_attractors_ancient_architecture.tex
@@ -73,6 +74,7 @@ jobs:
           article_sources=(
             articles/math/ai-native-games-v01.tex
             articles/math/geometric_rigidity_complex_transcendentals.tex
+            articles/math/assur_groups_lie_kinematic_foundations.tex
             articles/math/lifechess.tex
             articles/math/limit_complex.tex
             articles/math/morphological_attractors_ancient_architecture.tex
@@ -113,6 +115,7 @@ jobs:
               <ul>
                 <li><a href="articles/math/ai-native-games-v01.pdf">ai-native-games-v01.pdf</a></li>
                 <li><a href="articles/math/geometric_rigidity_complex_transcendentals.pdf">geometric_rigidity_complex_transcendentals.pdf</a></li>
+                <li><a href="articles/math/assur_groups_lie_kinematic_foundations.pdf">assur_groups_lie_kinematic_foundations.pdf</a></li>
                 <li><a href="articles/math/lifechess.pdf">lifechess.pdf</a></li>
                 <li><a href="articles/math/limit_complex.pdf">limit_complex.pdf</a></li>
                 <li><a href="articles/math/morphological_attractors_ancient_architecture.pdf">morphological_attractors_ancient_architecture.pdf</a></li>

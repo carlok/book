@@ -1,0 +1,192 @@
+\chapter{The Algebraic and Geometric Foundations of Assur Groups}
+
+\begin{abstract}
+Assur groups, introduced by Leonid Assur in the early twentieth century, provide a structural classification of planar mechanisms through zero-mobility kinematic chains. Although the term ``group'' is historical rather than algebraic in the modern sense, Assur groups can be reformulated using contemporary mathematical language. This article presents a concise formal pipeline: first, Assur groups are modeled as discrete kinematic graphs satisfying a mobility constraint; second, their admissible motions are described through configuration spaces and Lie groups. In the planar case the natural motion group is the special Euclidean group $SE(2)$, while $SE(3)$ appears as the corresponding spatial generalization.
+\end{abstract}
+
+\section{Introduction}
+
+In the early twentieth century, the Russian mechanical engineer Leonid Vladimirovich Assur introduced a structural taxonomy for planar mechanisms. His central idea was that complex mechanisms can be decomposed into elementary zero-mobility kinematic chains, now called \emph{Assur groups}. These chains are not ``groups'' in the modern algebraic sense. Rather, they are minimal structural units whose addition to a mechanism does not change the total number of degrees of freedom.
+
+When considered in isolation, an Assur group behaves like a rigid or statically constrained linkage. When attached to an already mobile mechanism, it transmits and transforms motion while preserving the overall mobility of the system. Thus, Assur groups occupy an intermediate position between graph topology and geometric kinematics: their combinatorial structure determines the type of constraint, while their metric realization determines the actual motion.
+
+For a planar mechanism, the classical Gr\"ubler--Kutzbach mobility count is
+\begin{equation}
+M = 3(n - 1) - 2j_1 - j_2,
+\end{equation}
+where $n$ is the number of links including the fixed frame, $j_1$ is the number of one-degree-of-freedom joints, and $j_2$ is the number of two-degree-of-freedom joints. In the ideal planar setting, an Assur group is characterized by zero mobility,
+\begin{equation}
+M = 0,
+\end{equation}
+together with a minimality condition: no proper subchain should itself form an independent zero-mobility Assur group under the same attachment conventions.
+
+The purpose of this article is to reformulate Assur's structural idea in modern mathematical terms. The discrete side is described using graph theory and combinatorial operations. The continuous side is described using Lie groups, especially $SE(2)$ for planar mechanisms and $SE(3)$ for spatial mechanisms.
+
+\section{Discrete Structure: Kinematic Graphs and Assur Primitives}
+
+A mechanism may be represented by a graph
+\[
+G = (V,E),
+\]
+where vertices $V$ represent rigid links and edges $E$ represent kinematic pairs. In this representation, lengths, angles, masses, and inertial data are temporarily ignored. What remains is the \emph{structural topology} of the mechanism.
+
+This abstraction is useful because Assur classification is primarily topological before it is metric. Two mechanisms with different link lengths may have the same Assur decomposition if their incidence relations are identical.
+
+\subsection{Assur Groups as Minimal Zero-Mobility Graphs}
+
+A planar Assur group can be described as a kinematic graph satisfying two conditions:
+
+\begin{enumerate}[label=(\roman*)]
+\item it has zero mobility under the planar mobility count;
+\item it is minimal with respect to this property, meaning that it cannot be decomposed into smaller independent zero-mobility Assur components.
+\end{enumerate}
+
+The second condition is essential. A large zero-mobility linkage may be a compound object rather than a primitive Assur group. The Assur decomposition seeks the irreducible structural blocks.
+
+The simplest nontrivial example is the \emph{dyad}, usually called a Class II Assur group. It consists of two links connected through three revolute or prismatic joints in such a way that, once attached to a base mechanism, it introduces constraints but no additional degree of freedom.
+
+\subsection{Combinatorial Operations}
+
+Although Assur groups do not form a group in the algebraic sense, one can define operations on the class of valid Assur topologies. These operations generate a combinatorial space of mechanisms.
+
+\begin{itemize}
+\item \textbf{Attachment.} A primitive Assur group is attached to an existing mechanism through prescribed joints. If the attachment is admissible, the total mobility of the mechanism is preserved.
+
+\item \textbf{Removal.} An inverse structural operation removes a terminal Assur component, recovering a lower-order mechanism.
+
+\item \textbf{Substitution.} One Assur component may be replaced by another component with the same external attachment structure, changing the internal topology while preserving the external constraint type.
+
+\item \textbf{Mutation.} Operations such as vertex splitting, edge replacement, or joint substitution may transform one zero-mobility topology into another, provided that the mobility and minimality conditions are preserved.
+
+\end{itemize}
+
+These operations do not generally define a group, because inverses are not always globally defined and composition may depend on attachment data. A more accurate formulation is that Assur topologies form a structured combinatorial category or graph-rewriting system whose admissible morphisms are mobility-preserving transformations.
+
+\section{Continuous Structure: Configuration Spaces and Lie Groups}
+
+The graph-theoretic model determines which bodies are connected and which constraints exist. To describe actual motion, however, one must assign geometry to the graph: link lengths, joint axes, reference frames, and joint coordinates. This produces a configuration space.
+
+For planar mechanisms, rigid body displacements belong to the special Euclidean group
+\[
+SE(2) = SO(2) \ltimes \mathbb{R}^2.
+\]
+An element of $SE(2)$ can be represented by a homogeneous matrix
+\begin{equation}
+T =
+\begin{bmatrix}
+R & d \\
+0 & 1
+\end{bmatrix},
+\qquad
+R \in SO(2), \quad d \in \mathbb{R}^2.
+\end{equation}
+
+For spatial mechanisms, the corresponding group is
+\[
+SE(3) = SO(3) \ltimes \mathbb{R}^3,
+\]
+whose elements are represented by
+\begin{equation}
+T =
+\begin{bmatrix}
+R & d \\
+0 & 1
+\end{bmatrix},
+\qquad
+R \in SO(3), \quad d \in \mathbb{R}^3.
+\end{equation}
+
+Thus, the passage from Assur topology to kinematics can be viewed as a map from a discrete graph to a system of constraints on products of rigid-body transformations.
+
+\subsection{Joint Motions and Exponential Coordinates}
+
+Each one-degree-of-freedom joint corresponds locally to a one-parameter subgroup of the relevant Euclidean motion group. In the spatial case, this motion is represented through the exponential map
+\[
+\exp : \mathfrak{se}(3) \to SE(3),
+\]
+where $\mathfrak{se}(3)$ is the Lie algebra of twists.
+
+For a joint with twist $\hat{\xi}_i$ and scalar joint parameter $\theta_i$, the corresponding rigid displacement is
+\begin{equation}
+T_i(\theta_i) = e^{\hat{\xi}_i \theta_i}.
+\end{equation}
+
+For an open kinematic chain, the forward kinematics can be written in product-of-exponentials form:
+\begin{equation}
+T(\theta)
+=
+e^{\hat{\xi}_1 \theta_1}
+e^{\hat{\xi}_2 \theta_2}
+\cdots
+e^{\hat{\xi}_m \theta_m}
+M_0,
+\end{equation}
+where $M_0$ is the reference configuration of the terminal body.
+
+\subsection{Loop Closure Constraints}
+
+Assur groups are intrinsically associated with closed kinematic loops. Therefore, their continuous realization is not an arbitrary product of joint motions. The transformations around each independent cycle must satisfy a loop closure equation.
+
+For a closed cycle $C$ containing joints $1,\dots,k$, the constraint has the form
+\begin{equation}
+e^{\hat{\xi}_1 \theta_1}
+e^{\hat{\xi}_2 \theta_2}
+\cdots
+e^{\hat{\xi}_k \theta_k}
+=
+I.
+\end{equation}
+
+More generally, if the loop contains fixed offsets between joint frames, the closure equation becomes
+\begin{equation}
+T_1(\theta_1)A_1
+T_2(\theta_2)A_2
+\cdots
+T_k(\theta_k)A_k
+=
+I,
+\end{equation}
+where the matrices $A_i$ encode the constant geometric transformations between consecutive joint frames.
+
+The solution set of these equations defines the configuration space of the mechanism:
+\begin{equation}
+\mathcal{C}
+=
+\left\{
+\theta \in \mathbb{R}^m
+\;:\;
+\Phi_\ell(\theta) = I
+\text{ for every independent loop } \ell
+\right\}.
+\end{equation}
+
+For a zero-mobility Assur group attached to fixed supports, this configuration space is generically zero-dimensional. When the same Assur group is attached to a moving base mechanism, its joint parameters become constrained functions of the input motion.
+
+\section{Algebraic Interpretation}
+
+The algebraic content of Assur theory does not lie in the word ``group'' itself. Instead, it appears at three different levels.
+
+First, the topology of Assur groups admits a combinatorial algebra of admissible construction, decomposition, and substitution operations. These operations act on graphs and preserve mobility constraints.
+
+Second, the continuous motion of each rigid link is governed by Lie groups such as $SE(2)$ and $SE(3)$. The joints correspond to one-parameter subgroups or constrained submanifolds of these Lie groups.
+
+Third, the full mechanism is described by algebraic or analytic equations obtained from loop closure. These equations define the configuration variety or configuration manifold of the linkage, depending on the regularity and singularity structure of the constraints.
+
+This produces a layered mathematical picture:
+\[
+\begin{gathered}
+\text{Assur topology}
+\longrightarrow
+\text{kinematic graph}\\
+\longrightarrow
+\text{Lie-group constraints}
+\longrightarrow
+\text{configuration space}.
+\end{gathered}
+\]
+
+\section{Conclusion}
+
+Assur groups provide a bridge between discrete structural mechanics and continuous geometric kinematics. Their classical role is to decompose planar mechanisms into minimal zero-mobility components. In modern terms, this decomposition can be interpreted graph-theoretically, while the resulting motion constraints can be expressed through Lie groups and their Lie algebras.
+
+The discrete graph determines the constraint topology. The Lie group formulation determines the geometric realization of motion. Together, they provide a rigorous framework for understanding how Assur groups function as structural primitives inside complex mechanisms.

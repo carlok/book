@@ -2,6 +2,12 @@
 
 LaTeX drafts by Carlo Perassi.
 
+Published PDFs:
+
+- [PDF home](https://carlok.github.io/book/pdfs/)
+- [Book PDF](https://carlok.github.io/book/pdfs/book/book.pdf)
+- [Article PDF index](https://carlok.github.io/book/pdfs/)
+
 ## Documents
 
 - `book.tex`: first incremental book draft importing editable chapter copies in
@@ -13,6 +19,10 @@ LaTeX drafts by Carlo Perassi.
 - `articles/non_math/`: essay and cultural/political drafts.
 - `articles/math/`: mathematical, computational, and formal-model drafts.
 - `archive/book_structure_proposal.tex`: older preliminary structure proposal.
+- `docs/math-extra-high-checklist.md`: review-status checklist for the
+  mathematical article/chapter pairs.
+- `docs/book-enhancement-suggestions.md`: future improvement notes for the
+  integrated book.
 
 ## Build
 
