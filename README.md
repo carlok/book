@@ -2,8 +2,9 @@
 
 LaTeX drafts by Carlo Perassi.
 
-Published PDFs:
+Published Pages and PDFs:
 
+- [Main repository](https://github.com/carlok/book/tree/main)
 - [PDF home](https://carlok.github.io/book/pdfs/)
 - [Book PDF](https://carlok.github.io/book/pdfs/book/book.pdf)
 - [Article PDF index](https://carlok.github.io/book/pdfs/)
@@ -23,6 +24,10 @@ Published PDFs:
   mathematical article/chapter pairs.
 - `docs/book-enhancement-suggestions.md`: future improvement notes for the
   integrated book.
+- `docs/article-normalization-guidelines.md`: shared structural pattern for
+  standalone article sources.
+- `docs/article-normalization-checklist.md`: normalization status for article
+  sources.
 
 ## Build
 

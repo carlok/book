@@ -38,6 +38,14 @@
 We examine the limit $\lim_{z \to a} \frac{z^n - a^n}{z - a}$ where $z, a, n \in \C$. Unlike the real case, the complex setting introduces fundamental complications: multi-valued functions, branch cuts, path dependence, and holomorphicity conditions. We provide a systematic treatment of all cases and subtleties.
 \end{abstract}
 
+\section{Introduction}
+
+This article uses a familiar difference quotient to expose why complex
+exponentiation is more delicate than its real counterpart. The expression is
+important not because the final formula is surprising, but because reaching it
+safely requires choosing branches, tracking monodromy, and distinguishing local
+holomorphic behavior from global multivaluedness.
+
 \tableofcontents
 
 %==============================================================================
@@ -516,7 +524,7 @@ The obstruction to global holomorphicity is \textbf{monodromy}: continuing $z^n$
 \end{remark}
 
 %==============================================================================
-\section{Summary}
+\section{Conclusion}
 %==============================================================================
 
 \begin{theorem}[Main Result]
