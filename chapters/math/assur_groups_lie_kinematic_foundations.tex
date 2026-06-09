@@ -1,7 +1,7 @@
 \chapter{The Algebraic and Geometric Foundations of Assur Groups}
 
 \begin{abstract}
-Assur groups, introduced by Leonid Assur in the early twentieth century, provide a structural classification of planar mechanisms through zero-mobility kinematic chains. Although the term ``group'' is historical rather than algebraic in the modern sense, Assur groups can be reformulated using contemporary mathematical language. This article presents a concise formal pipeline: first, Assur groups are modeled as discrete kinematic graphs satisfying a mobility constraint; second, their admissible motions are described through configuration spaces and Lie groups. In the planar case the natural motion group is the special Euclidean group $SE(2)$, while $SE(3)$ appears as the corresponding spatial generalization.
+Assur groups, introduced by Leonid Assur in the early twentieth century, provide a structural classification of planar mechanisms through generically zero-mobility kinematic chains. Although the term ``group'' is historical rather than algebraic in the modern sense, Assur groups can be reformulated using contemporary mathematical language. This article presents a concise formal pipeline: first, Assur groups are modeled as discrete kinematic graphs satisfying a mobility constraint; second, their admissible motions are described through configuration spaces and Lie groups. In the planar case the natural motion group is the special Euclidean group $SE(2)$, while $SE(3)$ appears as the corresponding spatial generalization.
 \end{abstract}
 
 \section{Introduction}
@@ -10,7 +10,7 @@ In the early twentieth century, the Russian mechanical engineer Leonid Vladimiro
 
 When considered in isolation, an Assur group behaves like a rigid or statically constrained linkage. When attached to an already mobile mechanism, it transmits and transforms motion while preserving the overall mobility of the system. Thus, Assur groups occupy an intermediate position between graph topology and geometric kinematics: their combinatorial structure determines the type of constraint, while their metric realization determines the actual motion.
 
-For a planar mechanism, the classical Gr\"ubler--Kutzbach mobility count is
+For a planar mechanism, the classical Gr\"ubler--Kutzbach mobility count gives the generic mobility
 \begin{equation}
 M = 3(n - 1) - 2j_1 - j_2,
 \end{equation}
@@ -60,7 +60,7 @@ Although Assur groups do not form a group in the algebraic sense, one can define
 
 \end{itemize}
 
-These operations do not generally define a group, because inverses are not always globally defined and composition may depend on attachment data. A more accurate formulation is that Assur topologies form a structured combinatorial category or graph-rewriting system whose admissible morphisms are mobility-preserving transformations.
+These operations do not generally define a group, because inverses are not always globally defined and composition may depend on attachment data. A more accurate formulation is that Assur topologies can be organized as a structured combinatorial category or graph-rewriting system whose admissible morphisms are mobility-preserving transformations.
 
 \section{Continuous Structure: Configuration Spaces and Lie Groups}
 
@@ -75,7 +75,7 @@ An element of $SE(2)$ can be represented by a homogeneous matrix
 T =
 \begin{bmatrix}
 R & d \\
-0 & 1
+0_{1\times 2} & 1
 \end{bmatrix},
 \qquad
 R \in SO(2), \quad d \in \mathbb{R}^2.
@@ -90,7 +90,7 @@ whose elements are represented by
 T =
 \begin{bmatrix}
 R & d \\
-0 & 1
+0_{1\times 3} & 1
 \end{bmatrix},
 \qquad
 R \in SO(3), \quad d \in \mathbb{R}^3.
@@ -100,7 +100,7 @@ Thus, the passage from Assur topology to kinematics can be viewed as a map from 
 
 \subsection{Joint Motions and Exponential Coordinates}
 
-Each one-degree-of-freedom joint corresponds locally to a one-parameter subgroup of the relevant Euclidean motion group. In the spatial case, this motion is represented through the exponential map
+Each one-degree-of-freedom joint corresponds locally to a one-parameter subgroup of the relevant Euclidean motion group. Planar joints can be treated through $\mathfrak{se}(2)$; in spatial notation the same idea is represented through the exponential map
 \[
 \exp : \mathfrak{se}(3) \to SE(3),
 \]
@@ -170,7 +170,7 @@ First, the topology of Assur groups admits a combinatorial algebra of admissible
 
 Second, the continuous motion of each rigid link is governed by Lie groups such as $SE(2)$ and $SE(3)$. The joints correspond to one-parameter subgroups or constrained submanifolds of these Lie groups.
 
-Third, the full mechanism is described by algebraic or analytic equations obtained from loop closure. These equations define the configuration variety or configuration manifold of the linkage, depending on the regularity and singularity structure of the constraints.
+Third, the full mechanism is described by algebraic or analytic equations obtained from loop closure. These equations define the configuration variety or configuration manifold of the linkage, depending on the chosen coordinates and on the regularity and singularity structure of the constraints.
 
 This produces a layered mathematical picture:
 \[

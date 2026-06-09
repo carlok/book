@@ -6,7 +6,7 @@ does not imply the rest of the math section has already reached the same level.
 
 - [ ] `limit_complex.tex`
 - [x] `geometric_rigidity_complex_transcendentals.tex`
-- [ ] `assur_groups_lie_kinematic_foundations.tex`
+- [x] `assur_groups_lie_kinematic_foundations.tex`
 - [ ] `two_transient_spherical_signal_models.tex`
 - [ ] `strange_attractors_candidate.tex`
 - [ ] `morphological_attractors_ancient_architecture.tex`
