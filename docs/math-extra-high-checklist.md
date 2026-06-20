@@ -4,7 +4,7 @@ This checklist tracks which math article/chapter pairs have passed an
 extra-high review pass. A checked item means the pair has received that pass; it
 does not imply the rest of the math section has already reached the same level.
 
-- [ ] `limit_complex.tex`
+- [x] `limit_complex.tex`
 - [x] `geometric_rigidity_complex_transcendentals.tex`
 - [x] `assur_groups_lie_kinematic_foundations.tex`
 - [ ] `two_transient_spherical_signal_models.tex`
